@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '@mui/material/Container';
+import '../Home.css';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 

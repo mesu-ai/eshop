@@ -1,0 +1,15 @@
+/* .slick-dots li.slick-active button:before{
+    margin-top: -50px;
+} */
+/* .slick-dots li button {
+    margin-top: -50px;
+}  */
+.slick-dots li button:before{
+    margin-top: -50px;
+}
+
+.quick:hover {
+    background-color: cornsilk;
+     color: crimson;
+     
+ }
