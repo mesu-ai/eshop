@@ -16,6 +16,7 @@ const QuickLink = () => {
         ...theme.typography.body2,
         padding: theme.spacing(1),
         textAlign: 'center',
+        fontWeight:'bold',
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
@@ -25,29 +26,30 @@ const QuickLink = () => {
     return (
     <Container sx={{mt:5}}>
 
-      <Box sx={{ flexGrow: 1 }}>
+      <Box  sx={{ flexGrow: 1,mb:5 }}>
       <Grid container spacing={2}>
         
         <Grid item xs={6} md={3} lg={3}>
         
-        <Item className='quick'><StarsIcon sx={{marginRight:2}}/> Top Rated</Item>
+        <Item className='quick'><StarsIcon sx={{marginRight:2,color: 'info.main'}}/> Top Rated</Item>
         </Grid>
         
         <Grid item xs={6} md={3} lg={3}>
-        <Item className='quick'><EuroIcon sx={{marginRight:2}}/> Discount</Item>
+        <Item className='quick'><EuroIcon sx={{marginRight:2,  color: 'success.main'}}/> Discount</Item>
         </Grid> 
 
         <Grid item xs={6} md={3} lg={3}>
-        <Item className='quick'><LocalShippingIcon sx={{marginRight:2}}/> Free Shipping</Item>
+        <Item className='quick'><LocalShippingIcon sx={{marginRight:2,color: 'error.main' }}/> Free Shipping</Item>
           
         </Grid>
 
         <Grid item xs={6} md={3} lg={3}>
-        <Item className='quick'><RedeemIcon sx={{marginRight:2}}/> Winter Exclusive</Item>
+        <Item className='quick'><RedeemIcon sx={{marginRight:2,color: 'warning.main'}}/> Winter Exclusive</Item>
           
         </Grid>
       </Grid>
     </Box>
+    <hr />
           
    </Container>
     );

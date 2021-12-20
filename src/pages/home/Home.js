@@ -1,17 +1,19 @@
 import React from 'react';
+import FlashSales from './flashSales/FlashSales';
 import Homebanner from './homebanner/Homebanner';
 import QuickLink from './quickLink/QuickLink';
-import Sales from './sales/Sales';
+
 
 const Home = () => {
     return (
-        
-         <div>
+        <>
+         <div style={{height:'100vh',backgroundColor:'#f5f5f5'}}>
             <Homebanner></Homebanner>
-             {/* <Sales></Sales> */}
-             <QuickLink></QuickLink>
-            
+             <QuickLink></QuickLink> 
         </div>
+        <FlashSales></FlashSales>
+        </>
+
     );
 };
 

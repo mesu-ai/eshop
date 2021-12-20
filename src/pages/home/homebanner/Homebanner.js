@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import img1 from '../../../images/electronic-banner.png';
 import img2 from '../../../images/laptop-banner.png';
 import img3 from '../../../images/wintersell-banner.png';
+import { Container, Hidden } from '@mui/material';
 
 const banners=[
     {banner_slide:img1},
@@ -14,29 +15,63 @@ const banners=[
     {banner_slide:img3},
 
 ]
-console.log(banners);
+//console.log(banners);
 
 const Homebanner = () => {
+    function SampleNextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{ ...style, display: "none"}}
+            
+            onClick={onClick}
+          />
+        );
+      }
+      
+      function SamplePrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+      
+            style={{ ...style, display: "none"}}
+          
+            onClick={onClick}
+          />
+        );
+      }
+      
+
     const settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
-      pauseOnHover: true
+      pauseOnHover: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
+      
       };
 
     return (
-        <>
-        <Slider {...settings} >
+        <Container >
+        <Slider {...settings}  >
+
+
 
             {banners.map(slide=><div key={Math.random()}>
-                <img style={{width:'100%',height:'344px'}} src={slide?.banner_slide} alt="" />
+                <img style={{width:'100%',height:'344px',padding:'0'}} src={slide?.banner_slide} alt="" />
             </div>)}
           
         </Slider>
-        </>
+
+        
+        </Container>
       
     );
 };
