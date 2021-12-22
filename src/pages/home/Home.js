@@ -1,7 +1,9 @@
 import React from 'react';
+import HotDeals from './hotDeals/HotDeals';
 import FlashSales from './flashSales/FlashSales';
 import Homebanner from './homebanner/Homebanner';
 import QuickLink from './quickLink/QuickLink';
+import Catagories from './catagories/Catagories';
 
 
 const Home = () => {
@@ -12,6 +14,8 @@ const Home = () => {
              <QuickLink></QuickLink> 
         </div>
         <FlashSales></FlashSales>
+        <HotDeals></HotDeals>
+        <Catagories></Catagories>
         </>
 
     );

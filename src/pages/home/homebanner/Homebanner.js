@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import img1 from '../../../images/electronic-banner.png';
 import img2 from '../../../images/laptop-banner.png';
 import img3 from '../../../images/wintersell-banner.png';
-import { Container, Hidden } from '@mui/material';
+import { Container } from '@mui/material';
 
 const banners=[
     {banner_slide:img1},
@@ -59,7 +59,7 @@ const Homebanner = () => {
       };
 
     return (
-        <Container >
+        <Container sx={{pt:2}}>
         <Slider {...settings}  >
 
 

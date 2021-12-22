@@ -6,7 +6,7 @@ import React from 'react';
 const FlashSales = () => {
     return (
         <Container>
-            <Typography style={{textAlign:'start'}} sx={{ color: 'info.main' }} variant="h4" gutterBottom component="div">
+            <Typography style={{textAlign:'start'}} sx={{ color: 'info.main',mt:2 }} variant="h4" gutterBottom component="div">
                 Flash Sell
             </Typography>
 
@@ -24,7 +24,7 @@ const FlashSales = () => {
 
             </Box>
 
-            <Button  variant="outlined">Show More</Button>
+            <Button size="small" variant="outlined">Show More</Button>
 
 
             </Box>

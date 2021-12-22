@@ -1,0 +1,34 @@
+.slick-next {
+    border-radius: 20px;
+    margin-right: 10px;
+   
+}
+.slick-prev {
+    border-radius: 20px;
+    margin-left: 10px;
+}
+ 
+
+.slick-next:hover,.slick-prev:hover {
+    color: black;
+    background-color: rgb(12, 165, 50);
+}
+
+
+@media only screen and (max-width:576px){
+    .slick-next {
+       
+        margin-right: 15px;
+    }
+    .slick-prev {
+        
+        margin-left: 15px;
+        
+    }
+ 
+}
+
+.card-img-bg{
+    background-color: rgb(214, 220, 221);
+
+}
