@@ -1,15 +1,12 @@
-
 import React from 'react';
 import { CardActionArea, Grid } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const CatagoryCard = ({catagory}) => {
-    const {name,image}=catagory;
+const CategoryCard = ({category}) => {
+    const {name,image}=category;
     return (
       <Grid item xs={2} sm={4} md={4}>
       <Card sx={{  }}>
@@ -29,15 +26,15 @@ const CatagoryCard = ({catagory}) => {
             
           </Typography>
         </CardContent>
-      </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions> */}
-    </Card>          
-        </Grid>
+        </CardActionArea>
+        {/* <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+        </CardActions> */}
+      </Card>          
+      </Grid>
     );
 };
 
-export default CatagoryCard;
+export default CategoryCard;

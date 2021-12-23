@@ -6,10 +6,10 @@ import fashoin from '../../../images/catagory/fashoin.png';
 import vehicle from '../../../images/catagory/vehicles.png';
 import tools from '../../../images/catagory/tools.png';
 import { Container, Grid, Typography } from '@mui/material';
-import CatagoryCard from './card/CatagoryCard';
+import CategoryCard from './card/CategoryCard';
 import { Box } from '@mui/system';
 
-const catagories=[
+const categories=[
     {
         name:'Home',
         image:homeapp
@@ -37,17 +37,17 @@ const catagories=[
 
 ]
 
-const Catagories = () => {
+const Categories = () => {
     return (
         <Box >
         <Container style={{backgroundColor:'cornsilk'}}>
             <Typography sx={{fontWeight:700, pt:4}} variant="h4" gutterBottom component="div">
-                Featured Catagories
+                Featured Categories
         
            </Typography>
             {/* .slice(1) */}
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:4}} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {catagories.map(catagory=><CatagoryCard key={Math.random()} catagory={catagory}></CatagoryCard>)
+            {categories.map(category=><CategoryCard key={Math.random()} category={category}></CategoryCard>)
                 
             }
             </Grid>
@@ -57,4 +57,4 @@ const Catagories = () => {
     );
 };
 
-export default Catagories;
+export default Categories;

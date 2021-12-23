@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import Products from './pages/products/Products';
 import Notfind from './pages/notfind/Notfind';
 import Navbar from './components/shared/navbar/Navbar';
+import Footer from './components/shared/footer/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
         
       </Routes>
+      <Footer></Footer>
       </BrowserRouter>
       
     </div>
