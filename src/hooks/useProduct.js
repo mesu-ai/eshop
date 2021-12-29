@@ -3,14 +3,19 @@ import { useEffect, useState } from 'react';
 const useProduct = () => {
     const [products,setProducts] = useState([]);
     const [display,setDisplay]= useState([]);
+    // const [shortProducts,setShortProducts]= useState([]);
+
     useEffect(()=>{
         fetch('http://localhost:5000/products/')
         .then(res=>res.json())
         .then(data=>{
-            setProducts(data.slice(-9));
-            setDisplay(data);
+            
+            // setShortProducts(data.slice(-9));
+            setDisplay(data)
+            setProducts(data);
+            
         })
-    },[setProducts,setDisplay]);
+    },[]);
    
     // console.log(products);
 

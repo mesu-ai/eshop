@@ -20,7 +20,7 @@ const CatagoryList = () => {
                 <ListItem className="list-item" disablePadding>
                 <ListItemButton >
                     <ListItemIcon  >
-                    <i class="fas fa-female fa-lg"></i>
+                    <i className="fas fa-female fa-lg"></i>
                     </ListItemIcon>
                     <ListItemText  sx={{fontWeight:'bold'}}  primary="Women's Fashion"/>
                 </ListItemButton>
@@ -29,7 +29,7 @@ const CatagoryList = () => {
                 <ListItem className="list-item" disablePadding>
                 <ListItemButton >
                     <ListItemIcon  >
-                    <i class="fas fa-tshirt"></i>
+                    <i className="fas fa-tshirt"></i>
                     </ListItemIcon>
                     <ListItemText sx={{fontWeight:'bold'}}  primary="Men's Fashion"/>
                 </ListItemButton>

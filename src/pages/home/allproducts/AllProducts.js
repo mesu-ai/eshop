@@ -1,20 +1,18 @@
 import React from 'react';
-import CameraCard from './card/CameraCard';
-import { Box, Button, Container, Divider, Grid, Typography } from '@mui/material';
+// import useProduct from '../../../hooks/useProduct';
+import { Box, Button, Container, Divider, Grid, Pagination, Stack, Typography } from '@mui/material';
 import { styled} from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import useShortProduct from '../../../hooks/useShortProduct';
+import useProduct from '../../../hooks/useProduct';
+import AllProductCard from './card/AllProductCard';
 
 
-const  CameraZone = () => {
-    const [shortProducts]=useShortProduct();
-    console.log('camera:',shortProducts);
+const AllProducts = () => {
 
-    const cameras=shortProducts.filter(product=>product.category==='camera');
-    console.log(cameras);
+    const [products]=useProduct();
+    console.log('display:',products);
 
-    // alpha(theme.palette.common.white, 0.15)
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -57,25 +55,18 @@ const  CameraZone = () => {
           },
         },
       }));
-
-
-    
     return (
-        
         <Box sx={{mt:3}}>
-        <Container style={{backgroundColor:'whitesmoke'}}>
-        <Typography style={{textAlign:'start'}} sx={{ color: 'info.main',pt:4 }} variant="h4" gutterBottom component="div">
-            Camera Zone
+        <Container style={{backgroundColor:'snow'}}>
+        
+        <Typography style={{textAlign:'start'}} sx={{ color: 'crimson',pt:5 }} variant="h4" gutterBottom component="div">
+            More to Love
             </Typography>
 
             <Box sx={{display:'flex',justifyContent:'space-between'}}>
-            <Box sx={{display:'flex'}}>
-            <Typography style={{textAlign:'start'}} sx={{ color: 'warning.main', display:{xs:'none',sm:'flex'} }} variant="h6" gutterBottom component="div">
-                Latest Camera
-            </Typography>
-
-            <Box sx={{ml:{xs:0,md:3 }}}>
-            <Search>
+            
+              
+            <Search style={{marginLeft:'0'}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -83,32 +74,34 @@ const  CameraZone = () => {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
-
-            </Box>
-
-            </Box>
+           </Search>
 
             <Button size="small" variant="outlined">Show More</Button>
 
             </Box>
 
-            <Divider sx={{my:2,backgroundColor:'black'}}/>
 
+            <Divider sx={{my:2,backgroundColor:'black'}}/>
+            
             {/* .slice(1) */}
             
             
-            <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:4}} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
             
             {
-                cameras.map(camera=><CameraCard key={Math.random()} camera={camera}></CameraCard>)
+                products.map(product=><AllProductCard key={Math.random()} product={product}></AllProductCard>)         
                 
             }
             </Grid>
+
+            <Stack spacing={2} sx={{py:4}}>
+
+                <Pagination sx={{mx:'auto'}}  count={10} variant="outlined" color="secondary" />
+            </Stack>
             
         </Container>
         </Box>
     );
 };
 
-export default  CameraZone;
+export default AllProducts;
