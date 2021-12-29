@@ -46,7 +46,7 @@ const Homebanner = () => {
 
     const settings = {
         dots: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -54,7 +54,7 @@ const Homebanner = () => {
       autoplaySpeed: 2000,
       pauseOnHover: true,
       nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      prevArrow: <SamplePrevArrow />
       
       };
 
