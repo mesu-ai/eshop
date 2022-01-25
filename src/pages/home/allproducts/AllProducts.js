@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import useProduct from '../../../hooks/useProduct';
 import { Box, Button, Container, Divider, Grid, Pagination, Stack, Typography } from '@mui/material';
 import { styled} from '@mui/material/styles';
@@ -10,8 +10,22 @@ import AllProductCard from './card/AllProductCard';
 
 const AllProducts = () => {
 
-    const [products]=useProduct();
-    console.log('display:',products);
+    const [page,setPage]=useState(0);
+    const [products,totalPage]=useProduct(page);
+    
+    // console.log('page:',page);
+    console.log('totalpage:',totalPage);
+
+    const handlePagination=(e)=>{
+      const currentPage=e.target.textContent;
+      setPage(currentPage-1);
+         
+    }
+
+    // const handleChange = page => {
+    //   setPage(page);
+    //   window.scroll(0, 0);
+    // };
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -96,7 +110,10 @@ const AllProducts = () => {
 
             <Stack spacing={2} sx={{py:4}}>
 
-                <Pagination sx={{mx:'auto'}}  count={10} variant="outlined" color="secondary" />
+                <Pagination 
+                onClick={handlePagination}
+                // onChange={e => handleChange(e.target.textContent)}
+                sx={{mx:'auto'}}  count={10} variant="outlined" color="secondary" />
             </Stack>
             
         </Container>

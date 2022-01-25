@@ -9,7 +9,7 @@ const useShortProduct = () => {
         .then(res=>res.json())
         .then(data=>{
             
-             setShortProducts(data.slice(-9));
+             setShortProducts(data.products.slice(-9));
             
         })
     },[]);

@@ -4,15 +4,14 @@ import { Box, Button, Container, Divider, Grid, Typography } from '@mui/material
 import { styled} from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import useShortProduct from '../../../hooks/useShortProduct';
+import useCamera from '../../../hooks/useCamera';
 
 
 const  CameraZone = () => {
-    const [shortProducts]=useShortProduct();
-    console.log('camera:',shortProducts);
+    const [cameras]=useCamera();
+    // console.log('camera:',shortProducts);
 
-    const cameras=shortProducts.filter(product=>product.category==='camera');
-    console.log(cameras);
+    // console.log(cameras);
 
     // alpha(theme.palette.common.white, 0.15)
     const Search = styled('div')(({ theme }) => ({
