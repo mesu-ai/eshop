@@ -5,7 +5,7 @@ const useShortProduct = () => {
      const [shortProducts,setShortProducts]= useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/products/')
+        fetch('https://limitless-fjord-65876.herokuapp.com/products/')
         .then(res=>res.json())
         .then(data=>{
             
