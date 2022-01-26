@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, Rating } from '@mui/material';
-import { Box, flexbox } from '@mui/system';
+import { Box} from '@mui/system';
 
 const AllProductCard = ({product}) => {
   const {name,image,price,star,starCount}=product;
