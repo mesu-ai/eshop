@@ -14,7 +14,7 @@ const AllProducts = () => {
     const [products,totalPage]=useProduct(page);
     
     // console.log('page:',page);
-    console.log('totalpage:',totalPage);
+    // console.log('totalpage:',totalPage);
 
     const handlePagination=(e)=>{
       const currentPage=e.target.textContent;

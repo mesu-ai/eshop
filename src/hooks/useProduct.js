@@ -23,7 +23,7 @@ const useProduct = (page) => {
         })
     },[page,setTotalPage]);
    
-     console.log(totalPage);
+    //  console.log(totalPage);
 
     return [products,setProducts,totalPage,setTotalPage]
 };
