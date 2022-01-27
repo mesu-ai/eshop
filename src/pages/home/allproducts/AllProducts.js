@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import useProduct from '../../../hooks/useProduct';
 import { Box, Button, Container, Divider, Grid, Pagination, Stack, Typography } from '@mui/material';
 import { styled} from '@mui/material/styles';
@@ -10,11 +10,48 @@ import AllProductCard from './card/AllProductCard';
 
 const AllProducts = () => {
 
+    
+    // const [products,totalPage]=useProduct(page);
+
+    const [products,setProducts] = useState([]);
+    const [displayProducts,setDisplayProducts]= useState([]);
     const [page,setPage]=useState(0);
-    const [products,totalPage]=useProduct(page);
+    const [totalPage,setTotalPage]= useState(0);
+
+    const size=9;
+
+    useEffect(()=>{
+      fetch(`https://limitless-fjord-65876.herokuapp.com/products?page=${page}&&size=${size}`)
+        .then(res=>res.json())
+        .then(data=>{
+            
+            // setShortProducts(data.slice(-9));
+            
+            setProducts(data.products);
+            setDisplayProducts(data.products);
+            const count=data.count;
+            const pageNumber=Math.ceil(count/size);
+            setTotalPage(pageNumber);
+            
+        })
+
+    },[page]);
     
     // console.log('page:',page);
     // console.log('totalpage:',totalPage);
+
+    
+
+    const handleSearch=e=>{
+      
+      
+      const searchText= e.target.value;
+      console.log(searchText);
+
+    const findProduct=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
+    setDisplayProducts(findProduct);
+    // console.log(display.length);
+    }
 
     const handlePagination=(e)=>{
       const currentPage=e.target.textContent;
@@ -22,10 +59,6 @@ const AllProducts = () => {
          
     }
 
-    // const handleChange = page => {
-    //   setPage(page);
-    //   window.scroll(0, 0);
-    // };
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -69,6 +102,9 @@ const AllProducts = () => {
           },
         },
       }));
+
+
+
     return (
         <Box sx={{mt:3}}>
         <Container style={{backgroundColor:'snow'}}>
@@ -79,16 +115,21 @@ const AllProducts = () => {
 
             <Box sx={{display:'flex',justifyContent:'space-between'}}>
             
+            <input style={{color:'green',paddingLeft:'10px'}} type="search" id="site-search" 
+            aria-label="Search through site content" placeholder="Search…" onChange={handleSearch}></input>
+
+            
               
-            <Search style={{marginLeft:'0'}}>
+            {/* <Search style={{marginLeft:'0'}} >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              
             />
-           </Search>
+           </Search> */}
 
             <Button size="small" variant="outlined">Show More</Button>
 
@@ -103,7 +144,7 @@ const AllProducts = () => {
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
             
             {
-                products.map(product=><AllProductCard key={Math.random()} product={product}></AllProductCard>)         
+                displayProducts.map(product=><AllProductCard key={Math.random()} product={product}></AllProductCard>)         
                 
             }
             </Grid>
@@ -113,7 +154,7 @@ const AllProducts = () => {
                 <Pagination 
                 onClick={handlePagination}
                 // onChange={e => handleChange(e.target.textContent)}
-                sx={{mx:'auto'}}  count={10} variant="outlined" color="secondary" />
+                sx={{mx:'auto'}}  count={totalPage} variant="outlined" color="secondary" />
             </Stack>
             
         </Container>

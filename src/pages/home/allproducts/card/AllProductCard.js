@@ -16,7 +16,7 @@ const AllProductCard = ({product}) => {
 
         <img src={image} alt="" style={{width:'80%',height:'200px'}} />
         <CardContent>
-          <Typography className="ellipses" title={name} gutterBottom variant="body1" component="div">
+          <Typography  className="ellipses" title={name} gutterBottom variant="body1" component="div">
 
           {name}
 
