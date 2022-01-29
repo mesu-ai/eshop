@@ -30,15 +30,20 @@ const HotDealCard = ({hotdeal}) => {
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          {/* <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly /> */}
+
+          
+
           <Box sx={{display:'flex'}}>
-          <Typography style={{textAlign:'start'}} sx={{fontWeight:700,pl:0}} variant="h6" color="text.secondary">
-            USD {price}
+          <Typography style={{textAlign:'start'}} sx={{fontWeight:700,pl:0}} variant="h6" color="text.black">
+            ${price}
           </Typography>
-          <Typography style={{backgroundColor:'crimson',color:'white'}} sx={{px:1,ml:3, borderRadius:2}} variant="h6">
-           - {discount}
+          <Typography style={{backgroundColor:'',color:'red'}} sx={{px:1,ml:1, borderRadius:2,color:"text.black"}} variant="h6">
+            -${discount} off
           </Typography>
           </Box>
+
+          <Rating sx={{display:'flex',justifyContent:'start',alignItems:'center',mt:1}}  name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+
         </CardContent>
       </CardActionArea>
       <CardActions>

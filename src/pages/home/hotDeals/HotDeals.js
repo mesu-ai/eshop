@@ -15,7 +15,8 @@ const hotdealsproduct = [
             desc: 'Known as "The Magician", Efren Reyes is well regarded by many professionals as the greatest all around player of all time.',
             image: 'https://i.ibb.co/FzBq2GW/torch-prev-ui.png',
             rating:5,
-            price:10, discount:310, discount:3
+            price:10, 
+            discount:3
 
         },
 
