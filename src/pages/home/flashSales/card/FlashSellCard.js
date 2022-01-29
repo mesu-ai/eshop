@@ -14,7 +14,9 @@ const FlashSellCard = ({product}) => {
         
         <Card sx={{mx:1}}>
 
-        <img src={image} alt="" style={{width:'80%',height:'200px'}} />
+        <Box sx={{display:'flex',justifyContent:'center'}}>
+        <img  src={image} alt="" style={{width:'80%',height:'200px'}} />
+        </Box>
         <CardContent>
           <Typography  className="ellipses" title={name} gutterBottom variant="body1" component="div">
 
