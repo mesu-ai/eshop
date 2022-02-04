@@ -1,11 +1,13 @@
 import React from 'react';
 
+
 const Products = () => {
     return (
         <div>
-            Products
-            
+             <h3>Product page</h3>
         </div>
+            
+        
     );
 };
 

@@ -7,9 +7,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, Rating } from '@mui/material';
 import { Box} from '@mui/system';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AllProductCard = ({product}) => {
-  const {name,image,price,star,starCount}=product;
+  const {_id,name,image,price,star,starCount}=product;
+
+  // const navigate= useNavigate();
+  // const handlebuyNow=(id)=>{
+  //   const url=`/productDetails/${id}`
+  //   navigate(url);
+   
+  // }
+  
+  const url='/productDetails';
+  
     return (
         <Grid item xs={6} sm={4} md={4}>
         <Card sx={{  }}>
@@ -25,6 +36,7 @@ const AllProductCard = ({product}) => {
           <Typography  sx={{color: 'text.secondary',textAlign: 'left'}} gutterBottom variant="h6" component="div">
            <span style={{fontWeight: 'bold',color:'black'}}>${price}</span> /piece 
           </Typography>
+          
           {/* <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
             species, ranging across all continents except Antarctica
@@ -42,9 +54,14 @@ const AllProductCard = ({product}) => {
         
         </Box> 
         </CardContent>
-        
+
+        {/* onClick={()=>handlebuyNow(_id)} */}
         <CardActions sx={{ml:1}}>
-          <Button size="small">Buy Now</Button>
+
+          <Link to={`${url}/${_id}`}>
+          <Button  size="small">Buy Now</Button>
+          </Link>
+          
           <Button size="small">See Details</Button>
         </CardActions>
         </Card>
