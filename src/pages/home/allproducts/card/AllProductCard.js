@@ -12,14 +12,14 @@ import { Link, useNavigate } from 'react-router-dom';
 const AllProductCard = ({product}) => {
   const {_id,name,image,price,star,starCount}=product;
 
-  // const navigate= useNavigate();
-  // const handlebuyNow=(id)=>{
-  //   const url=`/productDetails/${id}`
-  //   navigate(url);
+  const navigate= useNavigate();
+  const handlebuyNow=(id)=>{
+    const url=`/productDetails/${id}`
+    navigate(url);
    
-  // }
+  }
   
-  const url='/productDetails';
+  // const url='/productDetails';
   
     return (
         <Grid item xs={6} sm={4} md={4}>
@@ -58,11 +58,10 @@ const AllProductCard = ({product}) => {
         {/* onClick={()=>handlebuyNow(_id)} */}
         <CardActions sx={{ml:1}}>
 
-          <Link to={`${url}/${_id}`}>
-          <Button  size="small">Buy Now</Button>
-          </Link>
+          {/* <Link to={`${url}/${_id}`}> </Link> */}
+          <Button onClick={()=>handlebuyNow(_id)}  size="small">Buy Now</Button>
           
-          <Button size="small">See Details</Button>
+          <Button   size="small">See Details</Button>
         </CardActions>
         </Card>
         </Grid>

@@ -78,7 +78,7 @@ const FlashSales= () => {
     const [products]= useFlashSell();
 
 
-    const countDownTime = new Date("feb 4, 2022 15:50:00").getTime();
+    const countDownTime = new Date("feb 14, 2022 15:50:00").getTime();
    const setStartTime=new Date("feb 4, 2022 15:47:00").getTime();
     
    const currentTime = new Date().getTime();
@@ -98,10 +98,10 @@ const FlashSales= () => {
   
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
+        d: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        h: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        m: Math.floor((difference / 1000 / 60) % 60),
+        s: Math.floor((difference / 1000) % 60)
       };
     }
     return timeLeft;
@@ -151,7 +151,7 @@ const FlashSales= () => {
           
           { showTime<0?
 
-            <Typography id=""  style={{textAlign:'start',marginLeft:'4vw'}} variant="h5" gutterBottom component="div">
+            <Typography sx={{bgcolor: 'error.main',px:2,boxShadow: 2,borderRadius: 1}}  style={{textAlign:'start',marginLeft:'4vw',color:'white'}} variant="h5" gutterBottom component="div">
 
             {timerComponents.length ? timerComponents : <span>Time's up!</span>}
           
