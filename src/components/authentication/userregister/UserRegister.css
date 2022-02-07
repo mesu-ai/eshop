@@ -1,0 +1,39 @@
+
+.user-register{
+    display: block;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 12px 0px;
+    border: 1px solid black;
+    border-radius: 8px;
+
+}
+
+
+
+.register{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: navajowhite;
+
+}
+
+.user-register::placeholder{
+    padding-left: 8px;
+}
+.user-register::-webkit-input-placeholder{
+    padding-left: 8px;
+}
+.user-register:-ms-input-placeholder{
+    padding-left: 8px;
+}
+
+
+.left,.right{
+    display: inline-block;
+    height: 1px;
+    width: 30%;
+    background-color: #a09a9a;
+}

@@ -1,13 +1,22 @@
-
-import { Button, Typography } from '@mui/material';
-import { Box } from '@mui/system';
 import React from 'react';
 import '../Footer.css';
+import { Button, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
+
+import AuthModal from '../../../authentication/AuthModal';
 // import useAuth from '../../../../hooks/useAuth';
 
 const QuickLink = () => {
     // const {user,userLogOut}= useAuth();
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    
+
+
     return (
         <>
         <Typography sx={{textAlign:'start',fontWeight:'bold'}} variant="h6" gutterBottom component="div">
@@ -23,20 +32,21 @@ const QuickLink = () => {
             
             <Box sx={{my:4}}>
             {/* {!user.email?  */}
-            <Link  to="/">
-            <Button  variant="contained" color="error">Login</Button>
-            </Link> :
+            <Button onClick={handleOpen} variant="contained" color="error">
+              Login</Button>
+            :
 
              {/* <Button onClick={userLogOut} variant="contained" color="error">LogOut</Button> 
             } */}
+
+            <AuthModal open={open} handleClose={handleClose}></AuthModal>
             </Box>
-
-
-
-
+        </Box>
 
         
-        </Box>
+
+
+
         </>
     );
 };

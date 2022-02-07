@@ -6,6 +6,9 @@ import Notfind from './pages/notfind/Notfind';
 import Navbar from './components/shared/navbar/Navbar';
 import Footer from './components/shared/footer/Footer';
 import ProductDetails from './pages/products/productDetails/ProductDetails';
+// import AuthModal from './components/authentication/AuthModal';
+// import UserLogin from './components/authentication/userlogin/UserLogin';
+
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         
         <Route path='/products' element={<Products/>}/>
         <Route path='/productDetails/:id' element={<ProductDetails/>}/>
+        
+        {/* <Route path='/authentication' element={<AuthModal/>}/> */}
+        
+        {/* <Route path='/login' element={<UserLogin/>}/> */}
 
         
         <Route exact path='/' element={<Home/>}/>
