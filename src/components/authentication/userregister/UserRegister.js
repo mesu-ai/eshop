@@ -4,9 +4,16 @@ import { useForm } from "react-hook-form";
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import google from '../../../images/login/google.png';
+import useFirebase from '../../../hooks/useFirebase';
 
 const UserRegister = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const {signInUsingGoogle}=useFirebase();
+
+    const handleGoogleLogin=()=>{
+      signInUsingGoogle();
+    }
 
     const onSubmit = data => console.log(data);
 
@@ -71,7 +78,7 @@ const UserRegister = () => {
     </Box>
 
     <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}} >
-        <img  src={google} alt="" style={{width:'90px',marginTop:'10px'}}/>
+        <img onClick={handleGoogleLogin} src={google} alt="" style={{width:'90px',marginTop:'10px'}}/>
     </Box>
 
 
