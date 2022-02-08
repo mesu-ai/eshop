@@ -11,69 +11,73 @@ const UserRegister = () => {
     const onSubmit = data => console.log(data);
 
     return (
-        <>
-        <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
-        
-          <input
-            className="user-register"
-            placeholder='Name'
-            type="text"
-            {...register('name', { required: true, maxLength: 80 })}
-          />
-       
-        
-        
-          <input
-            className="user-register"
-            placeholder='Email Address'
-            type="text"
-            {...register('email', {
-              required: true,
-              pattern:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            })}
-          />
-        
-        
+      <>
+      
+      <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
+      
+        <div style={{color:'red',fontSize:'13px'}}>
         <input
-        className="user-register"
-        placeholder='Password'
-          type="password"
-          {...register('password', {
+
+          className="user-register"
+          style={{marginTop:'6px'}}
+          placeholder='Name'
+          type="text"
+          {...register('name', { required: true, maxLength: 80 })}
+        />
+        {errors.name && "Please Enter Your Name"}
+        </div>
+     
+      
+       <div style={{color:'red',fontSize:'13px'}}>
+        <input
+          className="user-register"
+          placeholder='Email Address'
+          type="text"
+          {...register('email', {
             required: true,
-            maxLength: 11,
-            minLength: 8,
+            pattern:
+              /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
           })}
         />
+        {errors.email && "Please enter a valid Email Address"}
+        </div>
       
-  
-        <input className='register' type="submit" value="Create Account" />
+      <div style={{color:'red',fontSize:'13px'}}>
+      <input
+      className="user-register"
+      placeholder='Password'
+        type="password"
+        {...register('password', {
+          required: true,
+          maxLength: 12,
+          minLength: 8,
+        })}
+      />
+      {errors.password && "Password Must be 6-12 characters"}
+      </div>
+    
+
+      <input className='register' type="submit" value="Create Account" />
 
       </form>
+      
 
-      <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}} >
-          <p className='left'></p>
-          <Typography variant='subtitle1' sx={{textAlign:'center'}}>
-            Or Continue With
-          </Typography>
-          <p className='right'></p>
-      </Box>
+    <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center',mt:2}} >
+        <span className='left'></span>
+        <Typography variant='subtitle1' sx={{textAlign:'center'}} component="div">
+          Or Continue With
+        </Typography>
+        <span className='right'></span>
+    </Box>
 
-      <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}} >
-          <img  src={google} alt="" style={{width:'90px',marginTop:'10px'}}/>
-      </Box>
-
-
-
+    <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}} >
+        <img  src={google} alt="" style={{width:'90px',marginTop:'10px'}}/>
+    </Box>
 
 
-
-      {/* <Typography variant='subtitle1' sx={{textAlign:'center'}}>
-      By creating an account, you agree to the Membership Agreement and Privacy Policy
-      </Typography> */}
-
-
-
+    {/* <Typography variant='subtitle1' sx={{textAlign:'center'}}>
+    By creating an account, you agree to the Membership Agreement and Privacy Policy
+    </Typography> */}
 
       </>
 

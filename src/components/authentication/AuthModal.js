@@ -42,13 +42,11 @@ const AuthModal = ({open,handleClose}) => {
         <Fade in={open}>
           <Box sx={style}>
 
-          <IconButton onClick={handleClose} sx={{float:'right'}} aria-label="delete">
+            <IconButton onClick={handleClose} sx={{float:'right'}} aria-label="delete">
                   <ClearIcon sx={{color:'crimson'}}/>
-                </IconButton>
-
-            <Typography id="transition-modal-description" sx={{  }}>
-              <AuthTab></AuthTab>
-            </Typography>
+            </IconButton>
+          
+            <AuthTab></AuthTab>
           </Box>
         </Fade>
       </Modal>

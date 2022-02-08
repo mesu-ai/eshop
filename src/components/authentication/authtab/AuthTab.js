@@ -1,3 +1,5 @@
+
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -19,9 +21,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+          <Box sx={{ p: 3 }}>{children}</Box> 
       )}
     </div>
   );
@@ -57,11 +57,12 @@ export default function AuthTab() {
           
         </Tabs>
       </Box>
+      
       <TabPanel value={value} index={0}>
-      <UserRegister></UserRegister>
+         <UserRegister></UserRegister>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <UserLogin></UserLogin>
+      <TabPanel value={value} index={1} component="div">
+         <UserLogin></UserLogin>
       </TabPanel>
       
     </Box>
