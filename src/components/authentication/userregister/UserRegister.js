@@ -4,18 +4,27 @@ import { useForm } from "react-hook-form";
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import google from '../../../images/login/google.png';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UserRegister = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
-    const {signInUsingGoogle}=useFirebase();
+    const {signInUsingGoogle,signUpUsingEmail}=useAuth();
+
+    const location=useLocation();
+    const navigate=useNavigate();
 
     const handleGoogleLogin=()=>{
-      signInUsingGoogle();
+      signInUsingGoogle(location,navigate);
     }
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = data =>{
+      signUpUsingEmail(data.name,data.email,data.password,location,navigate);
+
+      console.log(data);
+      reset();
+    } 
 
     return (
       <>

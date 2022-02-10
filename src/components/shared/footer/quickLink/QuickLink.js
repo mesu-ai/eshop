@@ -5,10 +5,10 @@ import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 
 import AuthModal from '../../../authentication/AuthModal';
-// import useAuth from '../../../../hooks/useAuth';
+import useAuth from '../../../../hooks/useAuth';
 
 const QuickLink = () => {
-    // const {user,userLogOut}= useAuth();
+     const {user,userLogOut}= useAuth();
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -31,13 +31,13 @@ const QuickLink = () => {
 
             
             <Box sx={{my:4}}>
-            {/* {!user.email?  */}
+            {!user.email? 
             <Button onClick={handleOpen} variant="contained" color="error">
               Login</Button>
             :
 
-             {/* <Button onClick={userLogOut} variant="contained" color="error">LogOut</Button> 
-            } */}
+             <Button onClick={userLogOut} variant="contained" color="error">LogOut</Button> 
+            }
 
             <AuthModal open={open} handleClose={handleClose}></AuthModal>
             </Box>
