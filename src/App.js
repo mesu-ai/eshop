@@ -34,9 +34,11 @@ function App() {
 
         <Route path='/productDetails/:id' element={<ProductDetails/>}/>
         
-        <Route path='/login' element={<AuthModal open={open} handleClose={handleClose}></AuthModal>}/>
+        {/* <Route path='/login' element={<AuthModal open={open} handleClose={handleClose}></AuthModal>}/> */}
 
         <Route path='/productorder/:id' element={<PrivateRoute><ProductOrder/></PrivateRoute>}/>
+
+        
         
         {/* <Route path='/login' element={<UserLogin/>}/> */}
 

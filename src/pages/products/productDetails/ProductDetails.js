@@ -11,15 +11,13 @@ import AuthModal from '../../../components/authentication/AuthModal';
 
 const ProductDetails = () => {
 
+    const navigate=useNavigate();
+
     const [product,setProduct]=useState([]);
     const [quentity,setQuentity]=useState([1]);
     // const [stocks,setStocks]=useState([]);
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const {user}=useAuth();
+   const {user}=useAuth();
    const {id}= useParams();
 
    const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`
@@ -47,24 +45,14 @@ const ProductDetails = () => {
 
     }
 
-    const navigate=useNavigate();
-    const handleBuyNow=(id)=>{
+    
+
+    const handleBuyNow=()=>{
         const url=`/productorder/${id}`
-        navigate(url);
-
-        // if(user.email){
-        //     navigate(url);
-        //     return;
-        // }
-        
-        // else{
-        //     handleOpen();
-        //     <AuthModal open={open} handleClose={handleClose}></AuthModal>
-        //     return;
-        // }   
-
+        navigate(url)
     }
 
+    
     
     // // const handleStock=()=>{
     //     let stock=product.stock;
@@ -86,12 +74,12 @@ const ProductDetails = () => {
         {product.length !==0 ? 
             <Grid container spacing={4}>
 
-                <Grid item  sx={{}} xs={12} md={4} lg={5}>
+                <Grid item  sx={{}} xs={12} sm={5} md={4} lg={5}>
                     <img src={product?.image} alt="" style={{width:'90%'}}  />
                     
 
                 </Grid>
-                <Grid item sx={{textAlign:'start'}} xs={12} md={8} lg={7}>
+                <Grid item sx={{textAlign:'start'}} xs={12} sm={7} md={8} lg={7}>
                     
                     <Typography variant="body1" gutterBottom>
                     {product?.name}
@@ -148,7 +136,7 @@ const ProductDetails = () => {
 
                     <Box sx={{mt:5}}>
                         
-                        <Button onClick={()=>handleBuyNow(id)} className='buybutton' variant="contained" sx={{ bgcolor: 'tomato',mr:2,textTransform:'capitalize',fontWeight:'bold' }}>Buy Now</Button>
+                        <Button onClick={handleBuyNow} className='buybutton' variant="contained" sx={{ bgcolor: 'tomato',mr:2,textTransform:'capitalize',fontWeight:'bold' }}>Buy Now</Button>
 
                         <Button className='addcartbutton' variant="contained" sx={{ bgcolor: 'warning.main',textTransform:'capitalize',fontWeight:'bold'}}>Add to Cart</Button>
                     </Box>
