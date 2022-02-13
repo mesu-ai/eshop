@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { BrowserRouter,Routes, Route } from "react-router-dom";
+import { BrowserRouter,Routes, Route} from "react-router-dom";
 import Home from './pages/home/Home';
 import Products from './pages/products/Products';
 import Notfind from './pages/notfind/Notfind';
@@ -18,9 +18,14 @@ import ProductOrder from './pages/products/productOrder/ProductOrder';
 
 
 function App() {
+  
   const [open, setOpen] = useState(true);
     // const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    
+    const handleClose = () =>{
+      setOpen(false);
+      //  window.history.back();
+    } 
   return (
     <div className="App">
       <AuthProvider>
