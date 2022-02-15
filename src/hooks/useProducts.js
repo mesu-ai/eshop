@@ -8,16 +8,12 @@ const useProducts = () => {
     useEffect(()=>{
         fetch('https://limitless-fjord-65876.herokuapp.com/products')
         .then(res=>res.json())
-        .then(data=>setProducts(data.products))
+        .then(data=>setProducts(data.products));
         
 
-    },[]);
+    },[products]);
 
-    return (
-        <div>
-            
-        </div>
-    );
+    return [products,setProducts];
 };
 
 export default useProducts;

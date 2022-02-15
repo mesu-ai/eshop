@@ -7,6 +7,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useAuth from '../../../hooks/useAuth';
 import AuthModal from '../../../components/authentication/AuthModal';
+import { addTodb } from '../../../utilities/LocalStorage';
 
 
 const ProductDetails = () => {
@@ -50,6 +51,11 @@ const ProductDetails = () => {
     const handleBuyNow=()=>{
         const url=`/productorder/${id}`
         navigate(url)
+
+        addTodb(id,quentity);
+
+
+
     }
 
     
@@ -62,7 +68,7 @@ const ProductDetails = () => {
     // // }
    
    
-   console.log(product);
+  // console.log(product);
    
     return (
         // backgroundColor:'#f5f5f5'
