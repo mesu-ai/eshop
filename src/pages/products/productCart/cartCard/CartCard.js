@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Grid, IconButton, Typography } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ClearIcon from '@mui/icons-material/Clear';
+import { Box } from '@mui/system';
+import WarningModal from '../warningModal/WarningModal';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -16,13 +18,18 @@ const Item = styled(Paper)(({ theme }) => ({
 const CartCard = ({product,handleRemove}) => {
     const {_id,name,price,quentity,image}=product;
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
     
 
     return (
+        <>
         <Grid item xs={12}  >
             <Item >
-                
-                <IconButton onClick={()=>handleRemove(_id)} sx={{float:'right'}} variant="contained" color="error" aria-label="remove from shopping cart" title='Remove Product'>
+            
+                <IconButton onClick={handleOpen} sx={{float:'right'}} variant="contained" color="error" aria-label="remove from shopping cart" title='Remove Product'>
                 <ClearIcon  sx={{color:'crimson'}}/>
                </IconButton>
 
@@ -54,6 +61,9 @@ const CartCard = ({product,handleRemove}) => {
                 
             </Item>
         </Grid>
+        <WarningModal open={open} handleClose={handleClose} handleRemove={handleRemove} product={product}></WarningModal>
+
+        </>
     );
 };
 

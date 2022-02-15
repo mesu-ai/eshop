@@ -1,7 +1,7 @@
 import { Button, Container, Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-
+import ClearIcon from '@mui/icons-material/Clear';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,8 @@ import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Modal from '@mui/material/Modal';
+import { IconButton } from '@mui/material';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
 
@@ -22,6 +24,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
   }));
 
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 const ProductOrder = () => {
     const {user}= useAuth();
     const {id}= useParams();
@@ -31,6 +45,10 @@ const ProductOrder = () => {
     const [mobileErr,setMobileErr]=useState(false);
     const [cart,setCart]=useCart();
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
     let price=0;
     let shippingFee=0;
 
@@ -39,16 +57,18 @@ const ProductOrder = () => {
         price=parseFloat(price)+ parseFloat((product.price*product.quentity).toFixed(2));
         shippingFee= parseFloat(shippingFee)+parseFloat((product.shipping).toFixed(2));
         
-        
     }
 
-    const totalPrice=parseFloat(price)+parseFloat(shippingFee);
+    const totalPrice=(parseFloat(price)+parseFloat(shippingFee)).toFixed(2);
 
     const handleRemove=(id)=>{
         const remainProduct=cart.filter(product=>product._id!==id);
         setCart(remainProduct);
         removeFromDb(id);
+
     }
+
+    
 
     // console.log(price);
 
@@ -59,7 +79,6 @@ const ProductOrder = () => {
         const newBiller={...biller};
         newBiller[field]=value;
         setBiller(newBiller);
-
 
     }
 
@@ -153,7 +172,7 @@ const ProductOrder = () => {
                     </Typography>
                     <Box sx={{display:'flex',justifyContent:'space-between'}}>
                     <Typography color="text.secondary" variant="body1" gutterBottom component="div">
-                    Subtotal
+                    Subtotal ({cart.length} items)
                     </Typography>
                     <Typography  variant="body1" gutterBottom component="div">
                     $ {price}
@@ -194,6 +213,7 @@ const ProductOrder = () => {
 
               </Grid>
             </Box>
+
             
            </Container>
           </Box>

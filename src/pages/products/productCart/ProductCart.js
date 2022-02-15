@@ -1,12 +1,11 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-// import useCart from '../../../hooks/useCart';
-// import { removeFromDb } from '../../../utilities/LocalStorage';
+
 import CartCard from './cartCard/CartCard';
 
 const ProductCart = ({cart,handleRemove}) => {
     // const [cart,setCart]=useCart();
-    console.log(cart);
+    // console.log(cart);
 
     
 
