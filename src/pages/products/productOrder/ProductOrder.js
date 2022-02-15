@@ -36,12 +36,13 @@ const ProductOrder = () => {
 
     for (const product of cart) {
         console.log(product);
-        price=parseFloat(price)+ product.price*product.quentity;
-        shippingFee=parseFloat(shippingFee)+product.shipping;
+        price=parseFloat(price)+ parseFloat((product.price*product.quentity).toFixed(2));
+        shippingFee= parseFloat(shippingFee)+parseFloat((product.shipping).toFixed(2));
+        
         
     }
 
-    const totalPrice=price+shippingFee;
+    const totalPrice=parseFloat(price)+parseFloat(shippingFee);
 
     const handleRemove=(id)=>{
         const remainProduct=cart.filter(product=>product._id!==id);
@@ -90,14 +91,14 @@ const ProductOrder = () => {
 
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
-            <p>product id: {id}</p>
-            <Box sx={{ flexGrow: 1 }}>
+            {/* <p>product id: {id}</p> */}
+            <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
-                <Grid item xs={6} md={8}>
+                <Grid item xs={12} sm={6} md={8}>
                     <ProductCart cart={cart} handleRemove={handleRemove}></ProductCart>
                 </Grid>
 
-                <Grid item xs={6} md={4}>
+                <Grid item xs={12} sm={6} md={4}>
                   <Item sx={{textAlign: 'start'}}>
                     <form onSubmit={handleBilling}>
 

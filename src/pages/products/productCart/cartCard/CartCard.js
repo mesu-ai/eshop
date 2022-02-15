@@ -28,23 +28,23 @@ const CartCard = ({product,handleRemove}) => {
 
                 
                 <Grid container spacing={2}>
-                <Grid item xs={6} md={2} sx={{display:'flex',justifyContent:'center',alignItems:'start'}}>
+                <Grid item xs={3} md={2} sx={{display:'flex',justifyContent:'center',alignItems:'start'}}>
                 <img src={image} alt="" style={{width:'100px'}} />
                 
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={5} md={6}>
                     <Typography variant="body2" sx={{textAlign:'start'}} gutterBottom>
                         {name}
                     </Typography>
                 
                 </Grid>
-                <Grid item xs={6} md={2}>
+                <Grid item xs={2} md={2}>
                     <Typography variant="body1" gutterBottom sx={{fontWeight:'bold'}}>
                        $ <span style={{color:'tomato'}}>{price}</span>  
                     </Typography>
                 
                 </Grid>
-                <Grid item xs={6} md={2}>
+                <Grid item xs={2} md={2}>
                     <Typography variant="body1" gutterBottom>
                        Qty: {quentity}      
                     </Typography>

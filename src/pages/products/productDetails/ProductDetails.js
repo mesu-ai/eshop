@@ -8,6 +8,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useAuth from '../../../hooks/useAuth';
 import AuthModal from '../../../components/authentication/AuthModal';
 import { addTodb } from '../../../utilities/LocalStorage';
+import SnackbarAlert from '../../../components/shared/snackbar/SnackbarAlert';
 
 
 const ProductDetails = () => {
@@ -17,6 +18,7 @@ const ProductDetails = () => {
     const [product,setProduct]=useState([]);
     const [quentity,setQuentity]=useState([1]);
     // const [stocks,setStocks]=useState([]);
+    const [open, setOpen] = React.useState(false);
 
    const {user}=useAuth();
    const {id}= useParams();
@@ -54,9 +56,27 @@ const ProductDetails = () => {
 
         addTodb(id,quentity);
 
-
-
     }
+
+    const addtoCart=()=>{
+        addTodb(id,quentity);
+        setOpen(true);
+
+        // setTimeout(()=>{
+        //     navigate('/');
+
+        // },1000);
+       // navigate('/');
+    }
+
+    
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen(false);
+    };
 
     
     
@@ -144,7 +164,9 @@ const ProductDetails = () => {
                         
                         <Button onClick={handleBuyNow} className='buybutton' variant="contained" sx={{ bgcolor: 'tomato',mr:2,textTransform:'capitalize',fontWeight:'bold' }}>Buy Now</Button>
 
-                        <Button className='addcartbutton' variant="contained" sx={{ bgcolor: 'warning.main',textTransform:'capitalize',fontWeight:'bold'}}>Add to Cart</Button>
+                        <Button onClick={addtoCart} className='addcartbutton' variant="contained" sx={{ bgcolor: 'warning.main',textTransform:'capitalize',fontWeight:'bold'}}>Add to Cart</Button>
+
+                        
                     </Box>
                     
 
@@ -154,6 +176,8 @@ const ProductDetails = () => {
             </Grid>:<div></div>
         }
         </Box>
+        <SnackbarAlert open={open} handleClose={handleClose}></SnackbarAlert>
+        
         </Container>
 
     );
