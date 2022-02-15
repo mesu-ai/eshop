@@ -15,9 +15,9 @@ const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     
-    color: theme.palette.text.secondary,
+
   }));
 
 const ProductOrder = () => {
@@ -64,16 +64,18 @@ const ProductOrder = () => {
 
     }
     return (
+
+          <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
             <p>product id: {id}</p>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={3}>
+              <Grid container spacing={3}>
                 <Grid item xs={6} md={8}>
-                <Item><ProductCart></ProductCart></Item>
+                    <ProductCart></ProductCart>
                 </Grid>
 
                 <Grid item xs={6} md={4}>
-                <Item sx={{textAlign: 'start'}}>
+                  <Item sx={{textAlign: 'start'}}>
                     <form onSubmit={handleBilling}>
 
                     <Typography variant="h6" gutterBottom component="div">
@@ -163,13 +165,14 @@ const ProductOrder = () => {
                     </Button>
 
                     </form>
-                </Item>
+                  </Item>
                 </Grid>
 
-            </Grid>
+              </Grid>
             </Box>
             
-          </Container>
+           </Container>
+          </Box>
     );
 };
 
