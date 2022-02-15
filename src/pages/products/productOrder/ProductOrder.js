@@ -1,4 +1,4 @@
-import { Button, Container, Divider, FormControl, Grid, TextField, Typography } from '@mui/material';
+import { Button, Container, Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 
@@ -9,6 +9,8 @@ import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import useCart from '../../../hooks/useCart';
+import { removeFromDb } from '../../../utilities/LocalStorage';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -27,6 +29,27 @@ const ProductOrder = () => {
 
     const [biller,setBiller]=useState(initialInfo);
     const [mobileErr,setMobileErr]=useState(false);
+    const [cart,setCart]=useCart();
+
+    let price=0;
+    let shippingFee=0;
+
+    for (const product of cart) {
+        console.log(product);
+        price=parseFloat(price)+ product.price*product.quentity;
+        shippingFee=parseFloat(shippingFee)+product.shipping;
+        
+    }
+
+    const totalPrice=price+shippingFee;
+
+    const handleRemove=(id)=>{
+        const remainProduct=cart.filter(product=>product._id!==id);
+        setCart(remainProduct);
+        removeFromDb(id);
+    }
+
+    // console.log(price);
 
     const handleOnBlur=(e)=>{
         const field=e.target.name;
@@ -71,7 +94,7 @@ const ProductOrder = () => {
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={3}>
                 <Grid item xs={6} md={8}>
-                    <ProductCart></ProductCart>
+                    <ProductCart cart={cart} handleRemove={handleRemove}></ProductCart>
                 </Grid>
 
                 <Grid item xs={6} md={4}>
@@ -132,7 +155,7 @@ const ProductOrder = () => {
                     Subtotal
                     </Typography>
                     <Typography  variant="body1" gutterBottom component="div">
-                    Price
+                    $ {price}
                     </Typography>
 
                     </Box>
@@ -143,7 +166,7 @@ const ProductOrder = () => {
                     </Typography>
 
                     <Typography  variant="body1" gutterBottom component="div">
-                    Price
+                    $ {shippingFee}
                     </Typography>
 
                     </Box>
@@ -155,7 +178,7 @@ const ProductOrder = () => {
                     </Typography>
 
                     <Typography  variant="body1" gutterBottom component="div">
-                    Price
+                    {totalPrice}
                     </Typography>
 
                     </Box>

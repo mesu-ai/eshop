@@ -3,8 +3,6 @@ import { Button, Grid, IconButton, Typography } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ClearIcon from '@mui/icons-material/Clear';
-import { Box } from '@mui/system';
-import { removeFromDb } from '../../../../utilities/LocalStorage';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
