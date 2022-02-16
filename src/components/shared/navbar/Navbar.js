@@ -12,8 +12,70 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import InputBase from '@mui/material/InputBase';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useAuth from '../../../hooks/useAuth';
+import useCart from '../../../hooks/useCart';
+import { useEffect } from 'react';
+import { getStoredDb } from '../../../utilities/LocalStorage';
+import { useState } from 'react';
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  // alpha(theme.palette.common.white, 0.15)
+  backgroundColor: 'white',
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.75),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
+
 
 const pages = [
     {
@@ -30,10 +92,17 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
   
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
+  const storedDb= getStoredDb();
+  const keys=Object.keys(storedDb);
+  
+
+  //console.log(keys.length);
 
   const {user}=useAuth();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,6 +118,12 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navigate=useNavigate();
+  const handleCart=()=>{
+    navigate('/shoppingcart');
+   
+  }
 
   return (
     <AppBar position="sticky">
@@ -127,6 +202,23 @@ const Navbar = () => {
             ))}
           </Box>
             
+          <Search sx={{display:{xs:'none',sm:'flex'},mr:2}}>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
+          <IconButton onClick={handleCart} sx={{mr:{xs:2,md:3}}} aria-label="cart">
+            <StyledBadge badgeContent={keys.length} color="secondary">
+            <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
+          
+          
           { user.displayName &&
           
             <Typography variant="body1" sx={{display:{xs:'none',sm:'flex'},mr:1}}>{user.displayName}

@@ -1,7 +1,6 @@
 import { Button, Container, Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -9,8 +8,6 @@ import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Modal from '@mui/material/Modal';
-import { IconButton } from '@mui/material';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
 
@@ -24,18 +21,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
   }));
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
 const ProductOrder = () => {
     const {user}= useAuth();
     const {id}= useParams();
@@ -44,29 +29,39 @@ const ProductOrder = () => {
     const [biller,setBiller]=useState(initialInfo);
     const [mobileErr,setMobileErr]=useState(false);
     const [cart,setCart]=useCart();
+    const [selectedCart,setSelectedCart]=useState([]);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+    useEffect(()=>{
+        const selectedProduct=cart.filter(product=>product._id===id);
+        setSelectedCart(selectedProduct);
+
+    },[cart, id])
+    
 
     let price=0;
     let shippingFee=0;
 
-    for (const product of cart) {
+    for (const product of id?selectedCart:cart) {
         console.log(product);
-        price=parseFloat(price)+ parseFloat((product.price*product.quentity).toFixed(2));
-        shippingFee= parseFloat(shippingFee)+parseFloat((product.shipping).toFixed(2));
+        price=(parseFloat(price)+ parseFloat(product.price*product.quentity)).toFixed(2);
+        
+        shippingFee= (parseFloat(shippingFee)+parseFloat(product.shipping)).toFixed(2);
         
     }
 
     const totalPrice=(parseFloat(price)+parseFloat(shippingFee)).toFixed(2);
 
-    const handleRemove=(id)=>{
-        const remainProduct=cart.filter(product=>product._id!==id);
-        setCart(remainProduct);
-        removeFromDb(id);
+    const handleRemove=(key)=>{
+        const remainProduct=id?selectedCart:cart.filter(product=>product._id!==key);
+        id?setSelectedCart(remainProduct):setCart(remainProduct);
+        removeFromDb(key);
 
     }
+
+
+
+
 
     
 
@@ -107,14 +102,19 @@ const ProductOrder = () => {
 
     }
     return (
+        // <>
+        // {selectedCart.length?<p>{selectedCart.length}</p>:<div></div>}
+        
+        // </>
+        
 
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
-            {/* <p>product id: {id}</p> */}
+            <p>product id: {id}</p>
             <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} md={8}>
-                    <ProductCart cart={cart} handleRemove={handleRemove}></ProductCart>
+                    <ProductCart cart={id?selectedCart:cart} handleRemove={handleRemove}></ProductCart>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4}>

@@ -3,9 +3,10 @@ import { Grid, IconButton, Typography } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ClearIcon from '@mui/icons-material/Clear';
-import { Box } from '@mui/system';
+import Checkbox from '@mui/material/Checkbox';
 import WarningModal from '../warningModal/WarningModal';
 
+const label = { inputProps: { 'aria-label': 'Checkbox demo' }};
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -32,6 +33,9 @@ const CartCard = ({product,handleRemove}) => {
                 <IconButton onClick={handleOpen} sx={{float:'right'}} variant="contained" color="error" aria-label="remove from shopping cart" title='Remove Product'>
                 <ClearIcon  sx={{color:'crimson'}}/>
                </IconButton>
+               
+               <Checkbox {...label} defaultChecked />
+
 
                 
                 <Grid container spacing={2}>
