@@ -7,16 +7,21 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, Rating } from '@mui/material';
 import { Box} from '@mui/system';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AllProductCard = ({product}) => {
   const {_id,name,image,price,star,starCount}=product;
 
   const navigate= useNavigate();
+  
   const handlebuyNow=(id)=>{
-    const url=`/productDetails/${id}`
+    const url=`/buyproduct/${id}`
     navigate(url);
    
+  }
+
+  const handleDetails=(id)=>{
+    navigate(`/productdetails/${id}`)
   }
   
   // const url='/productDetails';
@@ -55,13 +60,13 @@ const AllProductCard = ({product}) => {
         </Box> 
         </CardContent>
 
-        {/* onClick={()=>handlebuyNow(_id)} */}
+        
         <CardActions sx={{ml:1}}>
 
-          {/* <Link to={`${url}/${_id}`}> </Link> */}
+          
           <Button onClick={()=>handlebuyNow(_id)}  size="small">Buy Now</Button>
           
-          <Button   size="small">See Details</Button>
+          <Button onClick={()=>handleDetails(_id)}  size="small">See Details</Button>
         </CardActions>
         </Card>
         </Grid>

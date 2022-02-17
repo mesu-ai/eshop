@@ -11,6 +11,7 @@ import AuthProvider from './contex/AuthProvider';
 // import UserLogin from './components/authentication/userlogin/UserLogin';
 import PrivateRoute from './components/authentication/privateroute/PrivateRoute';
 import ProductOrder from './pages/products/productOrder/ProductOrder';
+import BuyProduct from './pages/products/buyProduct/BuyProduct';
 
 // import AuthModal from './components/authentication/AuthModal';
 // import UserLogin from './components/authentication/userlogin/UserLogin';
@@ -37,8 +38,10 @@ function App() {
 
         <Route path='/shoppingcart' element={<PrivateRoute> <ProductOrder/> </PrivateRoute> }/>
         
+        
+        <Route path='/buyproduct/:id' element={<BuyProduct/>}/>
 
-        <Route path='/productDetails/:id' element={<ProductDetails/>}/>
+        <Route path='/productdetails/:id' element={<ProductDetails/>}/>
         
         {/* <Route path='/login' element={<AuthModal open={open} handleClose={handleClose}></AuthModal>}/> */}
 

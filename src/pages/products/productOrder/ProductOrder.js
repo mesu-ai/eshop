@@ -130,7 +130,7 @@ const ProductOrder = () => {
            
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
-            {/* <p>product id: {id}</p> */}
+            <p>product id: {id}</p>
             <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} md={8}>
