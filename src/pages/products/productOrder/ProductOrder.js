@@ -3,14 +3,13 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
-import { Link } from 'react-router-dom';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -36,7 +35,7 @@ const ProductOrder = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     
 
@@ -131,7 +130,7 @@ const ProductOrder = () => {
            
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
-            <p>product id: {id}</p>
+            {/* <p>product id: {id}</p> */}
             <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} md={8}>

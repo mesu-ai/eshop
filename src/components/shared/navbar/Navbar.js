@@ -19,10 +19,7 @@ import Badge from '@mui/material/Badge';
 import InputBase from '@mui/material/InputBase';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useAuth from '../../../hooks/useAuth';
-import useCart from '../../../hooks/useCart';
-import { useEffect } from 'react';
 import { getStoredDb } from '../../../utilities/LocalStorage';
-import { useState } from 'react';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {

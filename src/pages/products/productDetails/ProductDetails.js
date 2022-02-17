@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useAuth from '../../../hooks/useAuth';
-import AuthModal from '../../../components/authentication/AuthModal';
+// import useAuth from '../../../hooks/useAuth';
 import { addTodb } from '../../../utilities/LocalStorage';
 import SnackbarAlert from '../../../components/shared/snackbar/SnackbarAlert';
 
@@ -20,7 +19,7 @@ const ProductDetails = () => {
     // const [stocks,setStocks]=useState([]);
     const [open, setOpen] = React.useState(false);
 
-   const {user}=useAuth();
+//    const {user}=useAuth();
    const {id}= useParams();
 
    const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`

@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 import { BrowserRouter,Routes, Route} from "react-router-dom";
 import Home from './pages/home/Home';
 import Products from './pages/products/Products';
@@ -8,8 +7,8 @@ import Navbar from './components/shared/navbar/Navbar';
 import Footer from './components/shared/footer/Footer';
 import ProductDetails from './pages/products/productDetails/ProductDetails';
 import AuthProvider from './contex/AuthProvider';
-import AuthModal from './components/authentication/AuthModal';
-import UserLogin from './components/authentication/userlogin/UserLogin';
+// import AuthModal from './components/authentication/AuthModal';
+// import UserLogin from './components/authentication/userlogin/UserLogin';
 import PrivateRoute from './components/authentication/privateroute/PrivateRoute';
 import ProductOrder from './pages/products/productOrder/ProductOrder';
 
@@ -19,13 +18,13 @@ import ProductOrder from './pages/products/productOrder/ProductOrder';
 
 function App() {
   
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
     // const handleOpen = () => setOpen(true);
     
-    const handleClose = () =>{
-      setOpen(false);
-      //  window.history.back();
-    } 
+    // const handleClose = () =>{
+    //   setOpen(false);
+    //   //  window.history.back();
+    // } 
   return (
     <div className="App">
       <AuthProvider>

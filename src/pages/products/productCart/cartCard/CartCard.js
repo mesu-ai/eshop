@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   
 
 const CartCard = ({product,handleRemove,handleOpen,open,handleClose}) => {
-    const {_id,name,price,quentity,image}=product;
+    const {name,price,quentity,image}=product;
 
   
     return (
