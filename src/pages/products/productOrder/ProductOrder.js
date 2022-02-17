@@ -3,13 +3,14 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
+import { Link } from 'react-router-dom';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -31,6 +32,15 @@ const ProductOrder = () => {
     const [cart,setCart]=useCart();
     const [selectedCart,setSelectedCart]=useState([]);
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const navigate = useNavigate();
+    
+    
+
+
 
     useEffect(()=>{
         const selectedProduct=cart.filter(product=>product._id===id);
@@ -43,7 +53,7 @@ const ProductOrder = () => {
     let shippingFee=0;
 
     for (const product of id?selectedCart:cart) {
-        console.log(product);
+        // console.log(product);
         price=(parseFloat(price)+ parseFloat(product.price*product.quentity)).toFixed(2);
         
         shippingFee= (parseFloat(shippingFee)+parseFloat(product.shipping)).toFixed(2);
@@ -52,18 +62,26 @@ const ProductOrder = () => {
 
     const totalPrice=(parseFloat(price)+parseFloat(shippingFee)).toFixed(2);
 
-    const handleRemove=(key)=>{
-        const remainProduct=id?selectedCart:cart.filter(product=>product._id!==key);
-        id?setSelectedCart(remainProduct):setCart(remainProduct);
-        removeFromDb(key);
+   
+    const handleRemove=(p_id)=>{
+        // const remainProduct=id?selectedCart:cart.filter(product=>product._id!==p_id);
+        // id?setSelectedCart([]):setCart(remainProduct);
+
+        if(id){
+            const remainProduct=selectedCart.filter(product=>product._id!==p_id);
+            setSelectedCart(remainProduct);
+        }else{
+            const remainProduct=cart.filter(product=>product._id!==p_id);
+            setCart(remainProduct);
+        }
+
+
+        removeFromDb(p_id);
+        handleClose();
 
     }
 
 
-
-
-
-    
 
     // console.log(price);
 
@@ -101,20 +119,23 @@ const ProductOrder = () => {
         e.preventDefault();
 
     }
-    return (
-        // <>
-        // {selectedCart.length?<p>{selectedCart.length}</p>:<div></div>}
-        
-        // </>
-        
 
+
+   
+
+
+
+
+    return (
+          <>
+           
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
             <p>product id: {id}</p>
             <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} md={8}>
-                    <ProductCart cart={id?selectedCart:cart} handleRemove={handleRemove}></ProductCart>
+                    <ProductCart cart={id?selectedCart:cart} handleRemove={handleRemove} open={open} handleOpen={handleOpen} handleClose={handleClose}></ProductCart>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4}>
@@ -217,6 +238,8 @@ const ProductOrder = () => {
             
            </Container>
           </Box>
+
+          </>
     );
 };
 

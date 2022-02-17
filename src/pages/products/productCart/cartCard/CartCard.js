@@ -3,10 +3,10 @@ import { Grid, IconButton, Typography } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import ClearIcon from '@mui/icons-material/Clear';
-import Checkbox from '@mui/material/Checkbox';
+// import Checkbox from '@mui/material/Checkbox';
 import WarningModal from '../warningModal/WarningModal';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' }};
+// const label = { inputProps: { 'aria-label': 'Checkbox demo' }};
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -16,15 +16,10 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
   
 
-const CartCard = ({product,handleRemove}) => {
+const CartCard = ({product,handleRemove,handleOpen,open,handleClose}) => {
     const {_id,name,price,quentity,image}=product;
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-    
-
+  
     return (
         <>
         <Grid item xs={12}  >
@@ -34,9 +29,6 @@ const CartCard = ({product,handleRemove}) => {
                 <ClearIcon  sx={{color:'crimson'}}/>
                </IconButton>
                
-               <Checkbox {...label} defaultChecked />
-
-
                 
                 <Grid container spacing={2}>
                 <Grid item xs={3} md={2} sx={{display:'flex',justifyContent:'center',alignItems:'start'}}>
