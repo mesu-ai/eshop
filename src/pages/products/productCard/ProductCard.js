@@ -1,5 +1,5 @@
-import * as React from 'react';
-import '../AllProduct.css';
+import React from 'react';
+import './ProductCard.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,8 +9,8 @@ import { Grid, Rating } from '@mui/material';
 import { Box} from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 
-const AllProductCard = ({product}) => {
-  const {_id,name,image,price,star,starCount}=product;
+const ProductCard = ({product}) => {
+    const {_id,name,image,price,star,starCount}=product;
 
   const navigate= useNavigate();
   
@@ -27,29 +27,26 @@ const AllProductCard = ({product}) => {
   // const url='/productDetails';
   
     return (
-        <Grid item xs={6} sm={4} md={4}>
-        <Card sx={{  }}>
+        <Grid item xs={6} sm={4} md={4} lg={3}>
+        <Card>
 
         <img src={image} alt="" style={{width:'80%',height:'200px'}} />
         <CardContent>
           <Typography  className="ellipses" title={name} gutterBottom variant="body1" component="div">
-
-          {name}
-
-            {/* {name} */}
+              {name}
           </Typography>
+
           <Typography  sx={{color: 'text.secondary',textAlign: 'left'}} gutterBottom variant="h6" component="div">
            <span style={{fontWeight: 'bold',color:'black'}}>${price}</span> /piece 
           </Typography>
-          
-          {/* <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography> */}
 
-        
+          {/* {discount? 
+          <Typography  sx={{color: 'text.secondary',textAlign: 'left'}} gutterBottom variant="h6" component="div">
+            <s>$10</s>
+           <span style={{fontWeight: 'bold',color:'crimson',marginLeft:'8px'}}>${price}</span> /piece 
+          </Typography>:<></>
+          } */}
 
-        
         <Box sx={{display:'flex',justifyContent:'start',alignItems:'center'}}>
         <Rating sx={{}}  name="half-rating-read" defaultValue={star} precision={0.5} readOnly />
 
@@ -59,11 +56,9 @@ const AllProductCard = ({product}) => {
         
         </Box> 
         </CardContent>
-
         
         <CardActions sx={{ml:1}}>
-
-          
+ 
           <Button onClick={()=>handlebuyNow(_id)}  size="small">Buy Now</Button>
           
           <Button onClick={()=>handleDetails(_id)}  size="small">See Details</Button>
@@ -73,4 +68,4 @@ const AllProductCard = ({product}) => {
     );
 };
 
-export default AllProductCard;
+export default ProductCard;

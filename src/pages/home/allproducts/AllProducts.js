@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import useProduct from '../../../hooks/useProduct';
 import { Box, Button, Container, Divider, Grid, Pagination, Stack, Typography } from '@mui/material';
-import AllProductCard from './card/AllProductCard';
+import ProductCard from '../../products/productCard/ProductCard';
 
 
 const AllProducts = () => {
@@ -140,7 +139,7 @@ const AllProducts = () => {
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
             
             {
-                displayProducts.map(product=><AllProductCard key={Math.random()} product={product}></AllProductCard>)         
+                displayProducts.map(product=><ProductCard key={Math.random()} product={product}></ProductCard>)         
                 
             }
             </Grid>

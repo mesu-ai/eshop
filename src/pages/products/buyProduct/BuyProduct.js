@@ -22,7 +22,7 @@ const BuyProduct = () => {
 //    const {user}=useAuth();
    const {id}= useParams();
 
-   const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`
+   const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
 
    useEffect(()=>{
        fetch(url)

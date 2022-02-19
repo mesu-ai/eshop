@@ -1,7 +1,7 @@
 import { Box, Divider, Grid, Typography } from '@mui/material';
 import React from 'react';
 import useCategory from '../../../hooks/useCategory';
-import SimilarProductCard from './productCard/SimilarProductCard';
+import ProductCard from '../productCard/ProductCard';
 
 const SimilarProduct = ({category}) => {
     const [products]= useCategory(category);
@@ -18,7 +18,7 @@ const SimilarProduct = ({category}) => {
 
 
           <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:3}} columns={{ xs: 4, sm: 8, md: 12, lg: 12 }}>
-            {products.map(product=><SimilarProductCard product={product} key={Math.random()}></SimilarProductCard>)}
+            {products.map(product=><ProductCard product={product} key={Math.random()}></ProductCard>)}
           </Grid>
         </Box>
     );
