@@ -1,12 +1,12 @@
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Divider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
 import useFlashSell from '../../../hooks/useFlashSell';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import '../hotDeals/HotDeals.css';
-import ProductCard from '../../products/productCard/ProductCard';
 import FlashSellCard from './card/FlashSellCard';
 
 
@@ -124,10 +124,10 @@ const FlashSales= () => {
     if (!timeLeft[interval]) {
       return;
     }
-
+    // {interval}
     timerComponents.push(
-      <span key={Math.random()}>
-        {timeLeft[interval]} {interval}{" "}
+      <span style={{marginRight:'5px'}} key={Math.random()}>
+        {timeLeft[interval]} {interval} {""}
       </span>
     );
   });
@@ -143,16 +143,18 @@ const FlashSales= () => {
           Flash Sell
       </Typography>
 
-      <Box sx={{display:'flex',justifyContent:'space-between'}}>
-          <Box sx={{display:'flex'}}>
-          <Typography style={{textAlign:'start'}} sx={{ color: 'warning.main' }} variant="h6" gutterBottom component="div">
+      <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
+          
+          <Box sx={{display:{xs:'flex',sm:'flex'},flexFlow:{xs:'column-reverse',sm:'row'},textAlign:'start'}}>
+          
+          <Typography style={{}} sx={{color: '',fontWeight:'bold' }} variant="h6"  component="div">
               On Sell Now
           </Typography>
 
-          
           { showTime<0?
 
-            <Typography sx={{bgcolor: 'error.main',px:2,boxShadow: 2,borderRadius: 1}}  style={{textAlign:'start',marginLeft:'4vw',color:'white'}} variant="h5" gutterBottom component="div">
+            <Typography sx={{display:'flex',alignItems:'center',bgcolor:'error.main',px:{xs:1,sm:2},py:.5,boxShadow: 2,borderRadius: 1, marginLeft:{sm:'4vw'}}}  style={{color:'white'}} variant="body1"  component="div">
+            <AccessTimeIcon sx={{mr:1}}/>
 
             {timerComponents.length ? timerComponents : <span>Time's up!</span>}
           
@@ -163,9 +165,9 @@ const FlashSales= () => {
           }
 
           </Box>
+          
 
-      <Button size="small" variant="outlined">Show More</Button>
-
+         <Button sx={{height:{xs:'35px',sm:'auto'}}} size="small" variant="outlined">Show More</Button>
 
       </Box>
 
