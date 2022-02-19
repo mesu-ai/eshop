@@ -13,6 +13,16 @@
     background-image: linear-gradient(239deg,#e08905 7%,#da6608);
 }
 
+
+.squre-sec{
+    background-color: #232f3e;
+    color: white;
+    padding: 3px 5px;
+    margin-right: 2px;
+}
+
+
+
 /* .static-section{
      background-color: aquamarine; 
 } */
@@ -36,32 +46,3 @@ scrollbar-width: none;  /* Firefox */
 }
 
 
-
-/* .details-container {
-    display: flex;
-    
-  }
-  
-  .left-static{
-    background-color: aquamarine;
-    flex-basis: 20%;
-  }
-  
-  .right-scroll{
-    background-color: bisque;
-    flex-basis: 80%;
-    overflow-y: scroll;
-    height: 100vh; 
-    
-  }
-
-  
-  .right-scroll::-webkit-scrollbar {
-        display: none;
-  }
-
-
- .right-scroll{
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
- } */

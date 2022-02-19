@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import useProduct from '../../../hooks/useProduct';
 import { Box, Button, Container, Divider, Grid, Pagination, Stack, Typography } from '@mui/material';
-import { styled} from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import useProduct from '../../../hooks/useProduct';
 import AllProductCard from './card/AllProductCard';
 
 
@@ -60,48 +56,48 @@ const AllProducts = () => {
     }
 
 
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor:'white' ,
-        border:'1px solid black',
-        '&:hover': {
-          backgroundColor:'white',
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          marginLeft: theme.spacing(1),
-          width: 'auto',
-        },
-      }));
+    // const Search = styled('div')(({ theme }) => ({
+    //     position: 'relative',
+    //     borderRadius: theme.shape.borderRadius,
+    //     backgroundColor:'white' ,
+    //     border:'1px solid black',
+    //     '&:hover': {
+    //       backgroundColor:'white',
+    //     },
+    //     marginLeft: 0,
+    //     width: '100%',
+    //     [theme.breakpoints.up('sm')]: {
+    //       marginLeft: theme.spacing(1),
+    //       width: 'auto',
+    //     },
+    //   }));
       
-      const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }));
+    //   const SearchIconWrapper = styled('div')(({ theme }) => ({
+    //     padding: theme.spacing(0, 2),
+    //     height: '100%',
+    //     position: 'absolute',
+    //     pointerEvents: 'none',
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //   }));
       
-      const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
-        '& .MuiInputBase-input': {
-          padding: theme.spacing(1, 1, 1, 0),
-          // vertical padding + font size from searchIcon
-          paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-          transition: theme.transitions.create('width'),
-          width: '100%',
-          [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-              width: '20ch',
-            },
-          },
-        },
-      }));
+    //   const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    //     color: 'inherit',
+    //     '& .MuiInputBase-input': {
+    //       padding: theme.spacing(1, 1, 1, 0),
+    //       // vertical padding + font size from searchIcon
+    //       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    //       transition: theme.transitions.create('width'),
+    //       width: '100%',
+    //       [theme.breakpoints.up('sm')]: {
+    //         width: '12ch',
+    //         '&:focus': {
+    //           width: '20ch',
+    //         },
+    //       },
+    //     },
+    //   }));
 
 
 
