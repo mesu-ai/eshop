@@ -1,6 +1,6 @@
 import '../Products.css';
 import { Button, Container, CssBaseline, Divider,  Grid, IconButton, Paper, Rating, Typography } from '@mui/material';
-import { Box, display } from '@mui/system';
+import { Box} from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';

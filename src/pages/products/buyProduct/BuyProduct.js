@@ -12,8 +12,6 @@ import SnackbarAlert from '../../../components/shared/snackbar/SnackbarAlert';
 
 const BuyProduct = () => {
 
-    const navigate=useNavigate();
-
     const [product,setProduct]=useState([]);
     const [quentity,setQuentity]=useState([1]);
     // const [stocks,setStocks]=useState([]);
@@ -21,14 +19,18 @@ const BuyProduct = () => {
 
 //    const {user}=useAuth();
    const {id}= useParams();
+   const navigate=useNavigate();
+  
+//    console.log(id);
 
    const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
 
    useEffect(()=>{
-       fetch(url)
+       
+        fetch(url)
        .then(res=>res.json())
-       .then(data=>setProduct(data))
-
+       .then(data=>setProduct(data)); 
+    
    },[url]);
   
 
