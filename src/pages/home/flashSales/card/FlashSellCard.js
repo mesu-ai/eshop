@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../../products/productCard/ProductCard.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,25 +7,32 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Rating } from '@mui/material';
 import { Box} from '@mui/system';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const FlashSellCard = ({product}) => {
     const {_id,name,image,price,star,starCount}=product;
 
-    const navigate= useNavigate();
-  
-    const handlebuyNow=(id)=>{
-    const url=`/buyproduct/${id}`
-    navigate(url);
-   
-    }
+    const [navigate,setNavigate]=useState('');
+    const [handleEvent,setHandleEvent]=useState(false);
 
-    const handleDetails=(id)=>{
-      navigate(`/productdetails/${id}`)
-    }
+    
+    const handlebuyNow=(id)=>{
+    setHandleEvent(true);
+    setNavigate('/buyproduct');
+
+  }
+
+  const handleDetails=(id)=>{
+    // navigate(`/productdetails/${id}`)
+    setHandleEvent(true);
+    setNavigate('/productdetails');
+  }
     return (
-        
-        <Card sx={{mx:1}}>
+        <>
+        {
+         handleEvent? <Navigate to={`${navigate}/${_id}`} state={{sellType:'flashsell'}}></Navigate>:
+
+         <Card sx={{mx:1}}>
 
         <Box sx={{display:'flex',justifyContent:'center'}}>
         <img  src={image} alt="" style={{width:'80%',height:'200px'}} />
@@ -55,7 +62,9 @@ const FlashSellCard = ({product}) => {
           
           <Button onClick={()=>handleDetails(_id)}  size="small">See Details</Button>
         </CardActions>
-        </Card>
+         </Card>
+       }
+        </>
         
     );
 };

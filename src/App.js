@@ -12,6 +12,7 @@ import AuthProvider from './contex/AuthProvider';
 import PrivateRoute from './components/authentication/privateroute/PrivateRoute';
 import ProductOrder from './pages/products/productOrder/ProductOrder';
 import BuyProduct from './pages/products/buyProduct/BuyProduct';
+import ProductCategory from './pages/products/productCategory/ProductCategory';
 
 // import AuthModal from './components/authentication/AuthModal';
 // import UserLogin from './components/authentication/userlogin/UserLogin';
@@ -34,12 +35,15 @@ function App() {
       <Routes>
         <Route path='/home' element={<Home/>}/>
         
-        <Route path='/products' element={<PrivateRoute> <Products/> </PrivateRoute> }/>
+        <Route path='/products' element={ <Products/>}>
+          <Route path=':category' element={<Products/>}/>
+        </Route>
 
         <Route path='/shoppingcart' element={<PrivateRoute> <ProductOrder/> </PrivateRoute> }/>
         
         
         <Route path='/buyproduct/:id' element={<BuyProduct/>}/>
+
 
         <Route path='/productdetails/:id' element={<ProductDetails/>}/>
         

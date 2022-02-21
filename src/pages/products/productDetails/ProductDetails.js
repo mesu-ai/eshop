@@ -2,12 +2,13 @@ import '../Products.css';
 import { Button, Container, CssBaseline, Divider,  Grid, IconButton, Paper, Rating, Typography } from '@mui/material';
 import { Box} from '@mui/system';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { addTodb } from '../../../utilities/LocalStorage';
 import SnackbarAlert from '../../../components/shared/snackbar/SnackbarAlert';
+import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 import { styled } from '@mui/material/styles';
 import ProductFeatures from './productFeatures/ProductFeatures';
 import SimilarProduct from '../similarProduct/SimilarProduct';
@@ -45,7 +46,18 @@ const ProductDetails = () => {
 
    const {id}= useParams();
 
-   const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`
+   const {sellType}=useLocation()?.state;
+  // console.log(sellType);
+
+   let url;
+   
+   if(sellType==='regular'){
+    url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
+
+   }else if(sellType==='flashsell'){
+    url=`https://limitless-fjord-65876.herokuapp.com/flashsell/${id}`;
+
+   }
 
    useEffect(()=>{
        fetch(url)
@@ -173,10 +185,13 @@ const ProductDetails = () => {
                         <LocalShippingIcon color="error" sx={{mr:1}}/>
                           Est. Shipping: ${product?.shipping}
                         </Typography>
+                       
+                        
 
                         <Typography  sx={{fontWeight: 'bold',display:'flex',alignItems:'center',fontStyle: 'oblique'}} variant="body2" component="div" gutterBottom>
                         
-                        <i style={{color:'navy'}}  className="fa-solid fa-shop"></i>
+                        <StoreMallDirectoryIcon color='warning' sx={{mr:.5}}/>
+                        
                         
                          From  {product?.seller} Store
                         </Typography>

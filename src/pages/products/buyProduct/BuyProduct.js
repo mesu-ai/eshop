@@ -2,7 +2,7 @@ import '../Products.css';
 import { Button, Container, Divider,  Grid, IconButton, Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 // import useAuth from '../../../hooks/useAuth';
@@ -17,14 +17,24 @@ const BuyProduct = () => {
     // const [stocks,setStocks]=useState([]);
     const [open, setOpen] = React.useState(false);
 
-//    const {user}=useAuth();
+   // const {user}=useAuth();
    const {id}= useParams();
    const navigate=useNavigate();
-  
-//    console.log(id);
 
-   const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
+   const {sellType}=useLocation()?.state;
+  // console.log(sellType);
 
+   let url;
+   
+   if(sellType==='regular'){
+    url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
+
+   }else if(sellType==='flashsell'){
+    url=`https://limitless-fjord-65876.herokuapp.com/flashsell/${id}`;
+
+   }
+
+   
    useEffect(()=>{
        
         fetch(url)
@@ -32,9 +42,9 @@ const BuyProduct = () => {
        .then(data=>setProduct(data)); 
     
    },[url]);
-  
 
-    
+   
+
     const handleAdd=()=>{
         let add= parseInt(quentity)+1;
         setQuentity(add);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProductCard.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,26 +7,33 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, Rating } from '@mui/material';
 import { Box} from '@mui/system';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
     const {_id,name,image,price,star,starCount}=product;
+    
+    const [navigate,setNavigate]=useState('');
+    const [handleEvent,setHandleEvent]=useState(false);
 
-  const navigate= useNavigate();
-  
-  const handlebuyNow=(id)=>{
-    const url=`/buyproduct/${id}`
-    navigate(url);
-   
+    
+    const handlebuyNow=(id)=>{
+    setHandleEvent(true);
+    setNavigate('/buyproduct');
+
   }
 
   const handleDetails=(id)=>{
-    navigate(`/productdetails/${id}`)
+    // navigate(`/productdetails/${id}`)
+    setHandleEvent(true);
+    setNavigate('/productdetails');
   }
   
-  // const url='/productDetails';
   
     return (
+      <>{
+        handleEvent? <Navigate to={`${navigate}/${_id}`} state={{sellType:'regular'}}></Navigate>:
+      
+
         <Grid item xs={6} sm={4} md={4} lg={3}>
         <Card>
 
@@ -65,6 +72,8 @@ const ProductCard = ({product}) => {
         </CardActions>
         </Card>
         </Grid>
+        }
+      </>
     );
 };
 

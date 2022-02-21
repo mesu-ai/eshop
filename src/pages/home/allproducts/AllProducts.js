@@ -41,7 +41,7 @@ const AllProducts = () => {
       
       
       const searchText= e.target.value;
-      console.log(searchText);
+      // console.log(searchText);
 
     const findProduct=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
     setDisplayProducts(findProduct);

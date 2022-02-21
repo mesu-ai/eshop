@@ -15,7 +15,7 @@ const categories=[
         image:homeapp
     },
     {
-        name:'Technology',
+        name:'camera',
         image:tech
     },
     {
