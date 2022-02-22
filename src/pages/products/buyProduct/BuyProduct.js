@@ -65,12 +65,12 @@ const BuyProduct = () => {
         const url=`/productorder/${id}`
         navigate(url)
 
-        addTodb(id,quentity);
+        addTodb(id,quentity,sellType);
 
     }
 
     const addtoCart=()=>{
-        addTodb(id,quentity);
+        addTodb(id,quentity,sellType);
         setOpen(true);
 
         // setTimeout(()=>{

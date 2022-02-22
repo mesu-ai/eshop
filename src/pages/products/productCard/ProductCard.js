@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid, Rating } from '@mui/material';
 import { Box} from '@mui/system';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
     const {_id,name,image,price,star,starCount}=product;

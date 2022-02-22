@@ -37,9 +37,6 @@ const ProductOrder = () => {
 
     // const navigate = useNavigate();
     
-    
-
-
 
     useEffect(()=>{
         const selectedProduct=cart.filter(product=>product._id===id);
