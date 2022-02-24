@@ -11,8 +11,9 @@ const useCart = () => {
     useEffect(()=>{ 
 
         const storedDb= getStoredDb();
-        console.log(storedDb);
+       // console.log(storedDb);
         const newCart=[];
+        // const elementCart=[];
             
         let urls = [
             'https://limitless-fjord-65876.herokuapp.com/products',
@@ -27,37 +28,39 @@ const useCart = () => {
           // map array of responses into an array of response.json() to read their content
           .then(responses => Promise.all(responses.map(res => res.json())))
           .then(data=>{
-              console.log(data);
+             // console.log(data);
               data.forEach(element => {
 
-                //console.log(element);
+                // element.forEach(productElement => {
+                //     elementCart.push(productElement);
+                    
+                // });
 
-                    for (const iterator of storedDb) {
+                for (const iterator of storedDb) {
 
-                        const addedProducts=element.find(product=>product._id===iterator.product_id);
-        
-                        if(addedProducts){
-                            const quentity=iterator.product_qty;
-                            const productType=iterator.product_type;
-                            addedProducts.quentity=quentity;
-                            addedProducts.productType=productType;
-        
-                            newCart.push(addedProducts);
+                    const addedProducts=element.find(product=>product._id===iterator.product_id);
+                    // console.log(addedProducts);
     
-                        }
-           
-                      //  console.log(addedProducts);
-                        
-                    }
+                    if(addedProducts){
+                        const quentity=iterator.product_qty;
+                        const productType=iterator.product_type;
+                        addedProducts.quentity=quentity;
+                        addedProducts.productType=productType;
+    
+                        newCart.push(addedProducts);
 
-                    // console.log(productItem);
+                    }
+        
+                    // console.log(newCart);
+                    
+                }
+
                     setCart(newCart);
                         
               });
     
           });
-        
-  
+
 
     },[])
     
