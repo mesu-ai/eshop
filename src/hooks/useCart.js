@@ -2,81 +2,62 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { getStoredDb } from '../utilities/LocalStorage';
 
+
 const useCart = () => {
 
     const [cart,setCart]=useState([]);
+
    
-    useEffect(()=>{
-         
-         const storedDb= getStoredDb(); 
-         console.log(storedDb);
+    useEffect(()=>{ 
 
-         let url;
+        const storedDb= getStoredDb();
+        console.log(storedDb);
+        const newCart=[];
+            
+        let urls = [
+            'https://limitless-fjord-65876.herokuapp.com/products',
+            'https://limitless-fjord-65876.herokuapp.com/flashsell'
+          ];
+          
+          // map every url to the promise of the fetch
+          let requests = urls.map(url => fetch(url));
+          
+          // Promise.all waits until all jobs are resolved
+          Promise.all(requests)
+          // map array of responses into an array of response.json() to read their content
+          .then(responses => Promise.all(responses.map(res => res.json())))
+          .then(data=>{
+              console.log(data);
+              data.forEach(element => {
 
-         storedDb.forEach(element => {
-             console.log(element.product_type);
-             if(element.product_type==='regular'){
-                 url='https://limitless-fjord-65876.herokuapp.com/products';
-             }
-             else if(element.product_type==='flashsell'){
-                url='https://limitless-fjord-65876.herokuapp.com/flashsell';
+                //console.log(element);
 
-             }
-             
-         });
+                    for (const iterator of storedDb) {
 
-        //  const keys=Object.keys(storedDb);
-        // console.log(keys);
-         
-         const newCart=[];
+                        const addedProducts=element.find(product=>product._id===iterator.product_id);
+        
+                        if(addedProducts){
+                            const quentity=iterator.product_qty;
+                            const productType=iterator.product_type;
+                            addedProducts.quentity=quentity;
+                            addedProducts.productType=productType;
+        
+                            newCart.push(addedProducts);
+    
+                        }
+           
+                      //  console.log(addedProducts);
+                        
+                    }
 
-         fetch(url)
-        .then(res=>res.json())
-        .then(data=>{
-           // setProducts(data.products);
-
-        //    console.log(data.products.length);
-
-           if(data.products.length){
-
-            for (const iterator of storedDb) {
-
-                const addedProducts=data.products.find(product=>product._id===iterator.product_id);
-
-                if(addedProducts){
-                    const quentity=iterator.product_qty;
-                    const productType=iterator.product_type;
-                    addedProducts.quentity=quentity;
-                    addedProducts.productType=productType;
-
-                    newCart.push(addedProducts);
-
-
-                }
-
-
-                console.log(addedProducts);
-                
-            }
-
-            // for(const key in storedDb){
-            //     console.log(key);
-
-            //     const addedProducts=data.products.find(product=>product._id===key);
-
-            //     if(addedProducts){
-            //         const quentity=storedDb[key];
-            //         addedProducts.quentity=quentity;
-            //         newCart.push(addedProducts);
-                    
-            //     }       
-            // }
-
-            setCart(newCart);
-        }
-        });
-
-       
+                    // console.log(productItem);
+                    setCart(newCart);
+                        
+              });
+    
+          });
+        
+  
 
     },[])
     

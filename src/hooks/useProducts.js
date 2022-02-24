@@ -9,8 +9,8 @@ const useProducts = () => {
         fetch('https://limitless-fjord-65876.herokuapp.com/products')
         .then(res=>res.json())
         .then(data=>{
-            setProducts(data.products);
-            setDisplayProducts(data.products);
+            setProducts(data);
+            setDisplayProducts(data);
         });
         
 

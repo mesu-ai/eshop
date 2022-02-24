@@ -8,7 +8,7 @@ const useCamera = () => {
     useEffect(()=>{
         fetch('https://limitless-fjord-65876.herokuapp.com/products?category=camera')
         .then(res=>res.json())
-        .then(data=>setCameras(data.products.slice(-9)))
+        .then(data=>setCameras(data.slice(-9)))
 
     },[]);
 

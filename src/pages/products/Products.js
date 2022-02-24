@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useProducts from '../../hooks/useProducts';
+// import useProducts from '../../hooks/useProducts';
 import ProductCard from './productCard/ProductCard';
 
 const Products = () => {
@@ -27,8 +27,8 @@ const Products = () => {
         fetch(url)
         .then(res=>res.json())
         .then(data=>{
-            setProducts(data.products);
-            setDisplayProducts(data.products);
+            setProducts(data);
+            setDisplayProducts(data);
         }); 
 
     },[url]);
