@@ -220,32 +220,31 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >  
+           <Box sx={{px:2,mb:1}}>
+              <Search sx={{display:{xs:'flex',md:'none'},border:'1px solid black'}}>
 
-            <Search sx={{display:{xs:'flex',md:'none'},mx:2,border:'1px solid black',mb:1}}>
+              <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+              id="searchInputId"
+              onChange={handleSearchInput}
 
-            <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-            id="searchInputId"
-            onChange={handleSearchInput}
+              />
 
-            />
+              {active? 
+              <Button id='searchBtnId' onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <SearchIcon />
+              </Button> :
 
-            {active? 
-            <Button id='searchBtnId' onClick={handleSearch} size='small' variant='contained' color='secondary'>
-            <SearchIcon />
-            </Button> :
+              <Button id='searchBtnId' disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <SearchIcon />
+              </Button>
 
-            <Button id='searchBtnId' disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
-            <SearchIcon />
-            </Button>
-
-            }
+              }
 
 
-            </Search>
-                
-
+              </Search>    
+            </Box>
             
                 {pages.map((page) => (
                 <Link style={{textDecoration:'none'}} key={Math.random()} to={page?.page_link}>
