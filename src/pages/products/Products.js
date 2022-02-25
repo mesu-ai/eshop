@@ -1,11 +1,10 @@
 import { Container, Divider, Grid, Typography} from '@mui/material';
-import TextField from '@mui/material/TextField';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 
 

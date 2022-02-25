@@ -1,14 +1,14 @@
 import { CircularProgress } from '@mui/material';
 import React from 'react';
-import { useLocation, Navigate,Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import AuthModal from '../AuthModal';
 
 const PrivateRoute = ({children}) => {
     const {user,isLoading}=useAuth();
-    const location=useLocation();
+    // const location=useLocation();
      const navigate=useNavigate();
-     const state={from:location}
+    //  const state={from:location}
 
     const [open, setOpen] = React.useState(true);
     // const handleOpen = () => setOpen(true);

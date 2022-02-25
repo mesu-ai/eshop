@@ -12,7 +12,7 @@ import AuthProvider from './contex/AuthProvider';
 import PrivateRoute from './components/authentication/privateroute/PrivateRoute';
 import ProductOrder from './pages/products/productOrder/ProductOrder';
 import BuyProduct from './pages/products/buyProduct/BuyProduct';
-import ProductCategory from './pages/products/productCategory/ProductCategory';
+
 
 // import AuthModal from './components/authentication/AuthModal';
 // import UserLogin from './components/authentication/userlogin/UserLogin';
