@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
@@ -21,7 +21,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useAuth from '../../../hooks/useAuth';
 import { getStoredDb } from '../../../utilities/LocalStorage';
 import useProducts from '../../../hooks/useProducts';
-import { useState,useEffect } from 'react';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -48,15 +47,7 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -94,9 +85,7 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [active,setActive]=React.useState(false);
-  const [searchNavigate,setSearchNavigate]=useState(false);
   
-  const [searchField,setSearchField]=useState('')
 
   const [products]=useProducts();
   
@@ -128,22 +117,26 @@ const Navbar = () => {
   }
   
   
-  
-  
 
   const handleSearch=(event)=>{
     
-   const searchText= document.getElementById('searchInputId').value;
+    const searchText= document.getElementById('searchInputId').value;
+    
     const url=`/products`;
     
-    //  setSearchNavigate(true);
-    //console.log(searchText);
-    const findProducts=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
-  //  console.log(findProducts);
+    const searchProducts=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
+  
+    navigate(url,{state:{searchText:`${searchText}`,searchProducts:{searchProducts}}});
 
-    navigate(url,{state:{searchText:`${searchText}`,findProducts:{findProducts}}});
+    setTimeout(()=>{
+      document.getElementById('searchInputId').value='';
+      setActive(false);
+
+    },500);
+    
 
   }
+  
 
 
   const handleOpenNavMenu = (event) => {
@@ -171,9 +164,7 @@ const Navbar = () => {
 
   return (
     <>
-    {/* {
-    searchNavigate  && <Navigate to={`/products`} state={{findProduct:`apple`}}></Navigate>
-    } */}
+    
     <AppBar position="sticky">
       <Container >
       {/* maxWidth="xl" */}
@@ -272,10 +263,6 @@ const Navbar = () => {
           }
 
             
-
-            {/* <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper> */}
           </Search>
 
           <IconButton onClick={handleCart} sx={{mr:{xs:2,md:3}}} aria-label="cart">

@@ -4,20 +4,69 @@ import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+
+
 import ProductCard from './productCard/ProductCard';
+
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor:'white' ,
+    border:'1px solid black',
+    '&:hover': {
+      backgroundColor:'white',
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  }));
+  
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+  
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        width: '12ch',
+        '&:focus': {
+          width: '20ch',
+        },
+      },
+    },
+  }));
 
 const Products = () => {
     
-
     const [products,setProducts] =useState([]);
     const [displayProducts,setDisplayProducts]=useState([]);
-    const [searchProducts,setSearchProducts]=useState([]);
     
     const {findItem}=useParams();
    // console.log(findItem);
 
     const location=useLocation();
-    console.log(location?.state?.findProducts);
+
+    //  console.log(location?.state?.searchProducts?.searchProducts);
+
     
     let url;
 
@@ -38,17 +87,6 @@ const Products = () => {
 
     },[url]);
 
-
-    if(products && location?.state?.searchText){
-        const findProducts=products.filter(product=>product.name.toLowerCase().includes(location?.state?.searchText.toLowerCase()));
-        // setSearchProducts(findProducts)
-        // console.log(findProducts);
-
-    }
-
-    // console.log(searchProducts);
-
-   
    
     const handleSearch=(e)=>{
         
@@ -71,9 +109,19 @@ const Products = () => {
                 
                 <Typography variant='h5' color='info.main' component='div'>Product Zone</Typography>
 
+                <Search sx={{display:{xs:'flex'}}}>
+                
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                   placeholder="Search…"
+                   inputProps={{ 'aria-label': 'search' }}
+                   id="searchInputId"
+                   onChange={handleSearch} /> 
+                    
+                </Search>
 
-                <TextField type='search'  sx={{ width: 500,maxWidth: '100%',bgcolor:'floralwhite'
-                }} onChange={handleSearch} fullWidth label="Search Product…" id="fullWidth" />
                 </Box>
 
              </Box>
@@ -83,10 +131,16 @@ const Products = () => {
 
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{py:3}} columns={{ xs: 4, sm: 8, md: 12, lg:12 }}>
                 
-                {
-                    displayProducts.map(product=><ProductCard key={Math.random()} product={product}></ProductCard>)         
-                    
+       {/* product mapping */}
+                
+                { location?.state?.searchProducts ?
+
+                (location?.state?.searchProducts?.searchProducts.map(product=><ProductCard key={Math.random()} product={product}></ProductCard>)):
+                  
+                (displayProducts.map(product=><ProductCard key={Math.random()} product={product}></ProductCard>))         
+                
                 }
+
                 </Grid>
            </Container>
             
