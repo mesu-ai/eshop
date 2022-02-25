@@ -21,6 +21,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useAuth from '../../../hooks/useAuth';
 import { getStoredDb } from '../../../utilities/LocalStorage';
 import useProducts from '../../../hooks/useProducts';
+import AuthModal from '../../authentication/AuthModal';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -78,7 +79,7 @@ const pages = [
     }
   ];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
 const Navbar = () => {
   
@@ -97,7 +98,7 @@ const Navbar = () => {
 
   //console.log(keys.length);
 
-  const {user}=useAuth();
+  const {user,userLogOut}=useAuth();
 
   const navigate=useNavigate();
   // let searchText;
@@ -160,8 +161,20 @@ const Navbar = () => {
    
   }
 
-  
+  const handleLogout=()=>{
+    userLogOut();
+    handleCloseNavMenu();
 
+  }
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+         setOpen(true);
+         handleCloseNavMenu();
+      };
+    const handleClose = () => setOpen(false);
+
+  
   return (
     <>
     
@@ -206,7 +219,33 @@ const Navbar = () => {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
-            >
+            >  
+
+            <Search sx={{display:{xs:'flex',md:'none'},mx:2,border:'1px solid black',mb:1}}>
+
+            <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+            id="searchInputId"
+            onChange={handleSearchInput}
+
+            />
+
+            {active? 
+            <Button id='searchBtnId' onClick={handleSearch} size='small' variant='contained' color='secondary'>
+            <SearchIcon />
+            </Button> :
+
+            <Button id='searchBtnId' disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
+            <SearchIcon />
+            </Button>
+
+            }
+
+
+            </Search>
+                
+
             
                 {pages.map((page) => (
                 <Link style={{textDecoration:'none'}} key={Math.random()} to={page?.page_link}>
@@ -229,7 +268,9 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+           
             <Link style={{textDecoration:'none'}} key={Math.random()} to={page?.page_link}>
+              
               <Button
                 key={Math.random()}
                 onClick={handleCloseNavMenu}
@@ -238,10 +279,12 @@ const Navbar = () => {
                 {page?.title}
               </Button>
               </Link>
+              
             ))}
+            
           </Box>
             
-          <Search sx={{display:{xs:'none',sm:'flex'},mr:2}}>
+          <Search sx={{display:{xs:'none',md:'flex'},mr:2}}>
 
             <StyledInputBase
               placeholder="Search…"
@@ -306,11 +349,27 @@ const Navbar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+
+
+             {user.email?
+                <MenuItem key={Math.random()} onClick={handleLogout}>
+                  <Typography sx={{ color: 'error.main',fontWeight:'bold' }} textAlign="center">Logout</Typography>
+                </MenuItem>:
+
+                <MenuItem key={Math.random()} onClick={handleOpen}>
+                  <Typography sx={{ color: 'success.main',fontWeight:'bold' }} textAlign="center">Login</Typography>
+                </MenuItem>
+              }
+
+
+
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+
+    <AuthModal open={open} handleClose={handleClose}></AuthModal>
     </>
   );
 };

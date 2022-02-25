@@ -9,20 +9,22 @@ import Paper from '@mui/material/Paper';
 import EuroIcon from '@mui/icons-material/Euro';
 import RedeemIcon from '@mui/icons-material/Redeem';
 
-
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  fontWeight:'bold',
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center',
+  borderRadius: '20px',
+  color: theme.palette.text.secondary,
+}));
 
 const QuickLink = () => {
-    const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        fontWeight:'bold',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius: '20px',
-        color: theme.palette.text.secondary,
-      }));
+
+  
+   
     return (
     <Container sx={{mt:5}}>
 
