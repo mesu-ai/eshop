@@ -3,24 +3,28 @@ import TextField from '@mui/material/TextField';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-// import useProducts from '../../hooks/useProducts';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductCard from './productCard/ProductCard';
 
 const Products = () => {
-    // const [products,setProducts,displayProducts,setDisplayProducts]=useProducts();
+    
 
     const [products,setProducts] =useState([]);
     const [displayProducts,setDisplayProducts]=useState([]);
+    const [searchProducts,setSearchProducts]=useState([]);
     
-    const {category}=useParams();
-    console.log(category);
+    const {findItem}=useParams();
+   // console.log(findItem);
+
+    const location=useLocation();
+    console.log(location?.state?.findProducts);
     
     let url;
-    category? 
-    url=`https://limitless-fjord-65876.herokuapp.com/products?category=${category}`:
+
+    (findItem?
+    url=`https://limitless-fjord-65876.herokuapp.com/products?category=${findItem}`:
    
-    url='https://limitless-fjord-65876.herokuapp.com/products';
+    url='https://limitless-fjord-65876.herokuapp.com/products');
 
 
     useEffect(()=>{
@@ -29,9 +33,20 @@ const Products = () => {
         .then(data=>{
             setProducts(data);
             setDisplayProducts(data);
+
         }); 
 
     },[url]);
+
+
+    if(products && location?.state?.searchText){
+        const findProducts=products.filter(product=>product.name.toLowerCase().includes(location?.state?.searchText.toLowerCase()));
+        // setSearchProducts(findProducts)
+        // console.log(findProducts);
+
+    }
+
+    // console.log(searchProducts);
 
    
    
@@ -40,6 +55,7 @@ const Products = () => {
         const searchText=e.target.value;
 
         const findProducts=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
+        // console.log(findProducts);
         setDisplayProducts(findProducts);
 
     }
@@ -51,12 +67,12 @@ const Products = () => {
              <Box sx={{mt:3}}>
                 
                 <Box
-                sx={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
+                sx={{display:{xs:'block',sm:'flex'},justifyContent:'space-between',alignItems:'end'}}>
                 
                 <Typography variant='h5' color='info.main' component='div'>Product Zone</Typography>
 
 
-                <TextField type='search'  sx={{ width: 500,maxWidth: '100%',bgcolor:'cornsilk'
+                <TextField type='search'  sx={{ width: 500,maxWidth: '100%',bgcolor:'floralwhite'
                 }} onChange={handleSearch} fullWidth label="Search Product…" id="fullWidth" />
                 </Box>
 

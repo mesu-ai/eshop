@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
@@ -20,6 +20,8 @@ import InputBase from '@mui/material/InputBase';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useAuth from '../../../hooks/useAuth';
 import { getStoredDb } from '../../../utilities/LocalStorage';
+import useProducts from '../../../hooks/useProducts';
+import { useState,useEffect } from 'react';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -91,14 +93,57 @@ const Navbar = () => {
   
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [active,setActive]=React.useState(false);
+  const [searchNavigate,setSearchNavigate]=useState(false);
+  
+  const [searchField,setSearchField]=useState('')
+
+  const [products]=useProducts();
   
   const storedDb= getStoredDb();
   const keys=Object.keys(storedDb);
+
+
   
 
   //console.log(keys.length);
 
   const {user}=useAuth();
+
+  const navigate=useNavigate();
+  // let searchText;
+
+  
+
+  const handleSearchInput=(e)=>{
+   const searchText=e.target.value;
+
+    if(searchText){
+      setActive(true);
+
+    }else{
+      setActive(false);
+    }
+
+  }
+  
+  
+  
+  
+
+  const handleSearch=(event)=>{
+    
+   const searchText= document.getElementById('searchInputId').value;
+    const url=`/products`;
+    
+    //  setSearchNavigate(true);
+    //console.log(searchText);
+    const findProducts=products.filter(product=>product.name.toLowerCase().includes(searchText.toLowerCase()));
+  //  console.log(findProducts);
+
+    navigate(url,{state:{searchText:`${searchText}`,findProducts:{findProducts}}});
+
+  }
 
 
   const handleOpenNavMenu = (event) => {
@@ -116,13 +161,19 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const navigate=useNavigate();
+  
   const handleCart=()=>{
     navigate('/shoppingcart');
    
   }
 
+  
+
   return (
+    <>
+    {/* {
+    searchNavigate  && <Navigate to={`/products`} state={{findProduct:`apple`}}></Navigate>
+    } */}
     <AppBar position="sticky">
       <Container >
       {/* maxWidth="xl" */}
@@ -200,13 +251,31 @@ const Navbar = () => {
           </Box>
             
           <Search sx={{display:{xs:'none',sm:'flex'},mr:2}}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              id="searchInputId"
+              onChange={handleSearchInput}
+
             />
+
+            {active? 
+              <Button id='searchBtnId' onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <SearchIcon />
+              </Button> :
+              
+              <Button id='searchBtnId' disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <SearchIcon />
+              </Button>
+          
+          }
+
+            
+
+            {/* <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper> */}
           </Search>
 
           <IconButton onClick={handleCart} sx={{mr:{xs:2,md:3}}} aria-label="cart">
@@ -255,6 +324,7 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </>
   );
 };
 
