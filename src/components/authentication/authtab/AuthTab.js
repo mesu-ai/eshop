@@ -40,7 +40,7 @@ function a11yProps(index) {
 }
 
 
-export default function AuthTab() {
+export default function AuthTab({location}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -58,10 +58,10 @@ export default function AuthTab() {
       </Box>
       
       <TabPanel value={value} index={0}>
-         <UserRegister></UserRegister>
+         <UserRegister location={location}/>
       </TabPanel>
       <TabPanel value={value} index={1} component="div">
-         <UserLogin></UserLogin>
+         <UserLogin location={location}/>
       </TabPanel>
       
     </Box>

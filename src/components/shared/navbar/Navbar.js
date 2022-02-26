@@ -129,11 +129,11 @@ const Navbar = () => {
   
     navigate(url,{state:{searchText:`${searchText}`,searchProducts:{searchProducts}}});
 
-    setTimeout(()=>{
-      document.getElementById('searchInputId').value='';
-      setActive(false);
+    // setTimeout(()=>{
+    //   document.getElementById('searchInputId').value='';
+    //   setActive(false);
 
-    },500);
+    // },500);
     
 
   }
@@ -217,9 +217,10 @@ const Navbar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'flex', md: 'none' },
               }}
             >  
+           
            <Box sx={{px:2,mb:1}}>
               <Search sx={{display:{xs:'flex',md:'none'},border:'1px solid black'}}>
 
@@ -232,11 +233,11 @@ const Navbar = () => {
               />
 
               {active? 
-              <Button id='searchBtnId' onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <Button  onClick={handleSearch} size='small' variant='contained' color='secondary'>
               <SearchIcon />
               </Button> :
 
-              <Button id='searchBtnId' disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
+              <Button  disabled  onClick={handleSearch} size='small' variant='contained' color='secondary'>
               <SearchIcon />
               </Button>
 

@@ -19,7 +19,7 @@ const useFirebase = () => {
 
     const signInUsingGoogle=(location,navigate)=>{
       setLoading(true);
-      const redirect_uri=location?.state?.from || '/';
+      const redirect_uri=location?.pathname || '/';
     
     signInWithPopup(auth, provider)
     .then((result) => {
@@ -47,7 +47,7 @@ const useFirebase = () => {
 
       setLoading(true);
 
-      const redirect_uri=location?.state?.from || '/';
+      const redirect_uri=location?.pathname || '/';
 
 
       createUserWithEmailAndPassword(auth, email, password)
@@ -82,7 +82,7 @@ const useFirebase = () => {
 
     const signInUsingEmail=(email, password,location,navigate)=>{
       setLoading(true);
-      const redirect_uri=location?.state?.from || '/'
+      const redirect_uri=location?.pathname || '/';
       signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
    

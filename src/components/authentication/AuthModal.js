@@ -7,8 +7,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from '@mui/material';
 import AuthTab from './authtab/AuthTab';
 
-// import ClearIcon from '@mui/icons-material/Clear';
-// import { IconButton } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -22,7 +20,8 @@ const style = {
     p: 4,
   };
 
-const AuthModal = ({open,handleClose}) => { 
+const AuthModal = ({open,handleClose,location}) => { 
+  // console.log(state);
 
   return (
       
@@ -44,7 +43,7 @@ const AuthModal = ({open,handleClose}) => {
                   <ClearIcon sx={{color:'crimson'}}/>
             </IconButton>
           
-            <AuthTab></AuthTab>
+            <AuthTab location={location}></AuthTab>
           </Box>
         </Fade>
       </Modal>

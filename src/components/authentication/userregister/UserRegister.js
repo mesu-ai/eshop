@@ -5,14 +5,14 @@ import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import google from '../../../images/login/google.png';
 import useAuth from '../../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const UserRegister = () => {
+const UserRegister = ({location}) => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
     const {signInUsingGoogle,signUpUsingEmail}=useAuth();
 
-    const location=useLocation();
+    
     const navigate=useNavigate();
 
     const handleGoogleLogin=()=>{
