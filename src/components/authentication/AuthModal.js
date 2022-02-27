@@ -40,7 +40,7 @@ const AuthModal = ({open,handleClose,location}) => {
           <Box sx={style}>
 
             <IconButton onClick={handleClose} sx={{float:'right'}} aria-label="delete">
-                  <ClearIcon sx={{color:'crimson'}}/>
+                <ClearIcon sx={{color:'crimson'}}/>
             </IconButton>
           
             <AuthTab location={location}></AuthTab>

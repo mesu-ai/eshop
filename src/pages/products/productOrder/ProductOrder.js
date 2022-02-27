@@ -3,13 +3,14 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {useParams } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import ProductCart from '../productCart/ProductCart';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
+
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -24,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const ProductOrder = () => {
     const {user}= useAuth();
     const {id}= useParams();
-    const initialInfo={customerName:user.displayName,email:user.email}
+    const initialInfo={customerName:user.displayName,email:user.email};
 
     const [biller,setBiller]=useState(initialInfo);
     const [mobileErr,setMobileErr]=useState(false);
@@ -35,7 +36,7 @@ const ProductOrder = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    // const navigate = useNavigate();
+     const navigate = useNavigate();
     
 
     useEffect(()=>{
@@ -109,12 +110,21 @@ const ProductOrder = () => {
     const handleBilling=(e)=>{
 
         if(!mobileErr){
+
+            if(id){
+                navigate('/payment',{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{selectedCart}}});
+            }
+            else{
+                navigate('/payment',{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{cart}}});
+            }
+
             console.log(biller);
         }
        
         e.preventDefault();
 
     }
+    
 
 
 
@@ -133,6 +143,7 @@ const ProductOrder = () => {
 
                 <Grid item xs={12} sm={6} md={4}>
                   <Item sx={{textAlign: 'start'}}>
+                    
                     <form onSubmit={handleBilling}>
 
                     <Typography variant="h6" gutterBottom component="div">
