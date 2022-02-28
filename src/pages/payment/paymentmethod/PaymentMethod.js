@@ -1,7 +1,10 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import bkash from '../../../images/payment/bKash.png';
+import ConfirmOrder from '../../order/confirmOrder/ConfirmOrder';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -9,6 +12,7 @@ const PaymentMethod = () => {
 
     const [biller,setBiller]=useState([]);
     const [mobileErr,setMobileErr]=useState(false);
+    const navigate=useNavigate();
 
 
     const handleOnBlur=(e)=>{
@@ -36,11 +40,16 @@ const PaymentMethod = () => {
 
     },[biller?.mobile]);
 
+    const confirmPayment=()=>{
+        navigate('/confirmorder');
+        
+    }
+
 
     return (
       <Box>
 
-        <form >
+        <form onSubmit={confirmPayment}>
         <Grid container spacing={2}>
         <Grid item xs={6}>
             <img src={bkash} alt="" height='120px' width='150px' />
@@ -48,7 +57,6 @@ const PaymentMethod = () => {
         </Grid>
         <Grid item xs={6}>
 
-            
             
                 <TextField
                     sx={{ mt:1, width: '25ch' }}

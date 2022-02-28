@@ -7,26 +7,33 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-const OrderList = () => {
+const OrderList = ({cart}) => {
+  console.log(cart);
+  const {name,image,category,productType,price,quentity}=cart;
+
+
+
     return (
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List sx={{ width: '100%',  bgcolor: 'background.paper' }}>
           <ListItem alignItems="flex-start">
            <ListItemAvatar>
-             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+             <Avatar alt="Remy Sharp" src={image} />
            </ListItemAvatar>
           <ListItemText
-            primary="Brunch this weekend?"
+            className="ellipses"
+            title={name}
+            primary={name}
             secondary={
-            <React.Fragment>
+            <React.Fragment >
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: 'inline',textTransform:'capitalize' }}
                 component="span"
                 variant="body2"
                 color="text.primary"
                 >
-                  Ali Connors
+                  {category}
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
+               — {productType} Item, {price} &times; {quentity} 
             </React.Fragment>
          }
         />

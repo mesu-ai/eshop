@@ -12,6 +12,7 @@ import PrivateRoute from './components/authentication/privateroute/PrivateRoute'
 import ProductOrder from './pages/products/productOrder/ProductOrder';
 import BuyProduct from './pages/products/buyProduct/BuyProduct';
 import Payment from './pages/payment/Payment';
+import ConfirmOrder from './pages/order/confirmOrder/ConfirmOrder';
 
 
 
@@ -43,6 +44,8 @@ function App() {
         <Route path='/productorder/:id' element={<PrivateRoute><ProductOrder/></PrivateRoute>}/>
 
         <Route path='/payment' element={<PrivateRoute><Payment/></PrivateRoute>}/>
+
+        <Route path='/confirmorder' element={<PrivateRoute><ConfirmOrder/></PrivateRoute>}/>
 
   
 

@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Payment = () => {
     const {totalPrice,name,mobile,cart}= useLocation()?.state;
-     console.log(cart);
+     console.log(cart.cart);
 
 
 
@@ -37,7 +37,16 @@ const Payment = () => {
                     </Typography>
                   </Item>
                   <Item>
-                    <OrderList/>
+
+                    {cart.cart?
+                    (cart.cart.map(cart=><OrderList key={Math.random()} cart={cart}></OrderList>)):
+                    
+                    (cart.selectedCart.map(cart=><OrderList key={Math.random()} cart={cart}></OrderList>))
+                    
+                    }
+  
+                  
+
                   </Item>
                 </Grid>
                 
@@ -66,7 +75,12 @@ const Payment = () => {
                       <Box sx={{display:'flex',justifyContent:'space-between'}}>
                         <Typography variant="body1" gutterBottom component="div" sx={{color:'black'}}>
                         Total Price 
-                        <span style={{color:'gray'}}> (Item Quentity X)</span> 
+                        
+                        {cart.selectedCart?
+                        <span style={{color:'gray'}}> ({cart.selectedCart?.length} Items)</span> :
+                        <span style={{color:'gray'}}> ({cart.cart?.length} Items)</span>
+
+                      }
                         </Typography>
                         
                         <Typography variant="body1" gutterBottom component="div" sx={{color:'black'}}>
@@ -75,8 +89,11 @@ const Payment = () => {
 
                       </Box>
                       <Box sx={{textAlign:'start'}}>
-                        <Typography variant="h6"  gutterBottom component="div" sx={{color:'black'}}>
+                        <Typography variant="h6"  component="div" sx={{color:'black'}}>
                         Payment Method:
+                        </Typography>
+                        <Typography variant="body1"  gutterBottom component="div" sx={{color:'navy'}}>
+                        Send Money- <span style={{color:'crimson'}}>01XXXXXXXXX</span> 
                         </Typography>
 
                         <PaymentMethod/>

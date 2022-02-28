@@ -72,7 +72,6 @@ const ProductOrder = () => {
             setCart(remainProduct);
         }
 
-
         removeFromDb(p_id);
         handleClose();
 
@@ -118,7 +117,7 @@ const ProductOrder = () => {
                 navigate('/payment',{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{cart}}});
             }
 
-            console.log(biller);
+            // console.log(biller);
         }
        
         e.preventDefault();
