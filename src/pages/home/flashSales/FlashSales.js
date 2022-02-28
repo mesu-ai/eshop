@@ -79,8 +79,8 @@ const FlashSales= () => {
     const [products]= useFlashSell();
 
 
-    const countDownTime = new Date("feb 28, 2022 11:59:59").getTime();
-    const setStartTime=new Date("feb 15, 2022 22:20:00").getTime();
+    const countDownTime = new Date("mar 28, 2022 11:59:59").getTime();
+    const setStartTime=new Date("feb 28, 2022 12:00:00").getTime();
     
     const currentTime = new Date().getTime();
    
