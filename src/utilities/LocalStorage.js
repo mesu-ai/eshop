@@ -70,7 +70,7 @@ const getStoredDb=()=>{
 
 const clearDb=()=>{
     const exists=localStorage.getItem('shopping_cart');
-    return exists?localStorage.removeItem(exists):{};
+    return exists?localStorage.removeItem('shopping_cart'):{};
 }
 
 export {addTodb,removeFromDb,getStoredDb,clearDb};

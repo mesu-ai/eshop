@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 const OrderList = ({cart}) => {
-  console.log(cart);
+  // console.log(cart);
   const {name,image,category,productType,price,quentity}=cart;
 
 

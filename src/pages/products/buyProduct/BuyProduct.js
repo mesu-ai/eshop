@@ -63,7 +63,7 @@ const BuyProduct = () => {
 
     const handleBuyNow=()=>{
         const url=`/productorder/${id}`
-        navigate(url)
+        navigate(url);
 
         addTodb(id,quentity,sellType);
 

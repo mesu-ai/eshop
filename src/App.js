@@ -43,7 +43,12 @@ function App() {
 
         <Route path='/productorder/:id' element={<PrivateRoute><ProductOrder/></PrivateRoute>}/>
 
-        <Route path='/payment' element={<PrivateRoute><Payment/></PrivateRoute>}/>
+        <Route path='/payment' element={<PrivateRoute><Payment/></PrivateRoute>}>
+
+        <Route path=':id' element={<PrivateRoute><Payment/></PrivateRoute>}/>
+
+        </Route>
+        
 
         <Route path='/confirmorder' element={<PrivateRoute><ConfirmOrder/></PrivateRoute>}/>
 

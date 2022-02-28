@@ -111,10 +111,10 @@ const ProductOrder = () => {
         if(!mobileErr){
 
             if(id){
-                navigate('/payment',{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{selectedCart}}});
+                navigate(`/payment/${id}`,{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{selectedCart}}});
             }
             else{
-                navigate('/payment',{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{cart}}});
+                navigate(`/payment`,{state:{totalPrice:{totalPrice},name:`${biller?.customerName}`,mobile:`${biller?.mobile}`,cart:{cart}}});
             }
 
             // console.log(biller);

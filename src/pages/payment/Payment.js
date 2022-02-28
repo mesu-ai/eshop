@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 import OrderList from './orderlist/OrderList';
 import { Container } from '@mui/material';
 import PaymentMethod from './paymentmethod/PaymentMethod';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useParams } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,8 +19,10 @@ const Item = styled(Paper)(({ theme }) => ({
   
 
 const Payment = () => {
+  const {id}= useParams();
+
     const {totalPrice,name,mobile,cart}= useLocation()?.state;
-     console.log(cart.cart);
+    //  console.log(cart.cart);
 
 
 
@@ -96,7 +98,7 @@ const Payment = () => {
                         Send Money- <span style={{color:'crimson'}}>01XXXXXXXXX</span> 
                         </Typography>
 
-                        <PaymentMethod/>
+                        <PaymentMethod id={id}/>
                         
                       </Box>
                     

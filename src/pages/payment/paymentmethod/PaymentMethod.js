@@ -1,14 +1,13 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import bkash from '../../../images/payment/bKash.png';
-import ConfirmOrder from '../../order/confirmOrder/ConfirmOrder';
+import { clearDb, removeFromDb } from '../../../utilities/LocalStorage';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
-const PaymentMethod = () => {
+const PaymentMethod = (props) => {
 
     const [biller,setBiller]=useState([]);
     const [mobileErr,setMobileErr]=useState(false);
@@ -42,6 +41,16 @@ const PaymentMethod = () => {
 
     const confirmPayment=()=>{
         navigate('/confirmorder');
+       
+
+        if(props?.id){
+            removeFromDb(props?.id);
+        }else{
+            clearDb();
+        }
+
+
+
         
     }
 
@@ -87,7 +96,7 @@ const PaymentMethod = () => {
         </Grid>    
         </Grid>
             <Button type='submit'  fullWidth sx={{mt:4}} variant="contained" color="warning">
-                    Confirm Payment
+                Confirm Payment
             </Button>
         </form>
       </Box>
