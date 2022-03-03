@@ -41,10 +41,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+    [theme.breakpoints.up('xs')]: {
+      width: '8ch',
       '&:focus': {
-        width: '20ch',
+        width: '15ch',
       },
     },
   },
@@ -65,9 +65,9 @@ const  CameraZone = () => {
             Camera Zone
             </Typography>
 
-            <Box sx={{display:'flex',justifyContent:'space-between'}}>
-            <Box sx={{display:'flex'}}>
-            <Typography style={{textAlign:'start'}} sx={{ color: 'warning.main', display:{xs:'none',sm:'flex'} }} variant="h6" gutterBottom component="div">
+            <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
+            <Box sx={{display:'flex',flexFlow:{xs:'column',sm:'row'}}}>
+            <Typography style={{textAlign:'start'}} sx={{ color: 'warning.main'}} variant="h6" gutterBottom component="div">
                 Latest Camera
             </Typography>
 
@@ -86,7 +86,7 @@ const  CameraZone = () => {
 
             </Box>
 
-            <Button size="small" variant="outlined">Show More</Button>
+            <Button sx={{height:{xs:'35px',sm:'auto'}}} size="small" variant="outlined">Show More</Button>
 
             </Box>
 

@@ -1,88 +1,50 @@
 import React from 'react';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-import ListIcon from '@mui/icons-material/List';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import WatchIcon from '@mui/icons-material/Watch';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Toolbar } from '@mui/material';
+import ComputerIcon from '@mui/icons-material/Computer';
+import {List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 
-const CatagoryList = () => {
+import { useNavigate } from 'react-router-dom';
+
+
+const icons=[
+    <i className="fas fa-tshirt"/>,<ComputerIcon/>,<PhoneIphoneIcon/>,<WatchIcon/>,<ShoppingBagIcon/>,<HeadphonesIcon/>,<HealthAndSafetyIcon/>]
+
+
+const CatagoryList = ({listItem,index}) => {
+
+    const {name}=listItem;
+
+     const navigate=useNavigate();
+     const icon=icons[index];
+    
+     const handleCategoryList=()=>{
+         navigate(`/products/${name}`,{state:{someOtherProp:{name}}});
+
+     }
+
     return (
-        <Paper>
-            <Toolbar style={{paddingLeft:'16px'}}  sx={{fontWeight:'bold',fontSize:'20px',color:'green'}}>
-            <ListIcon sx={{mr:2,fontSize:'25px'}}/>
-            Catagories
-            </Toolbar>
-
-            <Divider />
+        <>
+            
             <List>
                 <ListItem className="list-item" disablePadding>
-                <ListItemButton >
+                <ListItemButton onClick={handleCategoryList} >
+
                     <ListItemIcon  >
-                    <i className="fas fa-female fa-lg"></i>
+                      {icon}
                     </ListItemIcon>
-                    <ListItemText  sx={{fontWeight:'bold'}}  primary="Women's Fashion"/>
+                    <ListItemText  sx={{fontWeight:'bold',textTransform:'capitalize'}}  primary={name}/>
                 </ListItemButton>
                 </ListItem>
 
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon  >
-                    <i className="fas fa-tshirt"></i>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Men's Fashion"/>
-                </ListItemButton>
-                </ListItem>
 
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon  >
-                    <PhoneIphoneIcon/>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Phone and Parts"/>
-                </ListItemButton>
-                </ListItem>
-
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon  >
-                    <WatchIcon/>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Jewelry & Watch"/>
-                </ListItemButton>
-                </ListItem>
-
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon  >
-                    <ShoppingBagIcon/>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Bag & Bagpack"/>
-                </ListItemButton>
-                </ListItem>
-
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon  >
-                    <HeadphonesIcon/>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Accessories"/>
-                </ListItemButton>
-                </ListItem>
-
-                <ListItem className="list-item" disablePadding>
-                <ListItemButton >
-                    <ListItemIcon >
-                    <HealthAndSafetyIcon/>
-                    </ListItemIcon>
-                    <ListItemText sx={{fontWeight:'bold'}}  primary="Beauty & Health"/>
-                </ListItemButton>
-                </ListItem>
-
-             </List>
+            </List>
+              
             
-        </Paper>
+        </>
     );
 };
 

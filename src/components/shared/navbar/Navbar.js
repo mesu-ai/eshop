@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       width: '12ch',
       '&:focus': {
         width: '20ch',
@@ -129,11 +129,11 @@ const Navbar = () => {
   
     navigate(url,{state:{searchText:`${searchText}`,searchProducts:{searchProducts}}});
 
-    // setTimeout(()=>{
-    //   document.getElementById('searchInputId').value='';
-    //   setActive(false);
+    setTimeout(()=>{
+      document.getElementById('searchInputId').value='';
+      setActive(false);
 
-    // },500);
+    },500);
     
 
   }
@@ -222,7 +222,7 @@ const Navbar = () => {
             >  
            
            <Box sx={{px:2,mb:1}}>
-              <Search sx={{display:{xs:'flex',md:'none'},border:'1px solid black'}}>
+              <Search sx={{display:'flex',border:'1px solid black'}}>
 
               <StyledInputBase
               placeholder="Search…"
