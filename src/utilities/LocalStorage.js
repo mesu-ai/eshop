@@ -1,5 +1,5 @@
 
-const addTodb=(id,quentity,type)=>{
+const addTodb=(id,quentity=1,type='regular')=>{
     
     const oldItems = JSON.parse(localStorage.getItem('shopping_cart')) || [];
     

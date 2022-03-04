@@ -6,7 +6,6 @@ import ProductCard from '../../products/productCard/ProductCard';
 const AllProducts = () => {
 
     
-    // const [products,totalPage]=useProduct(page);
 
     const [products,setProducts] = useState([]);
     const [displayProducts,setDisplayProducts]= useState([]);

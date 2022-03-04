@@ -1,13 +1,65 @@
 import React from 'react';
-import { Box, Button,Divider, Grid} from '@mui/material';
+import '../CameraZone.css';
+import { Box, Button,Card,CardActionArea,CardActions,Divider, Grid} from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import { addTodb } from '../../../../utilities/LocalStorage';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import SnackbarAlert from '../../../../components/shared/snackbar/SnackbarAlert';
+
+const theme = createTheme({
+    components: {
+      // Name of the component
+      MuiCardActionArea: {
+        styleOverrides: {
+          // Name of the slot
+          focusHighlight: {
+            // Some CSS
+            color:'cyan',
+          },
+        },
+      },
+    },
+  });
 
 const CameraCard = ({camera}) => {
-    const {name,category,image,price}=camera;
+
+    const [open, setOpen] = React.useState(false);
+
+    const {_id,name,category,image,price}=camera;
+
+    const navigate=useNavigate();
+
+    const handleNavigate=(id)=>{
+        navigate(`/productdetails/${id}`,{state:{sellType:'regular'}})
+
+
+    }
+
+    const handleAddtoCart=(id)=>{
+        addTodb(id);
+        setOpen(true);
+
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen(false);
+    };
+
+
+
+
     return (
         <Grid item xs={6} sm={4} md={4}>
-          <Box sx={{  bgcolor: 'background.paper',p:1,height:'380px' }}>
-            <Box sx={{ my: 3, mx: 2, textAlign:'start',height:'80px'}}>
+        <ThemeProvider theme={theme}>
+          <Card  sx={{  bgcolor: 'background.paper' }}>
+           <CardActionArea  sx={{p:1}} onClick={()=>handleNavigate(_id)}>
+             <Box sx={{ m:2, textAlign:'start',height:'80px'}}>
                 <Grid container alignItems="center">
                 <Grid item xs>
                     <Typography gutterBottom variant="h4" component="div">
@@ -26,7 +78,7 @@ const CameraCard = ({camera}) => {
                 </Typography>
             </Box>
             <Divider variant="middle" />
-            <Box sx={{ m: 2, textAlign:'center' }}>
+            <Box sx={{ m:2, textAlign:'center' }}>
 
                 <img src={image} alt="" style={{width:'70%',height:'160px'}}  />
 
@@ -40,11 +92,16 @@ const CameraCard = ({camera}) => {
                 <Chip label="Hard" />
                 </Stack> */}
             </Box>
-            <Box sx={{ mt: 3, ml: 1, mb: 1,textAlign:'start' }}>
-                <Button>Add to cart</Button>
-            </Box>
-          </Box>        
-        </Grid>
+          </CardActionArea>
+          <CardActions sx={{ml:1,textAlign:'start' }}>
+             <Button onClick={()=>handleAddtoCart(_id)} sx={{fontWeight:'bold'}} size='small' color='secondary' variant="outlined">Add to cart</Button>
+          </CardActions>
+        </Card> 
+        </ThemeProvider>
+
+        <SnackbarAlert open={open} handleClose={handleClose}></SnackbarAlert>       
+      </Grid>
+      
     );
 };
 
