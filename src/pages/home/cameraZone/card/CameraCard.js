@@ -93,10 +93,10 @@ const CameraCard = ({camera}) => {
                 </Stack> */}
             </Box>
           </CardActionArea>
-          <CardActions sx={{ml:1,textAlign:'start' }}>
+          <CardActions sx={{display:'flex',justifyContent:'end',pr:3}}>
              <Button onClick={()=>handleAddtoCart(_id)} sx={{fontWeight:'bold'}} size='small' color='secondary' variant="outlined">Add to cart</Button>
           </CardActions>
-        </Card> 
+          </Card> 
         </ThemeProvider>
 
         <SnackbarAlert open={open} handleClose={handleClose}></SnackbarAlert>       
