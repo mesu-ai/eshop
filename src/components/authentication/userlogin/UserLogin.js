@@ -38,6 +38,7 @@ const UserLogin = ({location}) => {
       
        <div style={{color:'red',fontSize:'13px'}}>
         <input
+          
           className="user-register"
           style={{marginTop:'6px'}}
           placeholder='Email Address'

@@ -18,10 +18,27 @@ import { styled, alpha } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import InputBase from '@mui/material/InputBase';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useAuth from '../../../hooks/useAuth';
 import { getStoredDb } from '../../../utilities/LocalStorage';
 import useProducts from '../../../hooks/useProducts';
 import AuthModal from '../../authentication/AuthModal';
+
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiAppBar: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          backgroundColor: 'rgba(228, 228, 243, 0.89)',
+          color: 'black',
+        },
+      },
+    },
+  },
+});
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -47,7 +64,6 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
-
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -177,7 +193,7 @@ const Navbar = () => {
   
   return (
     <>
-    
+    <ThemeProvider theme={theme}>
     <AppBar position="sticky">
       <Container >
       {/* maxWidth="xl" */}
@@ -274,7 +290,7 @@ const Navbar = () => {
               <Button
                 key={Math.random()}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 {page?.title}
               </Button>
@@ -368,6 +384,7 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
 
     <AuthModal open={open} handleClose={handleClose}></AuthModal>
     </>
