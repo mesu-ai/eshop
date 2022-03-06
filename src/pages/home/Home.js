@@ -5,6 +5,7 @@ import Categories from './categories/Categories';
 import CameraZone from './cameraZone/CameraZone';
 import HomeViewPort from './homeViewPort/HomeViewPort';
 import AllProducts from './allproducts/AllProducts';
+import Footer from '../../components/shared/footer/Footer';
 
 
 const Home = () => {
@@ -18,6 +19,8 @@ const Home = () => {
         <Categories></Categories>
         <CameraZone></CameraZone>
         <AllProducts></AllProducts>
+
+        <Footer></Footer>
         </>
 
     );

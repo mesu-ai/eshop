@@ -8,6 +8,7 @@ import OrderList from './orderlist/OrderList';
 import { Container } from '@mui/material';
 import PaymentMethod from './paymentmethod/PaymentMethod';
 import { useLocation,useParams } from 'react-router-dom';
+import Footer from '../../components/shared/footer/Footer';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,7 +28,8 @@ const Payment = () => {
 
 
     return (
-
+ 
+      <>
         <Container>
           <Box sx={{ width: '100%',minHeight:'100vh',maxHeight:'auto',mt:3 }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -107,6 +109,8 @@ const Payment = () => {
             </Grid>
           </Box>
         </Container>
+        <Footer></Footer>
+       </>
         
 
         

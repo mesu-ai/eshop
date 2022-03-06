@@ -9,6 +9,7 @@ import InputBase from '@mui/material/InputBase';
 
 
 import ProductCard from './productCard/ProductCard';
+import Footer from '../../components/shared/footer/Footer';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -99,6 +100,7 @@ const Products = () => {
 
 
     return (
+         <>
          <Container>
              
              <Box sx={{mt:3}}>
@@ -141,7 +143,11 @@ const Products = () => {
                 }
 
                 </Grid>
+
+                
            </Container>
+           <Footer></Footer>
+           </>
             
         
     );

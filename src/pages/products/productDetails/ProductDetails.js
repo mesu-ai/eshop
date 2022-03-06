@@ -12,6 +12,7 @@ import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
 import { styled } from '@mui/material/styles';
 import ProductFeatures from './productFeatures/ProductFeatures';
 import SimilarProduct from '../similarProduct/SimilarProduct';
+import Footer from '../../../components/shared/footer/Footer';
 
 
 
@@ -307,6 +308,7 @@ const ProductDetails = () => {
         <SnackbarAlert open={open} handleClose={handleClose}></SnackbarAlert>
 
         </Container>
+        <Footer></Footer>
     </React.Fragment>
      </>
 

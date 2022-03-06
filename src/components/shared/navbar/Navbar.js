@@ -95,7 +95,21 @@ const pages = [
     }
   ];
 
-const settings = ['Profile', 'Account', 'Dashboard'];
+const settings = [
+        {
+            title:'Profile',
+            page_link:''
+        },
+        {
+            title:'Account',
+            page_link:''
+        },
+        {
+            title:'Dashboard',
+            page_link:'/dashboard'
+        }
+  
+   ];
 
 const Navbar = () => {
   
@@ -163,8 +177,11 @@ const Navbar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (pageLink) => {
     setAnchorElNav(null);
+    navigate(pageLink);
+
+
   };
 
   const handleCloseUserMenu = () => {
@@ -361,8 +378,8 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={Math.random()} onClick={()=>handleCloseNavMenu(setting.page_link)}>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
 

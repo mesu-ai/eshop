@@ -13,6 +13,7 @@ import ProductOrder from './pages/products/productOrder/ProductOrder';
 import BuyProduct from './pages/products/buyProduct/BuyProduct';
 import Payment from './pages/payment/Payment';
 import ConfirmOrder from './pages/order/confirmOrder/ConfirmOrder';
+import DashBoard from './pages/dashboard/DashBoard';
 
 
 
@@ -38,8 +39,9 @@ function App() {
 
 
         <Route path='/productdetails/:id' element={<ProductDetails/>}/>
-        
-        
+
+        <Route path='dashboard/*' element={<DashBoard/>}/>
+
 
         <Route path='/productorder/:id' element={<PrivateRoute><ProductOrder/></PrivateRoute>}/>
 
@@ -60,7 +62,7 @@ function App() {
 
         
       </Routes>
-      <Footer></Footer>
+       {/* <Footer></Footer> */}
       </BrowserRouter>
       </AuthProvider>
       

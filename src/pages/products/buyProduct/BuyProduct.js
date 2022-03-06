@@ -8,6 +8,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 // import useAuth from '../../../hooks/useAuth';
 import { addTodb } from '../../../utilities/LocalStorage';
 import SnackbarAlert from '../../../components/shared/snackbar/SnackbarAlert';
+import Footer from '../../../components/shared/footer/Footer';
 
 
 const BuyProduct = () => {
@@ -103,6 +104,7 @@ const BuyProduct = () => {
    
     return (
         // backgroundColor:'#f5f5f5'
+        <>
         <Container>
         <Box sx={{ flexGrow: 1,mt:6 }} style={{minHeight:'100vh',maxHeight:'auto'}}>
 
@@ -188,8 +190,11 @@ const BuyProduct = () => {
         }
         </Box>
         <SnackbarAlert open={open} handleClose={handleClose}></SnackbarAlert>
+
         
         </Container>
+        <Footer></Footer>
+        </>
 
     );
 };

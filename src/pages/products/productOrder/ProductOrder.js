@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
+import Footer from '../../../components/shared/footer/Footer';
 
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
@@ -241,6 +242,7 @@ const ProductOrder = () => {
             
            </Container>
           </Box>
+          <Footer></Footer>
 
           </>
     );
