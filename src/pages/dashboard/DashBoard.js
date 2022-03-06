@@ -15,8 +15,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Footer from '../../components/shared/footer/Footer';
-import { Logout,Home,Reviews,AdminPanelSettings,BookOnline,RateReview,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
-import { Link, Route,Routes } from 'react-router-dom';
+import { Home,AdminPanelSettings,BookOnline,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import { Link, Route,Routes, useNavigate } from 'react-router-dom';
 import MyOrder from './users/myorder/MyOrder';
 import AllOrder from './admin/allorder/AllOrder';
 import DashHome from './dashboardhome/DashHome';
@@ -54,7 +55,8 @@ const dashNavs=[
 function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const {user,userLogOut}=useAuth();
+  const {userLogOut}=useAuth();
+  const navigate=useNavigate();
 
 
   const handleDrawerToggle = () => {
@@ -63,6 +65,9 @@ function DashBoard(props) {
 
   const handleLogout=()=>{
     userLogOut();
+    navigate('/');
+    
+
   }
 
 
@@ -85,9 +90,9 @@ function DashBoard(props) {
           </Link>
         ))}
 
-          <ListItem button onClick={handleLogout} >
-            <ListItemIcon>
-              <Logout/>
+          <ListItem button onClick={handleLogout} sx={{backgroundColor:'snow',fontWeight:'bold'}} className="logout-btn">
+            <ListItemIcon >
+              <ExitToAppOutlinedIcon color='error'/>
             </ListItemIcon>
             <ListItemText primary='Logout' sx={{fontWeight:'bold',color:'crimson'}}/>
           </ListItem>

@@ -104,10 +104,10 @@ const settings = [
             title:'Account',
             page_link:''
         },
-        {
-            title:'Dashboard',
-            page_link:'/dashboard'
-        }
+        // {
+        //     title:'Dashboard',
+        //     page_link:'/dashboard'
+        // }
   
    ];
 
@@ -382,6 +382,14 @@ const Navbar = () => {
                   <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
+
+              {user.email &&
+
+                <MenuItem  onClick={()=>handleCloseNavMenu('/dashboard')}>
+                  <Typography textAlign="center">Dashboard</Typography>
+                </MenuItem>
+              
+              }
 
 
              {user.email?

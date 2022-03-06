@@ -51,17 +51,17 @@ export default function AuthTab({location}) {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-          <Tab label="Register" {...a11yProps(0)} />
-          <Tab label="Sign in" {...a11yProps(1)} />
+          <Tab label="Sign in" {...a11yProps(0)} />
+          <Tab label="Register" {...a11yProps(1)} />
           
         </Tabs>
       </Box>
       
       <TabPanel value={value} index={0}>
-         <UserRegister location={location}/>
+      <UserLogin location={location}/>
       </TabPanel>
       <TabPanel value={value} index={1} component="div">
-         <UserLogin location={location}/>
+         <UserRegister location={location}/>
       </TabPanel>
       
     </Box>

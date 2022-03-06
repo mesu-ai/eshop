@@ -1,3 +1,7 @@
 .list-link{
     text-decoration: none;
 }
+
+.logout-btn:hover, .logout-icon:hover{
+    color: black;
+}
