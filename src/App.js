@@ -4,7 +4,6 @@ import Home from './pages/home/Home';
 import Products from './pages/products/Products';
 import Notfind from './pages/notfind/Notfind';
 import Navbar from './components/shared/navbar/Navbar';
-import Footer from './components/shared/footer/Footer';
 import ProductDetails from './pages/products/productDetails/ProductDetails';
 import AuthProvider from './contex/AuthProvider';
 

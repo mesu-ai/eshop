@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './DashBoard.css';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,31 +7,63 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Footer from '../../components/shared/footer/Footer';
-import { BookOnline, DashboardCustomize } from '@mui/icons-material';
+import { Logout,Home,Reviews,AdminPanelSettings,BookOnline,RateReview,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
 import { Link, Route,Routes } from 'react-router-dom';
-import { ListItemButton } from '@mui/material';
-import MyOrder from './myorder/MyOrder';
+import MyOrder from './users/myorder/MyOrder';
+import AllOrder from './admin/allorder/AllOrder';
+import DashHome from './dashboardhome/DashHome';
+import MakeAdmin from './admin/allorder/makeadmin/MakeAdmin';
+import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 240;
+
+const dashNavs=[
+  {
+   name:'Home',
+   page_link:'/home',
+   icon:<Home/>
+   
+  },
+  {
+   name:'All Order',
+   page_link:'allorder',
+   icon:<AddShoppingCart/>
+  },
+  {
+   name:'My Order',
+   page_link:'myorder',
+   icon:<BookOnline />
+  },
+  {
+   name:'Add Admin',
+   page_link:'addadmin',
+   icon:<AdminPanelSettings />
+  },
+   
+]
+
 
 function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const {user,userLogOut}=useAuth();
 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleLogout=()=>{
+    userLogOut();
+  }
 
 
   const drawer = (
@@ -41,25 +74,24 @@ function DashBoard(props) {
       </Toolbar>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
+        {dashNavs.map((listItem) => (
+          <Link key={Math.random()} to={listItem.page_link} className='list-link'>
+          <ListItem button >
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {listItem.icon}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={listItem.name} sx={{fontWeight:'bold',color:'GrayText'}}/>
           </ListItem>
+          </Link>
         ))}
 
-      <Link className="dashboard-item" to={'myorder'} >
-      <ListItem className="list-item" disablePadding>
-              <ListItemButton >
-                  <ListItemIcon  >
-                  <BookOnline />
-                  </ListItemIcon>
-                  <ListItemText sx={{fontWeight:'bold'}}  primary="My Order"/>
-              </ListItemButton>
-       </ListItem>
-       </Link>
+          <ListItem button onClick={handleLogout} >
+            <ListItemIcon>
+              <Logout/>
+            </ListItemIcon>
+            <ListItemText primary='Logout' sx={{fontWeight:'bold',color:'crimson'}}/>
+          </ListItem>
+
       </List>
       
     </div>
@@ -133,11 +165,16 @@ function DashBoard(props) {
         <Routes>
         
         
+        <Route exact element={<DashHome/>}/>
+        <Route path='allorder' element={<AllOrder/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
-        </Routes>
+        <Route path='addadmin' element={<MakeAdmin/>}/>
         
+        
+        </Routes>
         <Footer/>
-      </Box>
+        
+    </Box>
     </Box>
   );
 }
