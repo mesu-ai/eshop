@@ -19,10 +19,10 @@ import { Home,AdminPanelSettings,BookOnline,DashboardCustomize, AddShoppingCart}
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Route,Routes, useNavigate } from 'react-router-dom';
 import MyOrder from './users/myorder/MyOrder';
-import AllOrder from './admin/allorder/AllOrder';
 import DashHome from './dashboardhome/DashHome';
-import MakeAdmin from './admin/allorder/makeadmin/MakeAdmin';
+import MakeAdmin from './admin/makeadmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
+import ManageOrder from './admin/manageorder/ManageOrder';
 
 const drawerWidth = 240;
 
@@ -34,15 +34,17 @@ const dashNavs=[
    
   },
   {
-   name:'All Order',
-   page_link:'allorder',
+    name:'My Order',
+    page_link:'myorder',
+    icon:<BookOnline />
+   },
+
+  {
+   name:'Manage Order',
+   page_link:'manageorder',
    icon:<AddShoppingCart/>
   },
-  {
-   name:'My Order',
-   page_link:'myorder',
-   icon:<BookOnline />
-  },
+  
   {
    name:'Add Admin',
    page_link:'addadmin',
@@ -90,7 +92,7 @@ function DashBoard(props) {
           </Link>
         ))}
 
-          <ListItem button onClick={handleLogout} sx={{backgroundColor:'snow',fontWeight:'bold'}} className="logout-btn">
+          <ListItem button onClick={handleLogout} sx={{backgroundColor:'snow',fontWeight:'bold'}}>
             <ListItemIcon >
               <ExitToAppOutlinedIcon color='error'/>
             </ListItemIcon>
@@ -165,16 +167,14 @@ function DashBoard(props) {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-        <Toolbar />
+        {/* <Toolbar /> */}
         
         <Routes>
         
-        
         <Route exact element={<DashHome/>}/>
-        <Route path='allorder' element={<AllOrder/>}/>
+        <Route path='manageorder' element={<ManageOrder/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
         <Route path='addadmin' element={<MakeAdmin/>}/>
-        
         
         </Routes>
         <Footer/>

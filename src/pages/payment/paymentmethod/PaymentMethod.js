@@ -12,6 +12,8 @@ const PaymentMethod = (props) => {
     const [biller,setBiller]=useState([]);
     const [mobileErr,setMobileErr]=useState(false);
     const navigate=useNavigate();
+    
+   // console.log(props);
 
 
     const handleOnBlur=(e)=>{
@@ -41,16 +43,30 @@ const PaymentMethod = (props) => {
 
     const confirmPayment=()=>{
         navigate('/confirmorder');
-       
+        const orderdata={...props.orderInfo,paymentMethod:'bKash',bkashNum:biller.mobile, trxID:biller.TrxID};
+        // console.log(data);
+        const url='https://limitless-fjord-65876.herokuapp.com/orders';
 
-        if(props?.id){
-            removeFromDb(props?.id);
-        }else{
-            clearDb();
-        }
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify(orderdata)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log('Success',data);
+            if(props?.id){
+                removeFromDb(props?.id);
+    
+            }else{
+                clearDb();
+            }
 
-
-
+        }).catch((error)=>{
+            console.error('Error',error);
+        });
         
     }
 

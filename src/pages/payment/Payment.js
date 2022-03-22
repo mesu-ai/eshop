@@ -9,6 +9,7 @@ import { Container } from '@mui/material';
 import PaymentMethod from './paymentmethod/PaymentMethod';
 import { useLocation,useParams } from 'react-router-dom';
 import Footer from '../../components/shared/footer/Footer';
+import useAuth from '../../hooks/useAuth';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -21,10 +22,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Payment = () => {
   const {id}= useParams();
+  const {user}=useAuth();
 
     const {totalPrice,name,mobile,cart}= useLocation()?.state;
     //  console.log(cart.cart);
-
+    const orderInfo={name:name, mobile:mobile, email:user.email, totalPrice:totalPrice.totalPrice, orderProduct:cart.cart?cart.cart:cart.selectedCart};
 
 
     return (
@@ -49,8 +51,6 @@ const Payment = () => {
                     
                     }
   
-                  
-
                   </Item>
                 </Grid>
                 
@@ -100,7 +100,7 @@ const Payment = () => {
                         Send Money- <span style={{color:'crimson'}}>01XXXXXXXXX</span> 
                         </Typography>
 
-                        <PaymentMethod id={id}/>
+                        <PaymentMethod id={id}  orderInfo={orderInfo}/>
                         
                       </Box>
                     

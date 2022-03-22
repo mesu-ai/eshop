@@ -26,6 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const ProductOrder = () => {
     const {user}= useAuth();
     const {id}= useParams();
+    
     const initialInfo={customerName:user.displayName,email:user.email};
 
     const [biller,setBiller]=useState(initialInfo);
@@ -125,9 +126,6 @@ const ProductOrder = () => {
 
     }
     
-
-
-
 
     return (
           <>
