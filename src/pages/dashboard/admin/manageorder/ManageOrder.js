@@ -7,40 +7,63 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-//import useOrders from '../../../../hooks/useOrders';
-import { Button, List, ListItem, ListItemText } from '@mui/material';
+import { Alert, Button, List, ListItem, ListItemText} from '@mui/material';
+import WarningModal from '../../../../components/warningmodal/WarningModal';
 
 const columns = [
     { label: 'Ordered Item', minWidth: 200 },
-    { label: 'Customer Name', minWidth: 150 },
+    { label: 'P. Details', minWidth: 120 },
+    { label: 'Customer Name', minWidth: 170 },
     {
-      label: 'Price',
-      minWidth: 120,
+      label: 'T. Price',
+      minWidth: 80,
       format: (value) => value.toLocaleString('en-US'),
     },
     { label: 'Payment Method', minWidth: 180,},
-    { label: 'Status', minWidth: 150,  },
-    { label: 'Action', minWidth: 170, },
+    { label: 'Status', minWidth: 130,  },
+    { label: 'Action', minWidth: 150, },
   ];
   
 
   
 const ManageOrder = () => {
 
- // const [orders]=useOrders();
-  //console.log(orders)
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [orders,setOrders]=useState([]);
+  const [success,setSuccess]=useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(()=>{
     fetch('https://limitless-fjord-65876.herokuapp.com/orders')
     .then(res=>res.json())
     .then(data=>setOrders(data));
-  },[orders])
+  },[])
+  console.log(orders);
 
+  const handleDelete=(id)=>{
+    const url=`https://limitless-fjord-65876.herokuapp.com/orders/${id}`;
+    
+    fetch(url,{
+      method:'DELETE',
+    })
+    .then(async res=>{
+      // const data=await res.json();
 
-  const handleDelete=()=>{
+      if(!res.ok){
+        // const error = (data && data.message) || res.status;
+        // return Promise.reject(error);
+
+      }
+      setSuccess(true);
+      handleClose();
+
+      const remainOrders=orders.filter(order=>order._id !==id);
+      setOrders(remainOrders);
+    
+    });
 
   }
 
@@ -54,6 +77,11 @@ const ManageOrder = () => {
     setPage(0);
   };
     return (
+      <>
+      {success && 
+      <Alert onClose={() => {setSuccess(false)}}>Order Cancled Successfully — check it out!</Alert>
+      }
+
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -74,7 +102,7 @@ const ManageOrder = () => {
             {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={Math.random()}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={Math.random()} >
 
                         <TableCell>
                           {row.orderProduct.map(product=>
@@ -85,9 +113,21 @@ const ManageOrder = () => {
                           </List>
                             
                             )}
-                          
                         </TableCell>
+
                         <TableCell>
+                          {row.orderProduct.map(product=>
+                          <List key={Math.random()} sx={{p:0}}>
+                          <ListItem disablePadding>
+
+                            <ListItemText  primary={`$${product.price} × ${product.quentity}`} />
+                          </ListItem>
+                          </List>
+                            
+                            )}
+                        </TableCell>
+
+                        <TableCell sx={{}}>
                           {row.name}
                           
                         </TableCell>
@@ -103,11 +143,17 @@ const ManageOrder = () => {
                         </TableCell>
                         <TableCell>Order Status</TableCell>
 
-                        <TableCell ><Button onClick={()=>handleDelete(row._id)} variant="contained" color="error" >Cancle</Button></TableCell>
+                        <TableCell ><Button onClick={handleOpen} variant="contained" color="error" >Cancle</Button></TableCell>
+
+                        <WarningModal id={row._id} open={open} handleClose={handleClose} handleDelete={handleDelete}></WarningModal>
                      
                   </TableRow>
                 );
-              })}
+                
+              }
+              
+              
+              )}
           </TableBody>:<></>
           } 
         </Table>
@@ -121,7 +167,8 @@ const ManageOrder = () => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+      </Paper>
+      </>
     );
 };
 

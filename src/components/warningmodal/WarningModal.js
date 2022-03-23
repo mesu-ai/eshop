@@ -19,10 +19,11 @@ const style = {
     p: 4,
   };
 
-const WarningModal = ({product,open,handleClose,handleRemove}) => {
+const WarningModal = ({id,open,handleClose,handleDelete}) => {
    
-  const {_id}=product;
+//   const {_id}=product;
   
+  console.log(id);
     return (
         <Modal
         aria-labelledby="transition-modal-title"
@@ -44,17 +45,17 @@ const WarningModal = ({product,open,handleClose,handleRemove}) => {
         </IconButton>
           
           <Typography id="modal-modal-title" variant="h6" component="h2">
-           Remove from cart
+           Delete the order
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Item(s) will be removed from order
+          Order will be cancled from order
           </Typography>
           <Box sx={{mt:3,float:'right'}}>
             <Button onClick={handleClose} variant="contained" color="secondary">
-            Cancle
+            NO
             </Button>
-            <Button onClick={()=>handleRemove(_id)} variant="contained" color="error" sx={{ml:1}}>
-            Remove
+            <Button onClick={()=>handleDelete(id)} variant="contained" color="error" sx={{ml:1}}>
+            Delete
             </Button>
 
           </Box>
