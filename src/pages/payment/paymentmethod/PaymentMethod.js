@@ -1,9 +1,12 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import CardMedia from '@mui/material/CardMedia';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bkash from '../../../images/payment/bKash.png';
 import { clearDb, removeFromDb } from '../../../utilities/LocalStorage';
+
+import '../Payment.css';
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
 
@@ -76,13 +79,18 @@ const PaymentMethod = (props) => {
 
         <form onSubmit={confirmPayment}>
         <Grid container spacing={2}>
-        <Grid item xs={6}>
-            <img src={bkash} alt="" height='120px' width='150px' />
+        <Grid sx={{display:{sm:'none',md:'block'}}} item xs={4} md={5} lg={6} >
+           
+            <CardMedia
+                className="bkash"
+                component="img"
+                image={bkash}
+                alt="bkash"
+            />
         
         </Grid>
-        <Grid item xs={6}>
-
-            
+        <Grid item xs={8} md={7} lg={6}>
+      
                 <TextField
                     sx={{ mt:1, width: '25ch' }}
                     required  

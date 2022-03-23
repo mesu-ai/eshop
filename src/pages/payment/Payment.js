@@ -35,7 +35,7 @@ const Payment = () => {
         <Container>
           <Box sx={{ width: '100%',minHeight:'100vh',maxHeight:'auto',mt:3 }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={7}>
+                <Grid item xs={12} sm={7} md={7}>
 
                   <Item sx={{mb:2}}>
                     <Typography sx={{textAlign:'start'}} variant="h6" gutterBottom component="div">
@@ -54,7 +54,7 @@ const Payment = () => {
                   </Item>
                 </Grid>
                 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5} md={5}>
                   <Item sx={{p:2}}>
                        
                       <Box sx={{textAlign:'start'}}>
