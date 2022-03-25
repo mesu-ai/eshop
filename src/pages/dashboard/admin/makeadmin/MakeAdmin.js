@@ -3,7 +3,7 @@ import React from 'react';
 const MakeAdmin = () => {
     return (
         <div>
-            addadmin
+           comming soon
             
         </div>
     );

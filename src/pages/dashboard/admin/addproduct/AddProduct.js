@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
@@ -10,6 +10,8 @@ const AddProduct = () => {
 
     return (
         <div >
+
+            <Typography sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="h5"  component='div'>Add New Product:</Typography>
            <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
       
             <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
