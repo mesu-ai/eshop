@@ -23,7 +23,7 @@ const UserLogin = ({location}) => {
     const onSubmit = data =>{
       
       signInUsingEmail(data.email,data.password,location,navigate);
-      console.log(data);
+     // console.log(data);
 
       reset();
 

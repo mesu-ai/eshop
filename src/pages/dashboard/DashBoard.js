@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Footer from '../../components/shared/footer/Footer';
 import { Home,AdminPanelSettings,BookOnline,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Route,Routes, useNavigate } from 'react-router-dom';
 import MyOrder from './users/myorder/MyOrder';
@@ -23,6 +24,7 @@ import DashHome from './dashboardhome/DashHome';
 import MakeAdmin from './admin/makeadmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
 import ManageOrder from './admin/manageorder/ManageOrder';
+import AddProduct from './admin/addproduct/AddProduct';
 
 const drawerWidth = 240;
 
@@ -40,9 +42,14 @@ const dashNavs=[
    },
 
   {
+   name:'Add Product',
+   page_link:'addproduct',
+   icon:<AddShoppingCart/>
+  },
+  {
    name:'Manage Order',
    page_link:'manageorder',
-   icon:<AddShoppingCart/>
+   icon:<ShoppingCartTwoToneIcon/>
   },
   
   {
@@ -172,6 +179,7 @@ function DashBoard(props) {
         <Routes>
         
         <Route exact element={<DashHome/>}/>
+        <Route path='addproduct' element={<AddProduct/>}/>
         <Route path='manageorder' element={<ManageOrder/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
         <Route path='addadmin' element={<MakeAdmin/>}/>
