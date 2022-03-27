@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Grid, Typography,TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
+import { Box } from '@mui/system';
 
 
 
@@ -184,54 +185,6 @@ const AddProduct = () => {
                 </Grid>
             </Grid>
 
-            
-            {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
-
-            <Grid item xs={10}>
-            {fBoxs.map(fbox=>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} key={Math.random()}>
-
-            <Grid item xs={5} >
-            <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
-            <input
-                
-                className="user-register"
-                style={{marginTop:'6px'}}
-                placeholder='Features Key'
-                type="text"
-                {...register(`description${fbox}`, {
-                required: true,
-                })}
-            />
-            {errors.description && "Please enter the product photo"}
-            </div>    
-            </Grid>
-
-            <Grid item xs={5} key={Math.random()}>
-            <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
-            <input
-                
-                className="user-register"
-                style={{marginTop:'6px'}}
-                placeholder='Features Value'
-                type="text"
-                {...register(`value${fbox}`, {
-                required: true,
-
-                })}
-            />
-            {errors.value && "Please enter the product photo"}
-            </div>
-
-            </Grid>
-            </Grid>
-            )}
-            </Grid>
-
-            <Grid item xs={2} >
-            <Button sx={{mt:1}} variant='contained' onClick={handleAddFeatures}>More Features</Button>
-            </Grid>
-            </Grid>  */}
 
            { 
             inputList.map( (x,i)=>{
@@ -284,8 +237,8 @@ const AddProduct = () => {
                 </Grid>
 
               </Grid>
-                <Grid item xs={3}>
-                  <div style={{display:'flex'}}>
+                <Grid item xs={3} >
+                  <Box sx={{display:{xs:'colum',sm:'flex'}}}>
                     {
                     inputList.length!==1 &&
                     <Button size='small'  variant="outlined" color="error" onClick={()=> handleremove(i)}>Remove</Button>
@@ -293,7 +246,7 @@ const AddProduct = () => {
                     { inputList.length-1===i &&
                     <Button  size='small'  variant='contained' color='warning' sx={{ml:1}} onClick={ handleaddclick}>Add More</Button>
                     }
-                  </div>
+                  </Box>
                 </Grid>
               </Grid>
               );
@@ -319,7 +272,7 @@ const AddProduct = () => {
             
 
             {/* <input className='register' type="submit" value="Add Product" /> */}
-            <Button sx={{py:1.5}} fullWidth variant='contained' color='secondary' type='submit'>Add Product</Button>
+            <Button sx={{py:1.5,mt:2}} fullWidth variant='contained' color='secondary' type='submit'>Add Product</Button>
 
           </form>
      
