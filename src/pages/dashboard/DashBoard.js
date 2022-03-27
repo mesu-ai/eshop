@@ -178,7 +178,7 @@ function DashBoard(props) {
         
         <Routes>
         
-        <Route exact element={<DashHome/>}/>
+        <Route exact path='/' element={<DashHome/>}/>
         <Route path='addproduct' element={<AddProduct/>}/>
         <Route path='manageorder' element={<ManageOrder/>}/>
         <Route path='myorder' element={<MyOrder/>}/>

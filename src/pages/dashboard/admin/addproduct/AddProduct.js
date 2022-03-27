@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography,TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
 
@@ -7,51 +7,39 @@ import '../../../../components/authentication/userregister/UserRegister.css';
 
 const AddProduct = () => {
 
-    const [fBoxs,setFBoxs]=useState([1]);
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
-  const onSubmit = data => {
+    const [inputList, setinputList]= useState([{discription:'', value:''}]);
+
+  const handleOnBlur=(e, index)=>{
+    const {name, value}= e.target;
+    const list= [...inputList];
+    list[index][name]= value;
+    setinputList(list);
+
+  }
+ 
+  const handleremove= index=>{
+    const list=[...inputList];
+    list.splice(index,1);
+    setinputList(list);
+  }
+
+  const handleaddclick=()=>{ 
+    setinputList([...inputList, { discription:'', value:''}]);
+   
+  }
+
+
+  const onSubmit = (data) => {
+
+     // console.log(data);
+     // console.log(inputList);
+  
+    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:data.star,starCount:data.starCount,features:inputList,image:data.image}
     
-    const features=[];
-
-    for (const iterator of fBoxs) {
-        // const feature=description:{`${data.description}${iterator}`},value:{`${data.value}${iterator}`};
-
-        const d=data.description1;
-        console.log(d);
-        // if(iterator){
-        //     let des=`${data.description${iterator}}`;
-        //    if(des){
-        //     console.log(data.des);
-        // }
-
-        // }else{
-        //     console.log('error');
-        // }
-        
-        
-       
-        // features.push(feature);
-        
-    }
-    console.log(features);
-    console.log(data.description1,data.value1);
-    
-
-
-
-    // const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:data.star,starCount:data.starCount,features:features,image:data.image}
-    
-    // console.log(features);
+     console.log(product);
   };
-
-    const handleAddFeatures=()=>{
-
-        const addOne=fBoxs.length+1;
-        const newBox=[...fBoxs,addOne];
-        setFBoxs(newBox);  
-        
-    }
 
     return (
         <div >
@@ -197,7 +185,7 @@ const AddProduct = () => {
             </Grid>
 
             
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} key={Math.random()}>
+            {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
 
             <Grid item xs={10}>
             {fBoxs.map(fbox=>
@@ -213,12 +201,10 @@ const AddProduct = () => {
                 type="text"
                 {...register(`description${fbox}`, {
                 required: true,
-
                 })}
             />
             {errors.description && "Please enter the product photo"}
-            </div>
-                
+            </div>    
             </Grid>
 
             <Grid item xs={5} key={Math.random()}>
@@ -245,7 +231,74 @@ const AddProduct = () => {
             <Grid item xs={2} >
             <Button sx={{mt:1}} variant='contained' onClick={handleAddFeatures}>More Features</Button>
             </Grid>
-           </Grid> 
+            </Grid>  */}
+
+           { 
+            inputList.map( (x,i)=>{
+             // console.log(x.discription,i);
+            return(
+            
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{my:1}} key={Math.random()}>
+           
+              <Grid item xs={9}>
+
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} key={Math.random()}>
+
+                  <Grid item xs={6}>
+                    
+                    <TextField
+                    className='user-register'
+                    fullWidth
+                    size='small'
+                    required
+                    type="text"
+                    defaultValue={x.discription || ''}
+                    id="outlined-required"
+                    label="Features Key"
+                    //  variant="standard"
+                    name="discription"
+                    onBlur={(e)=>handleOnBlur(e,i)}
+
+                    />
+
+                  </Grid>
+
+                  <Grid item xs={6}>
+
+                    <TextField
+                    fullWidth
+                    size='small'
+                    required
+                    type="text"
+                    id="outlined-required"
+                    label="Features Value"
+                    defaultValue={x.value || ''}
+                   // variant="filled"
+                    name="value"
+                    onBlur={(e)=>handleOnBlur(e,i)}
+
+                    />
+
+                    </Grid>
+
+                </Grid>
+
+              </Grid>
+                <Grid item xs={3}>
+                  <div style={{display:'flex'}}>
+                    {
+                    inputList.length!==1 &&
+                    <Button size='small'  variant="outlined" color="error" onClick={()=> handleremove(i)}>Remove</Button>
+                    }
+                    { inputList.length-1===i &&
+                    <Button  size='small'  variant='contained' color='warning' sx={{ml:1}} onClick={ handleaddclick}>Add More</Button>
+                    }
+                  </div>
+                </Grid>
+              </Grid>
+              );
+             }
+            )} 
 
             
 
@@ -263,8 +316,10 @@ const AddProduct = () => {
             />
             {errors.image && "Please enter the product photo"}
             </div>
+            
 
-            <input className='register' type="submit" value="Add Product" />
+            {/* <input className='register' type="submit" value="Add Product" /> */}
+            <Button sx={{py:1.5}} fullWidth variant='contained' color='secondary' type='submit'>Add Product</Button>
 
           </form>
      
