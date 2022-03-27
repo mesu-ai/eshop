@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
-import { Button, Grid, Typography,TextField } from '@mui/material';
+import { Button, Grid, Typography,TextField,Rating } from '@mui/material';
+import { Box } from '@mui/system';
+import { styled } from '@mui/material/styles';
+import StarIcon from '@mui/icons-material/Star';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
-import { Box } from '@mui/system';
-
+                    
+const CustomizedBox = styled(Box)(({ theme }) => ({
+   color:'#c4c4c4', 
+   '&:hover': {
+     color:'black',
+  }
+}));
+const labels = {
+  0.5: 'Useless',
+  1: 'Useless+',
+  1.5: 'Poor',
+  2: 'Poor+',
+  2.5: 'Ok',
+  3: 'Ok+',
+  3.5: 'Good',
+  4: 'Good+',
+  4.5: 'Excellent',
+  5: 'Excellent+',
+};
 
 
 const AddProduct = () => {
@@ -11,6 +31,8 @@ const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
     const [inputList, setinputList]= useState([{discription:'', value:''}]);
+    const [value, setValue] = React.useState(2);
+    const [hover, setHover] = React.useState(-1);
 
   const handleOnBlur=(e, index)=>{
     const {name, value}= e.target;
@@ -37,7 +59,7 @@ const AddProduct = () => {
      // console.log(data);
      // console.log(inputList);
   
-    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:data.star,starCount:data.starCount,features:inputList,image:data.image}
+    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:value,starCount:data.starCount,features:inputList,image:data.image}
     
      console.log(product);
   };
@@ -104,11 +126,11 @@ const AddProduct = () => {
                     placeholder='Product Stock'
                     type="number"
                     {...register('stock', {
-                    required: true,
+                    required: true,min:0,
 
                     })}
                 />
-                {errors.stock && "Please enter the product stock"}
+                {errors.stock && "Please enter the num of stock"}
                 </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -121,7 +143,7 @@ const AddProduct = () => {
                     type="number"
                     step="0.01"
                     {...register('price', {
-                    required: true,
+                    required: true,min:0,
 
                     })}
                 />
@@ -135,51 +157,61 @@ const AddProduct = () => {
                     
                     className="user-register"
                     style={{marginTop:'6px'}}
-                    placeholder='Shipping Rate'
+                    placeholder='Shipping Cost'
                     type="number"
                     step="0.01"
                     {...register('shipping', {
-                    required: true,
+                    required: true,min:0,
 
                     })}
                 />
-                {errors.shipping && "Please enter the shipping rate"}
+                {errors.shipping && "Please enter the shipping cost"}
                 </div>
 
                 </Grid>
                 <Grid item xs={6}>
-                <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
-                <input
-                    
-                    className="user-register"
-                    style={{marginTop:'6px'}}
-                    placeholder='Product Rating'
-                    type="number"
-                    {...register('star', {
-                    required: true,
-
-                    })}
-                />
-                {errors.star && "Please enter the rating number"}
-                </div>
-                    
                 
-
+                <CustomizedBox 
+                  sx={{
+                    mt:1,
+                    border: 1,
+                    borderRadius: 1,
+                    padding:1,
+                    display: 'flex',
+                  }}
+                >
+                  <Rating
+                    name="hover-feedback"
+                    value={value}
+                    precision={0.5}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                  />
+                  {value !== null && (
+                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                  )}
+                </CustomizedBox>
+                
                 </Grid>
                 <Grid item xs={6}>
                 <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
                 <input
-                    
+                    defaultValue={0 || ''}
                     className="user-register"
                     style={{marginTop:'6px'}}
                     placeholder='Rating Count'
                     type="number"
                     {...register('starCount', {
-                    required: true,
+                    required: true,min:0,
 
                     })}
                 />
-                {errors.starCount && "Please enter the rating counter"}
+                {errors.starCount && "Please enter the num of rating people"}
                 </div>   
 
                 </Grid>
