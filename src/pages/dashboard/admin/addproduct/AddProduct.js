@@ -33,7 +33,7 @@ const AddProduct = () => {
     const [inputList, setinputList]= useState([{discription:'', value:''}]);
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
-    const [image,setImage]=useState(null);
+    // const [image,setImage]=useState(null);
     const [imageLink,setImageLink]=useState('');
 
   const handleOnBlur=(e, index)=>{
@@ -55,11 +55,11 @@ const AddProduct = () => {
    
   }
 
-  const handleImage=(e)=>{
-    console.log(e.target.files[0]);
+  // const handleImage=(e)=>{
+  //   console.log(e.target.files[0]);
    
 
-  }
+  // }
 
 
   const onSubmit = (data) => {
