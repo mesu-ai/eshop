@@ -34,6 +34,7 @@ const AddProduct = () => {
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
     const [image,setImage]=useState(null);
+    const [imageLink,setImageLink]=useState('');
 
   const handleOnBlur=(e, index)=>{
     const {name, value}= e.target;
@@ -58,119 +59,55 @@ const AddProduct = () => {
     console.log(e.target.files[0]);
    
 
-
-
-
   }
 
 
   const onSubmit = (data) => {
 
-     console.log(image);
+    const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList,image:imageLink}
+    
+     console.log(data.image[0]);
      const formData= new FormData();
-     formData.append("image",image);
+     formData.append("image",data.image[0]);
  
      fetch("https://api.imgur.com/3/image/",{
      method:'post',
      headers:{
        Authorization: "Client-ID 123666fcee19e4f"
- 
      },
      body:formData
    })
    .then(res=>res.json())
    .then(data=>{
-     console.log('success',data);
-   })
-     // console.log(inputList);
-  
-    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList,image:data.image}
-    
-     //console.log(product);
 
-    //  if(!image){
-    //    return;
+    if(data.success){
+    setImageLink(data.data.link);
+    const deletehash=data.data.deletehash;
+    console.log('success',data);
+    postData(addProduct);
 
-    //  }
+     }
+   })    
+  };
 
-    //  const formData= new FormData();
-    //  formData.append('name',data.name);
-    //  formData.append('seller',data.seller);
-    //  formData.append('category',data.category);
-    //  formData.append('price',data.price);
-    //  formData.append('shipping',data.shipping);
-    //  formData.append('stock',data.stock);
-    //  formData.append('star',rating);
-    //  formData.append('starCount',data.starCount);
-    //  formData.append('features',inputList);
-     //formData.append('image',image);
-     
-    
+   const postData=(data)=>{
 
-  // const imageId=  document.getElementById('image-fileId');
-  // formData.append("image",imageId);
-  // console.log(formData,data.image);
+    fetch('http://localhost:5000/products', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => {
+      console.log('Success:', data);
+      })
+      .catch(error => {
+      console.error('Error:', error);
+      });
 
-
-  // fetch("https://api.imgur.com/3/image/",{
-  //   method:'post',
-  //   headers:{
-  //     Authorization: "Client-ID 123666fcee19e4f"
-
-  //   },
-  //   body:formData
-  // })
-  // .then(res=>res.json())
-  // .then(data=>{
-  //   console.log('success',data);
-  // })
-
-  //  $.ajax({
-  //   url: "https://api.imgur.com/3/image",
-  //   type: "POST",
-  //   datatype: "json",
-  //   headers: {
-  //     "Authorization": "Client-ID 123666fcee19e4f"
-  //   },
-  //   data: formData,
-  //   success: function(response) {
-  //     console.log(response);
-  //     var photo = response.data.link;
-  //     var photo_hash = response.data.deletehash;
-  //   },
-  //   cache: false,
-  //   contentType: false,
-  //   processData: false
-  // });
-  
-
-
-
-      // fetch("https://api.imgur.com/3/image", {
-      //     method: "POST",
-      //     headers: {
-      //         Authorization: "Client-ID 123666fcee19e4f"
-      //     },
-      //     body: formData
-      // })
-      // .then(res => res.json())
-      // .then(data => {
-      //     var photo = data.data.link;
-      //     console.log(data,photo);
-      // })
-
-      // fetch('http://localhost:5000/products', {
-      // method: 'POST',
-      // body: formData
-      // })
-      // .then(res => res.json())
-      // .then(data => {
-      // console.log('Success:', data);
-      // })
-      // .catch(error => {
-      // console.error('Error:', error);
-      // });
-   };
+   }
 
     return (
         <div >
@@ -403,17 +340,14 @@ const AddProduct = () => {
                 style={{marginTop:'6px'}}
                 placeholder='Product Photo'
                 type="file"
-                // id='image-fileId'
-                //onChange={(e)=>handleImage(e)}
+                // onChange={(e)=>setImage(e.target.files[0])}
+                {...register('image', {
+                required: true,
 
-                onChange={(e)=>setImage(e.target.files[0])}
-                // {...register('image', {
-                // required: true,
-
-                // })}
+                })}
             />
            
-            {/* {errors.image && "Please enter the product photo"} */}
+            {errors.image && "Please enter the product photo"}
             </div>
             
 
