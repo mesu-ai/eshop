@@ -31,8 +31,9 @@ const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
     const [inputList, setinputList]= useState([{discription:'', value:''}]);
-    const [value, setValue] = React.useState(2);
+    const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
+    const [image,setImage]=useState(null);
 
   const handleOnBlur=(e, index)=>{
     const {name, value}= e.target;
@@ -59,9 +60,46 @@ const AddProduct = () => {
      // console.log(data);
      // console.log(inputList);
   
-    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:value,starCount:data.starCount,features:inputList,image:data.image}
+    const product={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList,image:data.image}
     
-     console.log(product);
+     //console.log(product);
+
+     if(!image){
+      // console.log('image:',image);
+       return;
+
+     }
+
+     const formData= new FormData();
+     formData.append('name',data.name);
+     formData.append('seller',data.seller);
+     formData.append('category',data.category);
+     formData.append('price',data.price);
+     formData.append('shipping',data.shipping);
+     formData.append('stock',data.stock);
+     formData.append('star',rating);
+     formData.append('starCount',data.starCount);
+     formData.append('features',inputList);
+     formData.append('image',image);
+     
+    // console.log(formData);
+
+      fetch('http://localhost:5000/products', {
+      method: 'POST',
+      body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+      console.log('Success:', data);
+      })
+      .catch(error => {
+      console.error('Error:', error);
+      });
+
+
+
+
+     
   };
 
     return (
@@ -182,18 +220,18 @@ const AddProduct = () => {
                 >
                   <Rating
                     name="hover-feedback"
-                    value={value}
+                    value={rating}
                     precision={0.5}
                     onChange={(event, newValue) => {
-                      setValue(newValue);
+                      setRating(newValue);
                     }}
                     onChangeActive={(event, newHover) => {
                       setHover(newHover);
                     }}
                     emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                   />
-                  {value !== null && (
-                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                  {rating !== null && (
+                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
                   )}
                 </CustomizedBox>
                 
@@ -289,17 +327,19 @@ const AddProduct = () => {
 
             <div style={{color:'red',fontSize:'13px',textAlign:'start',marginTop:'4px'}}>
             <input
-                
+                required
+                accept="image/*"
                 className="user-register"
                 style={{marginTop:'6px'}}
                 placeholder='Product Photo'
                 type="file"
-                {...register('image', {
-                required: true,
+                onChange={(e)=>setImage(e.target.files[0])}
+                // {...register('image', {
+                // required: true,
 
-                })}
+                // })}
             />
-            {errors.image && "Please enter the product photo"}
+            {/* {errors.image && "Please enter the product photo"} */}
             </div>
             
 
