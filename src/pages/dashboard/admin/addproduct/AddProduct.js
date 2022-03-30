@@ -34,7 +34,7 @@ const AddProduct = () => {
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
     // const [image,setImage]=useState(null);
-    const [imageLink,setImageLink]=useState('');
+    // const [imageLink,setImageLink]=useState('');
 
   const handleOnBlur=(e, index)=>{
     const {name, value}= e.target;
@@ -64,7 +64,7 @@ const AddProduct = () => {
 
   const onSubmit = (data) => {
 
-    const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList,image:imageLink}
+    const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
     
      console.log(data.image[0]);
      const formData= new FormData();
@@ -81,24 +81,27 @@ const AddProduct = () => {
    .then(data=>{
 
     if(data.success){
-    setImageLink(data.data.link);
+    // setImageLink(data.data.link);
     const deletehash=data.data.deletehash;
     console.log('success',data);
     console.log('image',data.data.link);
-    postData(addProduct);
+    postData(addProduct,data.data.link);
 
      }
    })    
   };
 
-   const postData=(data)=>{
+   const postData=(data,image)=>{
+
+    const product={...data,image:image}
+
 
     fetch('https://limitless-fjord-65876.herokuapp.com/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(product)
       })
       .then(res => res.json())
       .then(data => {
