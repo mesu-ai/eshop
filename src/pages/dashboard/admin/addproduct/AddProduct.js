@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Grid, Typography,TextField,Rating } from '@mui/material';
+import { Button, Grid, Typography,TextField,Rating, Alert } from '@mui/material';
 import { Box } from '@mui/system';
 import { styled } from '@mui/material/styles';
 import StarIcon from '@mui/icons-material/Star';
@@ -33,7 +33,7 @@ const AddProduct = () => {
     const [inputList, setinputList]= useState([{discription:'', value:''}]);
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
-    // const [image,setImage]=useState(null);
+    const [success,setSuccess]=useState(false);
     // const [imageLink,setImageLink]=useState('');
 
   const handleOnBlur=(e, index)=>{
@@ -105,7 +105,13 @@ const AddProduct = () => {
       })
       .then(res => res.json())
       .then(data => {
-      console.log('Success:', data);
+
+      if(data.insertedId){
+        console.log('Success:', data);
+        setSuccess(true);
+        reset();
+      }
+      
       })
       .catch(error => {
       console.error('Error:', error);
@@ -115,9 +121,13 @@ const AddProduct = () => {
 
     return (
         <div >
-            
+           {
+            success &&
+            <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
 
-            <Typography sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="h5"  component='div'>Add New Product:</Typography>
+           } 
+          
+          <Typography sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="h5"  component='div'>Add New Product:</Typography>
            <form className='register-form' id='form-container' onSubmit={handleSubmit(onSubmit)}>
       
             <div style={{color:'red',fontSize:'13px',textAlign:'start'}}>
