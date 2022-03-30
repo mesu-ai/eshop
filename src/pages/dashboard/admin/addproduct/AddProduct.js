@@ -123,7 +123,7 @@ const AddProduct = () => {
         <div >
            {
             success &&
-            <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
+            <Alert onClose={() =>setSuccess(false)}>This is a success alert — check it out!</Alert>
 
            } 
           
