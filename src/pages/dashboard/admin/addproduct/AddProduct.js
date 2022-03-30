@@ -55,18 +55,11 @@ const AddProduct = () => {
    
   }
 
-  // const handleImage=(e)=>{
-  //   console.log(e.target.files[0]);
-   
-
-  // }
-
-
   const onSubmit = (data) => {
 
     const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
     
-     console.log(data.image[0]);
+    // console.log(data.image[0]);
      const formData= new FormData();
      formData.append("image",data.image[0]);
  
@@ -83,8 +76,8 @@ const AddProduct = () => {
     if(data.success){
     // setImageLink(data.data.link);
    // const deletehash=data.data.deletehash;
-    console.log('success',data);
-    console.log('image',data.data.link);
+   // console.log('success',data);
+   // console.log('image',data.data.link);
     postData(addProduct,data.data.link);
 
      }
@@ -107,7 +100,7 @@ const AddProduct = () => {
       .then(data => {
 
       if(data.insertedId){
-        console.log('Success:', data);
+       // console.log('Success:', data);
         setSuccess(true);
         reset();
       }
