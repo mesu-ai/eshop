@@ -25,6 +25,8 @@ import MakeAdmin from './admin/makeadmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
 import ManageOrder from './admin/manageorder/ManageOrder';
 import AddProduct from './admin/addproduct/AddProduct';
+import ManageProduct from './admin/manageproduct/ManageProduct';
+import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 
 const drawerWidth = 240;
 
@@ -44,6 +46,16 @@ const dashNavs=[
   {
    name:'Add Product',
    page_link:'addproduct',
+   icon:<AddShoppingCart/>
+  },
+  {
+   name:'Manage Product',
+   page_link:'manageproduct',
+   icon:<AddShoppingCart/>
+  },
+  {
+   name:'Manage Flashsell',
+   page_link:'manageflashsell',
    icon:<AddShoppingCart/>
   },
   {
@@ -179,10 +191,16 @@ function DashBoard(props) {
         <Routes>
         
         <Route exact path='/' element={<DashHome/>}/>
-        <Route path='addproduct' element={<AddProduct/>}/>
-        <Route path='manageorder' element={<ManageOrder/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
+        
+        <Route path='addproduct' element={<AddProduct/>}/>
+        <Route path='manageproduct' element={<ManageProduct/>}/>
+        <Route path='manageflashsell' element={<ManageFlashSell/>}/>
+
+        <Route path='manageorder' element={<ManageOrder/>}/>
+        
         <Route path='addadmin' element={<MakeAdmin/>}/>
+
         
         </Routes>
         <Footer/>

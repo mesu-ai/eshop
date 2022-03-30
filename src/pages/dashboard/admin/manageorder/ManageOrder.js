@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Alert, Button, List, ListItem, ListItemText} from '@mui/material';
+import { Alert, Avatar, Button, Grid, List, ListItem, ListItemText, Typography} from '@mui/material';
 import WarningModal from '../../../../components/warningmodal/WarningModal';
 
 const columns = [
@@ -107,8 +107,12 @@ const ManageOrder = () => {
                         <TableCell>
                           {row.orderProduct.map(product=>
                           <List key={Math.random()} sx={{p:0}}>
-                          <ListItem disablePadding>
-                            <ListItemText primary={product.name.slice(0,20)} />
+                          <ListItem disablePadding sx={{ flexGrow: 1, overflow: 'hidden',maxWidth:200 }}>
+                              <Grid item xs zeroMinWidth>
+                                <ListItemText>
+                                <Typography sx={{textAlign:'start'}} noWrap>{product.name}</Typography>
+                                </ListItemText>
+                              </Grid>
                           </ListItem>
                           </List>
                             
@@ -120,7 +124,7 @@ const ManageOrder = () => {
                           <List key={Math.random()} sx={{p:0}}>
                           <ListItem disablePadding>
 
-                            <ListItemText  primary={`$${product.price} × ${product.quentity}`} />
+                            <ListItemText sx={{py:0}}  primary={`$${product.price} × ${product.quentity}`} />
                           </ListItem>
                           </List>
                             
