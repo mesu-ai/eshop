@@ -13,6 +13,7 @@ import BuyProduct from './pages/products/buyProduct/BuyProduct';
 import Payment from './pages/payment/Payment';
 import ConfirmOrder from './pages/order/confirmOrder/ConfirmOrder';
 import DashBoard from './pages/dashboard/DashBoard';
+import Temp from './pages/home/hotDeals/card/Temp';
 
 
 
@@ -35,6 +36,8 @@ function App() {
         
         
         <Route path='/buyproduct/:id' element={<BuyProduct/>}/>
+
+        <Route path='/temp' element={<Temp/>}/>
 
 
         <Route path='/productdetails/:id' element={<ProductDetails/>}/>

@@ -7,9 +7,15 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { Button, CardActions } from '@mui/material';
 import { Box } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const HotDealCard = ({hotdeal}) => {
     const {title,image,price,rating,discount} = hotdeal;
+
+    const navigate=useNavigate();
+    const handleBuy=()=>{
+      navigate('/temp');
+    }
 
     return (
         <Card sx={{mx:1}}>
@@ -50,7 +56,7 @@ const HotDealCard = ({hotdeal}) => {
             {title}
           </Typography>
          
-        <Button  color="error" variant="contained">
+        <Button onClick={handleBuy}  color="error" variant="contained">
           Buy Now
         </Button>
        </CardActions>
