@@ -51,7 +51,7 @@ const AddProduct = () => {
   }
 
   const handleaddclick=()=>{ 
-    setinputList([...inputList, { discription:'', value:''}]);
+    setinputList([...inputList, { description:'', value:''}]);
    
   }
 
@@ -82,7 +82,7 @@ const AddProduct = () => {
 
     if(data.success){
     // setImageLink(data.data.link);
-    const deletehash=data.data.deletehash;
+   // const deletehash=data.data.deletehash;
     console.log('success',data);
     console.log('image',data.data.link);
     postData(addProduct,data.data.link);
@@ -95,7 +95,7 @@ const AddProduct = () => {
 
     const product={...data,image:image}
 
-
+    
     fetch('https://limitless-fjord-65876.herokuapp.com/products', {
       method: 'POST',
       headers:{
@@ -269,7 +269,7 @@ const AddProduct = () => {
 
            { 
             inputList.map( (x,i)=>{
-             // console.log(x.discription,i);
+             // console.log(x.description,i);
             return(
             
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{my:1}} key={Math.random()}>
@@ -286,11 +286,11 @@ const AddProduct = () => {
                     size='small'
                     required
                     type="text"
-                    defaultValue={x.discription || ''}
+                    defaultValue={x.description || ''}
                     id="outlined-required"
                     label="Features Key"
                     //  variant="standard"
-                    name="discription"
+                    name="description"
                     onBlur={(e)=>handleOnBlur(e,i)}
 
                     />
