@@ -84,6 +84,7 @@ const AddProduct = () => {
     setImageLink(data.data.link);
     const deletehash=data.data.deletehash;
     console.log('success',data);
+    console.log('image',data.data.link);
     postData(addProduct);
 
      }
@@ -92,7 +93,7 @@ const AddProduct = () => {
 
    const postData=(data)=>{
 
-    fetch('http://localhost:5000/products', {
+    fetch('https://limitless-fjord-65876.herokuapp.com/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
