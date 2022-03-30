@@ -23,7 +23,7 @@ const WarningModal = ({id,open,handleClose,handleDelete}) => {
    
 //   const {_id}=product;
   
-  console.log(id);
+ // console.log(id);
     return (
         <Modal
         aria-labelledby="transition-modal-title"

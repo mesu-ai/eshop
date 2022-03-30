@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Alert, Button, Grid, List, ListItem, ListItemText, Tooltip, Typography} from '@mui/material';
+import { Alert, Button, Grid,ListItemText, Tooltip, Typography} from '@mui/material';
 import WarningModal from '../../../../components/warningmodal/WarningModal';
 
 const columns = [
@@ -41,7 +41,7 @@ const ManageProduct = () => {
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])
-  console.log(products);
+//   console.log(products);
 
   const handleDelete=(id)=>{
     const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
