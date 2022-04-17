@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Grid, Typography,TextField,Rating, Alert } from '@mui/material';
+import { Button, Grid, Typography,TextField,Rating, Alert, CircularProgress, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import { styled } from '@mui/material/styles';
 import StarIcon from '@mui/icons-material/Star';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
+import ProgressModal from '../../../../components/progressmodal/ProgressModal';
                     
 const CustomizedBox = styled(Box)(({ theme }) => ({
    color:'#c4c4c4', 
@@ -34,7 +35,13 @@ const AddProduct = () => {
     const [rating, setRating] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
     const [success,setSuccess]=useState(false);
+    const [loading,setLoading]=useState(false);
     // const [imageLink,setImageLink]=useState('');
+
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
   const handleOnBlur=(e, index)=>{
     const {name, value}= e.target;
@@ -56,6 +63,10 @@ const AddProduct = () => {
   }
 
   const onSubmit = (data) => {
+    setLoading(true);
+    handleOpen();
+
+    
 
     const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
     
@@ -77,8 +88,9 @@ const AddProduct = () => {
     // setImageLink(data.data.link);
    // const deletehash=data.data.deletehash;
    // console.log('success',data);
-   // console.log('image',data.data.link);
+    console.log('image',data.data.link);
     postData(addProduct,data.data.link);
+    
 
      }
    })    
@@ -102,24 +114,27 @@ const AddProduct = () => {
       if(data.insertedId){
        // console.log('Success:', data);
         setSuccess(true);
+        setLoading(false);
         reset();
       }
       
       })
       .catch(error => {
       console.error('Error:', error);
+      setLoading(false);
       });
 
    }
 
     return (
         <div >
+
            {
             success &&
             <Alert onClose={() =>setSuccess(false)}>This is a success alert — check it out!</Alert>
 
            } 
-          
+           
           <Typography sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="h5"  component='div'>Add New Product:</Typography>
            <form className='register-form' id='form-container' onSubmit={handleSubmit(onSubmit)}>
       
@@ -362,6 +377,10 @@ const AddProduct = () => {
             <Button sx={{py:1.5,mt:2}} fullWidth variant='contained' color='secondary' type='submit'>Add Product</Button>
 
           </form>
+
+          {loading &&
+          <ProgressModal open={open} handleClose={handleClose} />
+          }
      
         </div>
     );
