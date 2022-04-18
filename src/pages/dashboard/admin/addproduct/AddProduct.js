@@ -70,7 +70,7 @@ const AddProduct = () => {
 
     const addProduct={name:data.name.toLowerCase(),seller:data.seller.toLowerCase(),price:data.price,shipping:data.shipping,category:data.category.toLowerCase(),stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
 
-    console.log(addProduct);
+    // console.log(addProduct);
     
     //  console.log(data.image[0]);
      const formData= new FormData();
@@ -90,7 +90,7 @@ const AddProduct = () => {
     // setImageLink(data.data.link);
    // const deletehash=data.data.deletehash;
    // console.log('success',data);
-    console.log('image',data.data.link);
+    // console.log('image',data.data.link);
     postData(addProduct,data.data.link);
     
 
