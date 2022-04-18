@@ -68,9 +68,11 @@ const AddProduct = () => {
 
     
 
-    const addProduct={name:data.name,seller:data.seller,price:data.price,shipping:data.shipping,category:data.category,stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
+    const addProduct={name:data.name.toLowerCase(),seller:data.seller.toLowerCase(),price:data.price,shipping:data.shipping,category:data.category.toLowerCase(),stock:data.stock,star:rating,starCount:data.starCount,features:inputList}
+
+    console.log(addProduct);
     
-    // console.log(data.image[0]);
+    //  console.log(data.image[0]);
      const formData= new FormData();
      formData.append("image",data.image[0]);
  

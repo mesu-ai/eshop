@@ -11,7 +11,7 @@ import { Box } from '@mui/system';
 
 const categories=[
     {
-        name:'Home',
+        name:'home',
         image:homeapp
     },
     {
@@ -19,19 +19,19 @@ const categories=[
         image:tech
     },
     {
-        name:'Fashoin',
+        name:'fashion',
         image:fashoin
     },
     {
-        name:'Sports',
+        name:'sports',
         image:sports
     },
     {
-        name:'Vehicle',
+        name:'vehicle',
         image:vehicle
     },
     {
-        name:'Maintenance Tools',
+        name:'maintenance tools',
         image:tools
     },
 
