@@ -17,7 +17,23 @@ const MakeAdmin = () => {
     const adminEmail= document.getElementById('inputAdminId').value;
     setEmail(adminEmail);
 
-    document.getElementById('inputAdminId').value='';
+    fetch('https://limitless-fjord-65876.herokuapp.com/users/admin',{
+      method:"PUT",
+      headers:{
+        'content-type':'application/json',
+      },
+      body:JSON.stringify(adminEmail)
+    }).then(result=>{
+
+      document.getElementById('inputAdminId').value='';
+      console.log('success',result);
+
+    }).catch(error=>{
+      console.error(error);
+
+    })
+
+    
 
     console.log(email);
     e.preventDefault();

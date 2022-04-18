@@ -12,6 +12,7 @@ const useFirebase = () => {
     const [error,setError]=useState([]);
 
     const [isLoading,setLoading]=useState(true);
+    const [isAdmin,setAdmin]=useState({});
 
     
     const auth = getAuth();
@@ -25,6 +26,7 @@ const useFirebase = () => {
     .then((result) => {
     const user = result.user;
     setUser(user);
+    saveUser(user.email,user.displayName,"PUT");
 
     navigate(redirect_uri);
     
@@ -55,6 +57,7 @@ const useFirebase = () => {
 
         const newUser={email:email,displayName:name}
         setUser(newUser);
+        saveUser(user.email,user.displayName,"POST");
         
 
 
@@ -68,7 +71,6 @@ const useFirebase = () => {
         })
 
         navigate(redirect_uri);
-        
         
       })
       .catch((error) => {
@@ -127,6 +129,43 @@ const useFirebase = () => {
             setError(error.message);
           }).finally(()=>setLoading(false));
     }
+
+    const saveUser=(email,name,methodname)=>{
+      const user={email:email,displayName:name};
+      const url='https://limitless-fjord-65876.herokuapp.com/users';
+      
+      fetch(url,{
+        method:methodname,
+        headers:{
+          'content-type':'application/json',
+        },
+        body:JSON.stringify(user)
+        
+      })
+      .then(result=>{
+
+      }).catch((error) => {
+    
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const errorEmail = error.email;
+    
+        setError(errorCode,errorMessage,errorEmail);
+  
+
+    });
+
+  }
+
+  useEffect(()=>{
+    fetch(`https://limitless-fjord-65876.herokuapp.com/users/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      setAdmin(data.admin)
+    })
+
+  },[user.email])
 
     return {user,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
 };
