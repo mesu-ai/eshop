@@ -36,6 +36,9 @@ const ManageProduct = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const title='Delete the Product';
+  const body='Product will be delete from database';
+
   useEffect(()=>{
     fetch('https://limitless-fjord-65876.herokuapp.com/products')
     .then(res=>res.json())
@@ -79,7 +82,7 @@ const ManageProduct = () => {
     return (
         <>
         {success && 
-        <Alert onClose={() => {setSuccess(false)}}>Order Cancled Successfully — check it out!</Alert>
+        <Alert onClose={() => {setSuccess(false)}}>Product Deleted Successfully — check it out!</Alert>
         }
   
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -137,7 +140,7 @@ const ManageProduct = () => {
   
                           <TableCell ><Button onClick={handleOpen} variant="contained" color="error" >Delete</Button></TableCell>
   
-                          <WarningModal id={row._id} open={open} handleClose={handleClose} handleDelete={handleDelete}></WarningModal>
+                          <WarningModal id={row._id} open={open} handleClose={handleClose} handleDelete={handleDelete} title={title} body={body}></WarningModal>
                        
                     </TableRow>
                   );

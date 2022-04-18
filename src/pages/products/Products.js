@@ -61,11 +61,11 @@ const Products = () => {
     const [displayProducts,setDisplayProducts]=useState([]);
     
     const {findItem}=useParams();
-    console.log(findItem);
+    //console.log(findItem);
 
     const location=useLocation();
 
-      console.log(location?.state?.searchProducts?.searchProducts);
+     // console.log(location?.state?.searchProducts?.searchProducts);
 
     
     let url;

@@ -19,7 +19,7 @@ const style = {
     p: 4,
   };
 
-const WarningModal = ({id,open,handleClose,handleDelete}) => {
+const WarningModal = ({id,open,handleClose,handleDelete,title,body}) => {
    
 //   const {_id}=product;
   
@@ -45,10 +45,10 @@ const WarningModal = ({id,open,handleClose,handleDelete}) => {
         </IconButton>
           
           <Typography id="modal-modal-title" variant="h6" component="h2">
-           Delete the order
+           {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Order will be cancled from order
+           {body}
           </Typography>
           <Box sx={{mt:3,float:'right'}}>
             <Button onClick={handleClose} variant="contained" color="secondary">

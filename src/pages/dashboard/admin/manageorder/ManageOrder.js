@@ -36,6 +36,9 @@ const ManageOrder = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const title='Cancle the Order';
+  const body='Order will be remove from database';
+
   useEffect(()=>{
     fetch('https://limitless-fjord-65876.herokuapp.com/orders')
     .then(res=>res.json())
@@ -149,7 +152,7 @@ const ManageOrder = () => {
 
                         <TableCell ><Button onClick={handleOpen} variant="contained" color="error" >Cancle</Button></TableCell>
 
-                        <WarningModal id={row._id} open={open} handleClose={handleClose} handleDelete={handleDelete}></WarningModal>
+                        <WarningModal id={row._id} open={open} handleClose={handleClose} handleDelete={handleDelete} title={title} body={body}></WarningModal>
                      
                   </TableRow>
                 );
