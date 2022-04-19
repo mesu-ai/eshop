@@ -167,7 +167,7 @@ const useFirebase = () => {
 
   },[user.email])
 
-    return {user,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
+    return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
 };
 
 export default useFirebase;
