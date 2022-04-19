@@ -48,7 +48,7 @@ const PaymentMethod = (props) => {
         navigate('/confirmorder');
         const orderdata={...props.orderInfo,paymentMethod:'bKash',bkashNum:biller.mobile, trxID:biller.TrxID};
         // console.log(data);
-        const url='https://limitless-fjord-65876.herokuapp.com/orders';
+        const url='http://localhost:5000/orders';
 
         fetch(url,{
             method:'POST',

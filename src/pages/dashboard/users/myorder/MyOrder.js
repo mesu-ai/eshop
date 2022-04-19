@@ -40,7 +40,7 @@ const MyOrder = () => {
   const {user}=useAuth();
 
   useEffect(()=>{
-    fetch(`https://limitless-fjord-65876.herokuapp.com/orders?email=${user.email}`)
+    fetch(`http://localhost:5000/orders?email=${user.email}`)
     .then(res=>res.json())
     .then(data=>setOrders(data));
   },[user.email])
@@ -48,7 +48,7 @@ const MyOrder = () => {
   
 
   const handleDelete=(id)=>{
-    const url=`https://limitless-fjord-65876.herokuapp.com/orders/${id}`;
+    const url=`http://localhost:5000/orders/${id}`;
     
     fetch(url,{
       method:'DELETE',

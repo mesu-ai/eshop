@@ -40,14 +40,14 @@ const ManageProduct = () => {
   const body='Product will be delete from database';
 
   useEffect(()=>{
-    fetch('https://limitless-fjord-65876.herokuapp.com/products')
+    fetch('http://localhost:5000/products')
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])
 //   console.log(products);
 
   const handleDelete=(id)=>{
-    const url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
+    const url=`http://localhost:5000/products/${id}`;
     
     fetch(url,{
       method:'DELETE',

@@ -26,9 +26,9 @@ const useFirebase = () => {
     .then((result) => {
     const user = result.user;
     setUser(user);
-    saveUser(user.email,user.displayName,"PUT");
-
+  
     navigate(redirect_uri);
+    saveUser(user.email,user.displayName,"PUT");
     
 
     }).catch((error) => {
@@ -57,10 +57,7 @@ const useFirebase = () => {
 
         const newUser={email:email,displayName:name}
         setUser(newUser);
-        saveUser(user.email,user.displayName,"POST");
         
-
-
         updateProfile(auth.currentUser, {
           displayName: name
         }).then(() => {
@@ -71,6 +68,7 @@ const useFirebase = () => {
         })
 
         navigate(redirect_uri);
+        saveUser(email,name,"POST");
         
       })
       .catch((error) => {
@@ -132,40 +130,41 @@ const useFirebase = () => {
 
     const saveUser=(email,name,methodname)=>{
       const user={email:email,displayName:name};
-      const url='https://limitless-fjord-65876.herokuapp.com/users';
+      const url='http://localhost:5000/users';
       
-    //   fetch(url,{
-    //     method:methodname,
-    //     headers:{
-    //       'content-type':'application/json',
-    //     },
-    //     body:JSON.stringify(user)
+      fetch(url,{
+        method:methodname,
+        headers:{
+          'content-type':'application/json',
+        },
+        body:JSON.stringify(user)
         
-    //   })
-    //   .then(result=>{
+      })
+      .then(result=>{
+        console.log(result);
 
-    //   }).catch((error) => {
+      }).catch((error) => {
     
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     const errorEmail = error.email;
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const errorEmail = error.email;
     
-    //     setError(errorCode,errorMessage,errorEmail);
-  
+        setError(errorCode,errorMessage,errorEmail);
 
-    // });
+
+    });
 
   }
 
-  // useEffect(()=>{
-  //   fetch(`https://limitless-fjord-65876.herokuapp.com/users/${user.email}`)
-  //   .then(res=>res.json())
-  //   .then(data=>{
-  //     console.log(data);
-  //     setAdmin(data.admin)
-  //   })
+  useEffect(()=>{
+    fetch(`http://localhost:5000/users/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      setAdmin(data.admin)
+    })
 
-  // },[user.email])
+  },[user.email])
 
     return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
 };

@@ -5,7 +5,7 @@ const useFlashSell = () => {
      const [products,setProducts]= useState([]);
 
     useEffect(()=>{
-        fetch('https://limitless-fjord-65876.herokuapp.com/flashsell')
+        fetch('http://localhost:5000/flashsell')
         .then(res=>res.json())
         .then(data=>setProducts(data))
 

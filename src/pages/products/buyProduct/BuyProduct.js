@@ -28,10 +28,10 @@ const BuyProduct = () => {
    let url;
    
    if(sellType==='regular'){
-    url=`https://limitless-fjord-65876.herokuapp.com/products/${id}`;
+    url=`http://localhost:5000/products/${id}`;
 
    }else if(sellType==='flashsell'){
-    url=`https://limitless-fjord-65876.herokuapp.com/flashsell/${id}`;
+    url=`http://localhost:5000/flashsell/${id}`;
 
    }
 

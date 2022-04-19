@@ -6,7 +6,7 @@ const useCamera = () => {
     
 
     useEffect(()=>{
-        fetch('https://limitless-fjord-65876.herokuapp.com/products?category=camera')
+        fetch('http://localhost:5000/products?category=camera')
         .then(res=>res.json())
         .then(data=>setCameras(data.slice(-9)))
 

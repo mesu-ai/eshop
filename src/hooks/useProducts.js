@@ -6,7 +6,7 @@ const useProducts = () => {
     const [displayProducts,setDisplayProducts]=useState([]);
 
     useEffect(()=>{
-        fetch('https://limitless-fjord-65876.herokuapp.com/products')
+        fetch('http://localhost:5000/products')
         .then(res=>res.json())
         .then(data=>{
             setProducts(data);

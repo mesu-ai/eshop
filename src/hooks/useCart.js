@@ -16,8 +16,8 @@ const useCart = () => {
         // const elementCart=[];
             
         let urls = [
-            'https://limitless-fjord-65876.herokuapp.com/products',
-            'https://limitless-fjord-65876.herokuapp.com/flashsell'
+            'http://localhost:5000/products',
+            'http://localhost:5000/flashsell'
           ];
           
           // map every url to the promise of the fetch

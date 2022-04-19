@@ -5,7 +5,7 @@ const useCategory = (category) => {
     const [products,setProducts]=useState([]);
     
     useEffect(()=>{
-        fetch(`https://limitless-fjord-65876.herokuapp.com/products?category=${category}`)
+        fetch(`http://localhost:5000/products?category=${category}`)
         .then(res=>res.json())
         .then(data=>setProducts(data.slice(-6)))
 

@@ -71,9 +71,9 @@ const Products = () => {
     let url;
 
     (findItem?
-    url=`https://limitless-fjord-65876.herokuapp.com/products?category=${findItem}`:
+    url=`http://localhost:5000/products?category=${findItem}`:
    
-    url='https://limitless-fjord-65876.herokuapp.com/products');
+    url='http://localhost:5000/products');
 
 
     useEffect(()=>{

@@ -103,7 +103,7 @@ const AddProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('https://limitless-fjord-65876.herokuapp.com/products', {
+    fetch('http://localhost:5000/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
