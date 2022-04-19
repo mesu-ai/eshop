@@ -40,14 +40,14 @@ const ManageOrder = () => {
   const body='Order will be remove from database';
 
   useEffect(()=>{
-    fetch('http://localhost:5000/orders')
+    fetch('https://mysterious-basin-77883.herokuapp.com/orders')
     .then(res=>res.json())
     .then(data=>setOrders(data));
   },[])
   console.log(orders);
 
   const handleDelete=(id)=>{
-    const url=`http://localhost:5000/orders/${id}`;
+    const url=`https://mysterious-basin-77883.herokuapp.com/orders/${id}`;
     
     fetch(url,{
       method:'DELETE',

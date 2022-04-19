@@ -40,14 +40,14 @@ const ManageProduct = () => {
   const body='Product will be delete from database';
 
   useEffect(()=>{
-    fetch('http://localhost:5000/products')
+    fetch('https://mysterious-basin-77883.herokuapp.com/products')
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])
 //   console.log(products);
 
   const handleDelete=(id)=>{
-    const url=`http://localhost:5000/products/${id}`;
+    const url=`https://mysterious-basin-77883.herokuapp.com/products/${id}`;
     
     fetch(url,{
       method:'DELETE',

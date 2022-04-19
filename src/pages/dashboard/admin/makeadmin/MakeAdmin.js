@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     setEmail(adminEmail);
     const user={email:adminEmail};
         
-        fetch('http://localhost:5000/users/admin',{
+        fetch('https://mysterious-basin-77883.herokuapp.com/users/admin',{
             method:'PUT',
             headers:{
                 'content-type':'application/json'

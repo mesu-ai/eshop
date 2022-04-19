@@ -71,9 +71,9 @@ const Products = () => {
     let url;
 
     (findItem?
-    url=`http://localhost:5000/products?category=${findItem}`:
+    url=`https://mysterious-basin-77883.herokuapp.com/products?category=${findItem}`:
    
-    url='http://localhost:5000/products');
+    url='https://mysterious-basin-77883.herokuapp.com/products');
 
 
     useEffect(()=>{

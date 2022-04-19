@@ -103,7 +103,7 @@ const AddProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('http://localhost:5000/products', {
+    fetch('https://mysterious-basin-77883.herokuapp.com/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

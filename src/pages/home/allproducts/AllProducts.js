@@ -15,7 +15,7 @@ const AllProducts = () => {
     const size=9;
 
     useEffect(()=>{
-      fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
+      fetch(`https://mysterious-basin-77883.herokuapp.com/products?page=${page}&&size=${size}`)
         .then(res=>res.json())
         .then(data=>{
             
@@ -23,7 +23,7 @@ const AllProducts = () => {
             
             setProducts(data.products);
             setDisplayProducts(data.products);
-            const count=data.count;
+            const count=data.countdata;
             const pageNumber=Math.ceil(count/size);
             setTotalPage(pageNumber);
             

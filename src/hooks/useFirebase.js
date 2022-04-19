@@ -130,7 +130,7 @@ const useFirebase = () => {
 
     const saveUser=(email,name,methodname)=>{
       const user={email:email,displayName:name};
-      const url='http://localhost:5000/users';
+      const url='https://mysterious-basin-77883.herokuapp.com/users';
       
       fetch(url,{
         method:methodname,
@@ -157,7 +157,7 @@ const useFirebase = () => {
   }
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://mysterious-basin-77883.herokuapp.com/users/${user.email}`)
     .then(res=>res.json())
     .then(data=>{
       console.log(data);

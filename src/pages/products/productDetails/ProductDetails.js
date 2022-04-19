@@ -53,10 +53,10 @@ const ProductDetails = () => {
    let url;
    
    if(sellType==='regular'){
-    url=`http://localhost:5000/products/${id}`;
+    url=`https://mysterious-basin-77883.herokuapp.com/products/${id}`;
 
    }else if(sellType==='flashsell'){
-    url=`http://localhost:5000/flashsell/${id}`;
+    url=`https://mysterious-basin-77883.herokuapp.com/flashsell/${id}`;
 
    }
 

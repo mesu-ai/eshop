@@ -48,7 +48,7 @@ const PaymentMethod = (props) => {
         navigate('/confirmorder');
         const orderdata={...props.orderInfo,paymentMethod:'bKash',bkashNum:biller.mobile, trxID:biller.TrxID};
         // console.log(data);
-        const url='http://localhost:5000/orders';
+        const url='https://mysterious-basin-77883.herokuapp.com/orders';
 
         fetch(url,{
             method:'POST',
