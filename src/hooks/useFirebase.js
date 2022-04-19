@@ -134,38 +134,38 @@ const useFirebase = () => {
       const user={email:email,displayName:name};
       const url='https://limitless-fjord-65876.herokuapp.com/users';
       
-      fetch(url,{
-        method:methodname,
-        headers:{
-          'content-type':'application/json',
-        },
-        body:JSON.stringify(user)
+    //   fetch(url,{
+    //     method:methodname,
+    //     headers:{
+    //       'content-type':'application/json',
+    //     },
+    //     body:JSON.stringify(user)
         
-      })
-      .then(result=>{
+    //   })
+    //   .then(result=>{
 
-      }).catch((error) => {
+    //   }).catch((error) => {
     
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const errorEmail = error.email;
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     const errorEmail = error.email;
     
-        setError(errorCode,errorMessage,errorEmail);
+    //     setError(errorCode,errorMessage,errorEmail);
   
 
-    });
+    // });
 
   }
 
-  useEffect(()=>{
-    fetch(`https://limitless-fjord-65876.herokuapp.com/users/${user.email}`)
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data);
-      setAdmin(data.admin)
-    })
+  // useEffect(()=>{
+  //   fetch(`https://limitless-fjord-65876.herokuapp.com/users/${user.email}`)
+  //   .then(res=>res.json())
+  //   .then(data=>{
+  //     console.log(data);
+  //     setAdmin(data.admin)
+  //   })
 
-  },[user.email])
+  // },[user.email])
 
     return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
 };
