@@ -30,7 +30,7 @@ import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 
 const drawerWidth = 240;
 
-const dashNavs=[
+const userNavs=[
   {
    name:'Home',
    page_link:'/home',
@@ -41,7 +41,16 @@ const dashNavs=[
     name:'My Order',
     page_link:'myorder',
     icon:<BookOnline />
-   },
+   }
+   
+]
+const adminNavs=[
+  {
+   name:'Home',
+   page_link:'/home',
+   icon:<Home/>
+   
+  },
 
   {
    name:'Add Product',
@@ -76,8 +85,10 @@ const dashNavs=[
 function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const {userLogOut}=useAuth();
+  const {userLogOut,isAdmin}=useAuth();
   const navigate=useNavigate();
+
+  console.log(isAdmin);
 
 
   const handleDrawerToggle = () => {
@@ -100,7 +111,10 @@ function DashBoard(props) {
       </Toolbar>
       <Divider />
       <List>
-        {dashNavs.map((listItem) => (
+        <></>
+        {isAdmin? <>
+
+          {adminNavs.map((listItem) => (
           <Link key={Math.random()} to={listItem.page_link} className='list-link'>
           <ListItem button >
             <ListItemIcon>
@@ -110,6 +124,24 @@ function DashBoard(props) {
           </ListItem>
           </Link>
         ))}
+        
+        
+        </>:<>
+        {userNavs.map((listItem) => (
+          <Link key={Math.random()} to={listItem.page_link} className='list-link'>
+          <ListItem button >
+            <ListItemIcon>
+              {listItem.icon}
+            </ListItemIcon>
+            <ListItemText primary={listItem.name} sx={{fontWeight:'bold',color:'GrayText'}}/>
+          </ListItem>
+          </Link>
+        ))}
+        
+        
+        
+        </>}
+        
 
           <ListItem button onClick={handleLogout} sx={{backgroundColor:'snow',fontWeight:'bold'}}>
             <ListItemIcon >

@@ -7,7 +7,7 @@ import google from '../../../images/login/google.png';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-const UserLogin = ({location}) => {
+const UserLogin = ({location,handleClose}) => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
     const {signInUsingGoogle,signInUsingEmail}=useAuth();
@@ -16,7 +16,7 @@ const UserLogin = ({location}) => {
     const navigate=useNavigate();
 
     const handleGoogleLogin=()=>{
-      signInUsingGoogle(location,navigate);
+      signInUsingGoogle(location,navigate,handleClose);
     }
 
 

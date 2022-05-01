@@ -18,7 +18,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
-    const signInUsingGoogle=(location,navigate)=>{
+    const signInUsingGoogle=(location,navigate,handleClose)=>{
       setLoading(true);
       const redirect_uri=location?.pathname || '/';
     
@@ -29,6 +29,7 @@ const useFirebase = () => {
   
     navigate(redirect_uri);
     saveUser(user.email,user.displayName,"PUT");
+    handleClose();
     
 
     }).catch((error) => {

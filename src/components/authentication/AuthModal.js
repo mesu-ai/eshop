@@ -43,7 +43,7 @@ const AuthModal = ({open,handleClose,location}) => {
                 <ClearIcon sx={{color:'crimson'}}/>
             </IconButton>
           
-            <AuthTab location={location}></AuthTab>
+            <AuthTab location={location} handleClose={handleClose}></AuthTab>
           </Box>
         </Fade>
       </Modal>

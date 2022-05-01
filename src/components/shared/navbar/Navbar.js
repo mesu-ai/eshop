@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
@@ -123,6 +123,8 @@ const Navbar = () => {
   const storedDb= getStoredDb();
   const keys=Object.keys(storedDb);
 
+  const location= useLocation();
+
 
   
 
@@ -196,14 +198,14 @@ const Navbar = () => {
 
   const handleLogout=()=>{
     userLogOut();
-    handleCloseNavMenu();
+    // handleCloseNavMenu();
 
   }
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
          setOpen(true);
-         handleCloseNavMenu();
+        //  handleCloseNavMenu();
       };
     const handleClose = () => setOpen(false);
 
@@ -411,7 +413,7 @@ const Navbar = () => {
     </AppBar>
     </ThemeProvider>
 
-    <AuthModal open={open} handleClose={handleClose}></AuthModal>
+    <AuthModal open={open} handleClose={handleClose} location={location}></AuthModal>
     </>
   );
 };
