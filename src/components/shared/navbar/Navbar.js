@@ -104,10 +104,10 @@ const settings = [
             title:'Account',
             page_link:''
         },
-        // {
-        //     title:'Dashboard',
-        //     page_link:'/dashboard'
-        // }
+        {
+            title:'Dashboard',
+            page_link:'/dashboard'
+        }
   
    ];
 
@@ -115,6 +115,7 @@ const Navbar = () => {
   
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
   const [active,setActive]=React.useState(false);
   
 
@@ -131,11 +132,11 @@ const Navbar = () => {
   //console.log(keys.length);
 
   const {user,userLogOut}=useAuth();
+  //  console.log(user);
 
   const navigate=useNavigate();
-  // let searchText;
-
   
+  // let searchText;
 
   const handleSearchInput=(e)=>{
    const searchText=e.target.value;
@@ -161,11 +162,11 @@ const Navbar = () => {
   
     navigate(url,{state:{searchText:`${searchText}`,searchProducts:{searchProducts}}});
 
-    setTimeout(()=>{
-      document.getElementById('searchInputId').value='';
-      setActive(false);
+    // setTimeout(()=>{
+    //   document.getElementById('searchInputId').value='';
+    //   setActive(false);
 
-    },500);
+    // },500);
     
 
   }
@@ -181,7 +182,11 @@ const Navbar = () => {
 
   const handleCloseNavMenu = (pageLink) => {
     setAnchorElNav(null);
-    navigate(pageLink);
+
+    if(pageLink){
+      navigate(pageLink);
+    }
+   
 
 
   };
@@ -198,16 +203,22 @@ const Navbar = () => {
 
   const handleLogout=()=>{
     userLogOut();
-    // handleCloseNavMenu();
+     handleCloseNavMenu();
 
   }
 
-    const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
          setOpen(true);
-        //  handleCloseNavMenu();
+         handleCloseNavMenu();
+         
+        
       };
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+      
+      setOpen(false)
+     // handleCloseNavMenu();
+      handleCloseUserMenu();
+    };
 
   
   return (
@@ -355,12 +366,18 @@ const Navbar = () => {
             <Typography variant="body1" sx={{display:{xs:'none',sm:'flex'},mr:1}}>{user.displayName}
             </Typography>
           }
-          
 
+
+          {!user.email?<Button variant="outlined"  sx={{fontWeight:'bold',bgcolor:'white',borderRadius:'12px',
+          
+          
+        }} color='error' onClick={handleOpen}>login</Button>: 
+          
+          
           <Box sx={{ flexGrow: 0,display:'flex' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={user.photoURL} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -385,29 +402,15 @@ const Navbar = () => {
                 </MenuItem>
               ))}
 
-              {user.email &&
-
-                <MenuItem  onClick={()=>handleCloseNavMenu('/dashboard')}>
-                  <Typography textAlign="center">Dashboard</Typography>
-                </MenuItem>
-              
-              }
-
-
-             {user.email?
+ 
                 <MenuItem key={Math.random()} onClick={handleLogout}>
                   <Typography sx={{ color: 'error.main',fontWeight:'bold' }} textAlign="center">Logout</Typography>
-                </MenuItem>:
-
-                <MenuItem key={Math.random()} onClick={handleOpen}>
-                  <Typography sx={{ color: 'success.main',fontWeight:'bold' }} textAlign="center">Login</Typography>
                 </MenuItem>
-              }
-
-
 
             </Menu>
           </Box>
+          }
+
         </Toolbar>
       </Container>
     </AppBar>

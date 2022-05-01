@@ -7,6 +7,7 @@ import google from '../../../images/login/google.png';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
+
 const UserLogin = ({location,handleClose}) => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
 
@@ -22,11 +23,10 @@ const UserLogin = ({location,handleClose}) => {
 
     const onSubmit = data =>{
       
-      signInUsingEmail(data.email,data.password,location,navigate);
+      signInUsingEmail(data.email,data.password,location,navigate,handleClose);
      // console.log(data);
 
       reset();
-
 
     } 
 
@@ -34,8 +34,6 @@ const UserLogin = ({location,handleClose}) => {
       <>
       
       <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
-      
-      
        <div style={{color:'red',fontSize:'13px'}}>
         <input
           

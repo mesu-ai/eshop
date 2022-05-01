@@ -31,7 +31,6 @@ const useFirebase = () => {
     saveUser(user.email,user.displayName,"PUT");
     handleClose();
     
-
     }).catch((error) => {
     
     const errorCode = error.code;
@@ -46,7 +45,7 @@ const useFirebase = () => {
 
 
 
-    const signUpUsingEmail=(name,email,password,location,navigate)=>{
+    const signUpUsingEmail=(name,email,password,location,navigate,handleClose)=>{
 
       setLoading(true);
 
@@ -69,7 +68,8 @@ const useFirebase = () => {
         })
 
         navigate(redirect_uri);
-        saveUser(email,name,"POST");
+         saveUser(email,name,"POST");
+         handleClose();
         
       })
       .catch((error) => {
@@ -81,7 +81,7 @@ const useFirebase = () => {
       
     }
 
-    const signInUsingEmail=(email, password,location,navigate)=>{
+    const signInUsingEmail=(email, password,location,navigate,handleClose)=>{
       setLoading(true);
       const redirect_uri=location?.pathname || '/';
       signInWithEmailAndPassword(auth, email, password)
@@ -89,6 +89,7 @@ const useFirebase = () => {
    
        setUser(result.user);
        navigate(redirect_uri);
+       handleClose();
       
       })
       .catch((error) => {
@@ -105,7 +106,7 @@ const useFirebase = () => {
     useEffect(()=>{
       setLoading(true);
 
-     const unsubscribed= onAuthStateChanged(auth, (user) => {
+       const unsubscribed= onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
         
