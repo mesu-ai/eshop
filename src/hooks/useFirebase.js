@@ -1,8 +1,8 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile,onAuthStateChanged,signOut } from "firebase/auth";
-
 import { useEffect, useState } from "react";
 
 import firebaseInitialization from "../components/Firebase/firebase.init";
+
 
 firebaseInitialization();
 
@@ -103,6 +103,33 @@ const useFirebase = () => {
 
     }
 
+    const signInUsignJWT=(access_token,userInfo,location,navigate,handleClose)=>{
+
+      setLoading(true);
+      const redirect_uri=location?.pathname || '/';
+
+      try {
+        // const token=access_token.split(' ')[1];
+        // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // const {email,displayName}=decoded;
+        // console.log(email,displayName);
+
+        setUser(userInfo);
+        navigate(redirect_uri);
+        handleClose();
+
+        setLoading(false);
+        
+
+
+      } catch(err) {
+        // err
+      }
+
+
+
+    }
+
     useEffect(()=>{
       setLoading(true);
 
@@ -168,7 +195,7 @@ const useFirebase = () => {
 
   },[user.email])
 
-    return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,userLogOut};
+    return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,signInUsignJWT,userLogOut};
 };
 
 export default useFirebase;

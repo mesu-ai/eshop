@@ -377,7 +377,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0,display:'flex' }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={user.photoURL} />
+                <Avatar alt="Remy Sharp" src={user.photoURL?user.photoURL:'/static/images/avatar/2.jpg'} />
               </IconButton>
             </Tooltip>
             <Menu

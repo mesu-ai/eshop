@@ -6,8 +6,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import UserLogin from '../userlogin/UserLogin';
+
 import UserRegister from '../userregister/UserRegister';
 import LoginPage from '../userlogin/LoginPage';
+import RegisterPage from '../userregister/RegisterPage';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,11 +61,12 @@ export default function AuthTab({location,handleClose}) {
       </Box>
       
       <TabPanel value={value} index={0}>
-       <UserLogin location={location} handleClose={handleClose}/>
-       {/* <LoginPage/> */}
+       {/* <UserLogin location={location} handleClose={handleClose}/> */}
+       <LoginPage location={location} handleClose={handleClose}/>
       </TabPanel>
       <TabPanel value={value} index={1} component="div">
-         <UserRegister location={location} handleClose={handleClose}/>
+        <RegisterPage/>
+         {/* <UserRegister location={location} handleClose={handleClose}/> */}
       </TabPanel>
       
     </Box>

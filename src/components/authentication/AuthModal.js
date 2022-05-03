@@ -9,15 +9,18 @@ import AuthTab from './authtab/AuthTab';
 
 
 const style = {
+    borderRadius:'12px',
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    background: '#F9F9F9',
+    // bgcolor: 'background.paper',
+    boxShadow: '0px 13px 61px rgba(169, 169, 169, 0.366013)',
+    border: '2px solid #E6E8EC',
     p: 4,
+    
   };
 
 const AuthModal = ({open,handleClose,location}) => { 
@@ -25,7 +28,8 @@ const AuthModal = ({open,handleClose,location}) => {
 
   return (
       
-      <Modal
+      <Modal 
+       
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
