@@ -11,9 +11,9 @@ import { Link, useNavigate } from 'react-router-dom';
 const axios = require('axios');
 
 
-const RegisterPage = () => {
+const RegisterPage = ({location,handleClose}) => {
   const [loginData,setLoginData]=useState({});
-  const {signInUsingGoogle}=useAuth();
+  const {signInUsingGoogle,signUpUsingJWT}=useAuth();
 
     // const location=useLocation();
     const navigate=useNavigate();
@@ -59,6 +59,8 @@ const RegisterPage = () => {
         axios.post('http://localhost:5000/users/',loginData)
         .then(res=>{
           console.log(res);
+          signUpUsingJWT(loginData.displayName,loginData.email,location,navigate,handleClose);
+
         })
         .catch((err)=>console.log(err))
 

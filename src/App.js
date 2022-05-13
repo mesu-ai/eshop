@@ -14,10 +14,19 @@ import Payment from './pages/payment/Payment';
 import ConfirmOrder from './pages/order/confirmOrder/ConfirmOrder';
 import DashBoard from './pages/dashboard/DashBoard';
 import Temp from './pages/home/hotDeals/card/Temp';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
 function App() {
+
+  useEffect(() => {
+    const { token } = localStorage.getItem("accessToken");
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+  }, [])
   
   
   return (

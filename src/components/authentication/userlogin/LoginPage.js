@@ -55,13 +55,24 @@ const LoginPage = ({location,handleClose}) => {
     const submitHandler=(e)=>{
         console.log(loginData);
 
-        fetch(`http://localhost:5000/users?email=${loginData.email}&&password=${loginData.password}`)
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data);
-          signInUsignJWT(data.access_token,data.user,location,navigate,handleClose);
 
+        axios.get(`http://localhost:5000/users?email=${loginData.email}&&password=${loginData.password}`)
+        .then(res=>{
+            console.log(res.data)
+            localStorage.setItem('accessToken',res.data.access_token);
+            signInUsignJWT(res.data.user,location,navigate,handleClose);
         })
+
+
+
+        // fetch(`http://localhost:5000/users?email=${loginData.email}&&password=${loginData.password}`)
+        // .then(res=>res.json())
+        // .then(data=>{
+        //   console.log(data);
+        //   localStorage.setItem('accessToken',data.access_token);
+        //   signInUsignJWT(data.user,location,navigate,handleClose);
+
+        // })
         
 
         // axios.get('http://localhost:5000/users/',loginData)

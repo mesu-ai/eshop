@@ -1,7 +1,10 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile,onAuthStateChanged,signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+
 
 import firebaseInitialization from "../components/Firebase/firebase.init";
+import { decode } from "@firebase/util";
 
 
 firebaseInitialization();
@@ -17,6 +20,8 @@ const useFirebase = () => {
     
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
+
+    console.log(user);
 
     const signInUsingGoogle=(location,navigate,handleClose)=>{
       setLoading(true);
@@ -103,39 +108,76 @@ const useFirebase = () => {
 
     }
 
-    const signInUsignJWT=(access_token,userInfo,location,navigate,handleClose)=>{
+    const signUpUsingJWT=(displayName,email,location,navigate,handleClose)=>{
+      setLoading(true);
+      const redirect_uri=location?.pathname || '/';
+      const newUser={displayName:displayName,email:email}
+      setUser(newUser);
+
+      updateProfile(auth.currentUser, {
+        displayName: displayName, email:email
+      }).then((res) => {
+        console.log(res)
+        
+      }).catch((error) => {
+        setError(error)
+      });
+
+         navigate(redirect_uri);
+        //saveUser(email,displayName,"POST");
+         handleClose();
+         setLoading(false);
+
+    }
+
+    const signInUsignJWT=(userInfo,location,navigate,handleClose)=>{
 
       setLoading(true);
       const redirect_uri=location?.pathname || '/';
+      const newUser={displayName:userInfo.displayName,email:userInfo.email}
+      console.log(newUser);
 
       try {
-        // const token=access_token.split(' ')[1];
-        // const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        // const {email,displayName}=decoded;
-        // console.log(email,displayName);
 
-        setUser(userInfo);
+        setUser(newUser);
         navigate(redirect_uri);
+        
+        setLoading(false);
         handleClose();
 
-        setLoading(false);
-        
-
-
       } catch(err) {
-        // err
+        console.log(err);
       }
 
-
-
     }
+
+
+    // useEffect(()=>{
+    //   setLoading(true);
+
+    //   const accessToken=localStorage.getItem('accessToken');
+    //   const decoded = jwt_decode(accessToken);
+
+    //   // if(window.location.reload()){
+    //   // setUser(decoded);
+    //   // }
+      
+    //   if(!user){
+    //     setUser(decoded);
+    //   }
+      
+    //   // console.log(decoded);
+    //   setLoading(false);
+
+    //  },[user]);
+    
 
     useEffect(()=>{
       setLoading(true);
 
        const unsubscribed= onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUser(user);
+         setUser(user);
         
         } else {
           setUser({});
@@ -146,6 +188,9 @@ const useFirebase = () => {
       return ()=>unsubscribed;
 
     },[auth])
+
+
+   
 
     const userLogOut=()=>{
       setLoading(true);
@@ -195,7 +240,7 @@ const useFirebase = () => {
 
   },[user.email])
 
-    return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,signInUsignJWT,userLogOut};
+    return {user,isAdmin,error,isLoading,signInUsingGoogle,signUpUsingEmail,signInUsingEmail,signUpUsingJWT,signInUsignJWT,userLogOut};
 };
 
 export default useFirebase;

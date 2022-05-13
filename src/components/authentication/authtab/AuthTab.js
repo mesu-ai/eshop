@@ -1,5 +1,3 @@
-
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -61,12 +59,12 @@ export default function AuthTab({location,handleClose}) {
       </Box>
       
       <TabPanel value={value} index={0}>
-       {/* <UserLogin location={location} handleClose={handleClose}/> */}
-       <LoginPage location={location} handleClose={handleClose}/>
+       <UserLogin location={location} handleClose={handleClose}/>
+       {/* <LoginPage location={location} handleClose={handleClose}/> */}
       </TabPanel>
       <TabPanel value={value} index={1} component="div">
-        <RegisterPage/>
-         {/* <UserRegister location={location} handleClose={handleClose}/> */}
+        {/* <RegisterPage location={location} handleClose={handleClose}/> */}
+         <UserRegister location={location} handleClose={handleClose}/>
       </TabPanel>
       
     </Box>
