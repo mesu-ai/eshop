@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../hotDeals/HotDeals.css';
 import FlashSellCard from './card/FlashSellCard';
+import axios from 'axios';
 
 
 var settings = {
@@ -76,10 +77,32 @@ var settings = {
 
 const FlashSales= () => {
 
+   const [sellStartTime,setSellStartTime]=useState();
+   const [sellEndTime,setSellEndTime]=useState();
+
+
+   useEffect(()=>{
+    fetch('http://localhost:5000/flashsellTime')
+    .then(res=>res.json())
+    .then(data=>{
+      
+      setSellStartTime(data[0].startTime);
+      setSellEndTime(data[0].endTime);
+      
+
+    })
+
+   },[])
+
+  //  console.log(time);
+
+    
+  
+
     const [products]= useFlashSell();
 
-    const countDownTime = new Date("may 30, 2022 11:59:59").getTime();
-    const setStartTime=new Date("may 1, 2022 12:00:00").getTime();
+    const countDownTime = new Date(`${sellEndTime}`).getTime();
+    const setStartTime=new Date(`${sellStartTime}`).getTime();
     
     const currentTime = new Date().getTime();
    

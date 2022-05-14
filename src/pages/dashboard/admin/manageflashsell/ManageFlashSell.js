@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { Button, Grid, Paper, Stack } from '@mui/material';
 import flashsellImg from '../../../../images/flashsell/flashsell.jpg';
+import axios from 'axios';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -50,8 +51,29 @@ const ManageFlashSell = () => {
             setError(true);
         }else{
             console.log('st:',startDate,'ed:',endDate)
+            saveDate();
 
         }
+
+    }
+
+    const saveDate= async ()=>{
+        const sellTime={startTime:startDate,endTime:endDate}
+
+        await axios.delete('http://localhost:5000/flashsellTime')
+        .then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err);
+        })
+
+
+        await axios.post('http://localhost:5000/flashsellTime',sellTime)
+        .then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err);
+        })
 
     }
 
