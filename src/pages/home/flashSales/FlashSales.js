@@ -82,7 +82,7 @@ const FlashSales= () => {
 
 
    useEffect(()=>{
-    fetch('http://localhost:5000/flashsellTime')
+    fetch('https://mysterious-basin-77883.herokuapp.com/flashsellTime')
     .then(res=>res.json())
     .then(data=>{
       

@@ -60,7 +60,7 @@ const ManageFlashSell = () => {
     const saveDate= async ()=>{
         const sellTime={startTime:startDate,endTime:endDate}
 
-        await axios.delete('http://localhost:5000/flashsellTime')
+        await axios.delete('https://mysterious-basin-77883.herokuapp.com/flashsellTime')
         .then(res=>{
             console.log(res)
         }).catch(err=>{
@@ -68,7 +68,7 @@ const ManageFlashSell = () => {
         })
 
 
-        await axios.post('http://localhost:5000/flashsellTime',sellTime)
+        await axios.post('https://mysterious-basin-77883.herokuapp.com/flashsellTime',sellTime)
         .then(res=>{
             console.log(res)
         }).catch(err=>{
