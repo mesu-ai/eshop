@@ -27,6 +27,7 @@ import ManageOrder from './admin/manageorder/ManageOrder';
 import AddProduct from './admin/addproduct/AddProduct';
 import ManageProduct from './admin/manageproduct/ManageProduct';
 import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
+import ProtectedRoute from './protectedroute/ProtectedRoute';
 
 const drawerWidth = 240;
 
@@ -85,7 +86,7 @@ const adminNavs=[
 function DashBoard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const {userLogOut,isAdmin}=useAuth();
+  const {userLogOut,user, isAdmin}=useAuth();
   const navigate=useNavigate();
 
   console.log(isAdmin);
@@ -111,10 +112,10 @@ function DashBoard(props) {
       </Toolbar>
       <Divider />
       <List>
-        <></>
-        {isAdmin? <>
+    
+        {!isAdmin && user.email? <>
 
-          {adminNavs.map((listItem) => (
+        {userNavs.map((listItem) => (
           <Link key={Math.random()} to={listItem.page_link} className='list-link'>
           <ListItem button >
             <ListItemIcon>
@@ -127,7 +128,7 @@ function DashBoard(props) {
         
         
         </>:<>
-        {userNavs.map((listItem) => (
+        {adminNavs.map((listItem) => (
           <Link key={Math.random()} to={listItem.page_link} className='list-link'>
           <ListItem button >
             <ListItemIcon>
@@ -225,13 +226,13 @@ function DashBoard(props) {
         <Route exact path='/' element={<DashHome/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
         
-        <Route path='addproduct' element={<AddProduct/>}/>
-        <Route path='manageproduct' element={<ManageProduct/>}/>
-        <Route path='manageflashsell' element={<ManageFlashSell/>}/>
+        <Route path='addproduct' element={<ProtectedRoute><AddProduct/></ProtectedRoute>}/>
+        <Route path='manageproduct' element={<ProtectedRoute><ManageProduct/></ProtectedRoute>}/>
+        <Route path='manageflashsell' element={<ProtectedRoute><ManageFlashSell/></ProtectedRoute>}/>
 
-        <Route path='manageorder' element={<ManageOrder/>}/>
+        <Route path='manageorder' element={<ProtectedRoute><ManageOrder/></ProtectedRoute>}/>
         
-        <Route path='addadmin' element={<MakeAdmin/>}/>
+        <Route path='addadmin' element={<ProtectedRoute><MakeAdmin/></ProtectedRoute>}/>
 
         
         </Routes>

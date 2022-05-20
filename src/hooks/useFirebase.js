@@ -231,12 +231,16 @@ const useFirebase = () => {
   }
 
   useEffect(()=>{
+    setLoading(true);
+
     fetch(`https://mysterious-basin-77883.herokuapp.com/users/${user.email}`)
     .then(res=>res.json())
     .then(data=>{
-      console.log(data);
+      // console.log(data);
       setAdmin(data.admin)
-    })
+      setLoading(false);
+
+    }).finally(()=>setLoading(false));
 
   },[user.email])
 
