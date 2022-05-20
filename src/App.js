@@ -21,12 +21,12 @@ import axios from 'axios';
 
 function App() {
 
-  useEffect(() => {
-    const { token } = localStorage.getItem("accessToken");
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-  }, [])
+  // useEffect(() => {
+  //   const { token } = localStorage.getItem("accessToken");
+  //   if (token) {
+  //     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //   }
+  // }, [])
   
   
   return (
