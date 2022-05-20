@@ -6,13 +6,20 @@ import { getStoredDb } from '../utilities/LocalStorage';
 const useCart = () => {
 
     const [cart,setCart]=useState([]);
+    const [loading,setLoading]=useState(false);
 
    
     useEffect(()=>{ 
+        
 
         const storedDb= getStoredDb();
-       // console.log(storedDb);
-        const newCart=[];
+        
+        if(storedDb){
+            setLoading(true);
+
+            // console.log(storedDb);
+
+            const newCart=[];
         // const elementCart=[];
             
         let urls = [
@@ -56,15 +63,26 @@ const useCart = () => {
                 }
 
                     setCart(newCart);
+                    
+                    // console.log('ld',loading);
                         
               });
     
-          });
+          }).finally(()=>setLoading(false))
 
+        
+
+        }
+        else{
+            setLoading(false);
+        }
+       // console.log(storedDb);
+        
+        
 
     },[])
     
-    return [cart,setCart];
+    return [cart,setCart,loading,setLoading];
 };
 
 export default useCart;

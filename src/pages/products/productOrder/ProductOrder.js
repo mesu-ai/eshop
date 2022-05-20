@@ -1,4 +1,4 @@
-import { Button, Container, Divider, Grid, TextField, Typography } from '@mui/material';
+import { Button, CircularProgress, Container, Divider, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import useCart from '../../../hooks/useCart';
 import { removeFromDb } from '../../../utilities/LocalStorage';
 import Footer from '../../../components/shared/footer/Footer';
+import EmptyCart from './EmptyCart';
 
 
 const validMobile=new RegExp(/(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/);
@@ -31,21 +32,35 @@ const ProductOrder = () => {
 
     const [biller,setBiller]=useState(initialInfo);
     const [mobileErr,setMobileErr]=useState(false);
-    const [cart,setCart]=useCart();
+    const [cart,setCart,loading,setLoading]=useCart();
     const [selectedCart,setSelectedCart]=useState([]);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-     const navigate = useNavigate();
+    const [openModal, setOpenModal] = React.useState(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
+
+    const navigate = useNavigate();
+
+    // console.log('loading',loading);
+
+
+
+
     
+
 
     useEffect(()=>{
         const selectedProduct=cart.filter(product=>product._id===id);
         setSelectedCart(selectedProduct);
 
+
+
     },[cart, id])
+    
     
 
     let price=0;
@@ -125,14 +140,41 @@ const ProductOrder = () => {
         e.preventDefault();
 
     }
+
+    console.log('cart',cart);
+
+    useEffect(()=>{
+
+        if(!loading && cart.length <= 0){
+
+                handleOpenModal();
+        
+        }
+        else{
+            handleCloseModal()
+        }
+        
+    },[cart.length, loading])
+
+    
     
 
     return (
           <>
+
+          {loading && 
+             <Box style={{maxHeight:'100vh',minHeight:'auto'}}>
+                <CircularProgress sx={{mt:5}}/>
+             </Box>
+              
+          }
+
+          {cart.length && 
            
           <Box sx={{backgroundColor:'#f4f4f4'}}>
            <Container>
-            <p>product id: {id}</p>
+            {/* <p>product id: {id}</p> */}
+            
             <Box sx={{ flexGrow: 1,py:5}}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} md={8}>
@@ -240,7 +282,14 @@ const ProductOrder = () => {
             
            </Container>
           </Box>
+           }
+
+          <EmptyCart open={openModal} handleClose={handleCloseModal}/>
+            
           <Footer></Footer>
+          
+
+      
 
           </>
     );
