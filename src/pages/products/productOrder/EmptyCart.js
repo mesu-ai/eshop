@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 
 
 const style = {
+
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '2px solid cyan',
+    borderRadius: 3,
     boxShadow: 24,
     p: 4,
     display:'flex',
@@ -36,7 +38,7 @@ const EmptyCart = ({open,handleClose}) => {
             No Product in Cart !!
           </Typography>
           <Link style={{textDecoration:'none'}} to='/'>
-          <Button onClick={handleClose}>Buy Now</Button>
+          <Button sx={{mt:2}} variant='contained' onClick={handleClose}>Buy Now</Button>
           </Link>
         </Box>
       </Modal>

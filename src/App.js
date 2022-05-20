@@ -41,7 +41,7 @@ function App() {
           <Route path=':findItem' element={<Products/>}/>
         </Route>
 
-        <Route path='/shoppingcart' element={<PrivateRoute> <ProductOrder/> </PrivateRoute> }/>
+        <Route path='/shoppingcart' element={ <ProductOrder/> }/>
         
         
         <Route path='/buyproduct/:id' element={<BuyProduct/>}/>
