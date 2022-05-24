@@ -79,7 +79,7 @@ const AddProduct = () => {
      fetch("https://api.imgur.com/3/image/",{
      method:'post',
      headers:{
-       Authorization: "Client-ID 123666fcee19e4f"
+       Authorization: `${process.env.REACT_APP_FIREBASE_IMGUR_ID}`
      },
      body:formData
    })
