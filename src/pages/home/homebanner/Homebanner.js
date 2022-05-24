@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Home.css';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import img1 from '../../../images/electronic-banner.png';
-import img2 from '../../../images/laptop-banner.png';
-import img3 from '../../../images/wintersell-banner.png';
+// import img1 from '../../../images/electronic-banner.png';
+// import img2 from '../../../images/laptop-banner.png';
+// import img3 from '../../../images/wintersell-banner.png';
 import { Container } from '@mui/material';
 
-const banners=[
-    {banner_slide:img1},
-    {banner_slide:img2},
-    {banner_slide:img3},
+// const banners=[
+//     {banner_slide:img1},
+//     {banner_slide:img2},
+//     {banner_slide:img3},
 
-]
+// ]
 //console.log(banners);
 
 const Homebanner = () => {
+
+  const [banners,setBanners]=useState([]);
+  useEffect(()=>{
+    fetch('https://mysterious-basin-77883.herokuapp.com/banner')
+    .then(res=>res.json())
+    .then(data=>setBanners(data))
+
+  },[]);
+
+
     function SampleNextArrow(props) {
         const { className, style, onClick } = props;
         return (

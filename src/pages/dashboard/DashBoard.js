@@ -18,6 +18,7 @@ import Footer from '../../components/shared/footer/Footer';
 import { Home,AdminPanelSettings,BookOnline,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import TimerIcon from '@mui/icons-material/Timer';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Route,Routes, useNavigate } from 'react-router-dom';
@@ -31,6 +32,7 @@ import ManageProduct from './admin/manageproduct/ManageProduct';
 import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 import ProtectedRoute from './protectedroute/ProtectedRoute';
 import ManageCategory from './admin/managecategory/ManageCategory';
+import ManageBanner from './admin/bannermanage/BannerManage';
 
 const drawerWidth = 240;
 
@@ -76,6 +78,11 @@ const adminNavs=[
    page_link:'manageorder',
    icon:<ShoppingCartTwoToneIcon/>
   },
+  {
+    name:'Manage Banner',
+    page_link:'managebanner',
+    icon:<ViewCarouselIcon/>
+   },
   {
     name:'Manage Category',
     page_link:'managecategory',
@@ -234,13 +241,15 @@ function DashBoard(props) {
         <Route exact path='/' element={<DashHome/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
         
-        <Route path='managecategory' element={<ProtectedRoute><ManageCategory/></ProtectedRoute>}/>
-        
         <Route path='addproduct' element={<ProtectedRoute><AddProduct/></ProtectedRoute>}/>
         <Route path='manageproduct' element={<ProtectedRoute><ManageProduct/></ProtectedRoute>}/>
         <Route path='manageflashsell' element={<ProtectedRoute><ManageFlashSell/></ProtectedRoute>}/>
 
         <Route path='manageorder' element={<ProtectedRoute><ManageOrder/></ProtectedRoute>}/>
+
+        <Route path='managebanner' element={<ProtectedRoute><ManageBanner/></ProtectedRoute>}/>
+        <Route path='managecategory' element={<ProtectedRoute><ManageCategory/></ProtectedRoute>}/>
+
         
         <Route path='addadmin' element={<ProtectedRoute><MakeAdmin/></ProtectedRoute>}/>
 

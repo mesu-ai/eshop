@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Typography, Alert } from '@mui/material';
+import { Button, Alert } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import '../../../../components/authentication/userregister/UserRegister.css';
 import ProgressModal from '../../../../components/progressmodal/ProgressModal';
 
-const AddCategory = () => {
+const AddBanner = () => {
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
     const [success,setSuccess]=useState(false);
     const [loading,setLoading]=useState(false);
@@ -21,7 +21,7 @@ const AddCategory = () => {
     setLoading(true);
     handleOpen();
 
-    const addCategory={name:data.name.toLowerCase()}
+    const addBanner={name:data.name.toLowerCase()}
 
     // console.log(addProduct);
     //  console.log(data.image[0]);
@@ -32,7 +32,7 @@ const AddCategory = () => {
      fetch("https://api.imgur.com/3/image/",{
      method:'post',
      headers:{
-       Authorization: `${process.env.REACT_APP_FIREBASE_IMGUR_ID}`
+       Authorization: "Client-ID 123666fcee19e4f"
      },
      body:formData
    })
@@ -44,7 +44,7 @@ const AddCategory = () => {
    // const deletehash=data.data.deletehash;
    // console.log('success',data);
     // console.log('image',data.data.link);
-    postData(addCategory,data.data.link);
+    postData(addBanner,data.data.link);
     
 
      }
@@ -53,15 +53,15 @@ const AddCategory = () => {
 
    const postData=(data,image)=>{
 
-    const category={...data,image:image}
+    const banner={...data,banner_slide:image}
 
     
-    fetch('https://mysterious-basin-77883.herokuapp.com/category', {
+    fetch('https://mysterious-basin-77883.herokuapp.com/banner', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(category)
+      body: JSON.stringify(banner)
       })
       .then(res => res.json())
       .then(data => {
@@ -96,13 +96,13 @@ const AddCategory = () => {
                 
                 className="user-register"
                 style={{marginTop:'6px'}}
-                placeholder='Category Name'
+                placeholder='Banner Name'
                 type="text"
                 {...register('name', {
                 required: true,
                 })}
             />
-            {errors.name && "Please enter the category name"}
+            {errors.name && "Please enter the banner name"}
             </div>
 
 
@@ -112,7 +112,7 @@ const AddCategory = () => {
                // accept="image/*"
                 className="user-register"
                 style={{marginTop:'6px'}}
-                placeholder='Category Photo'
+                placeholder='Banner Photo'
                 type="file"
                 // onChange={(e)=>setImage(e.target.files[0])}
                 {...register('image', {
@@ -138,4 +138,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default AddBanner;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import homeapp from '../../../images/catagory/homeapp.png';
 import tech from '../../../images/catagory/tecnology.png';
 import sports from '../../../images/catagory/sports.png';
@@ -9,35 +9,46 @@ import { Container, Grid, Typography } from '@mui/material';
 import CategoryCard from './card/CategoryCard';
 import { Box } from '@mui/system';
 
-const categories=[
-    {
-        name:'home',
-        image:homeapp
-    },
-    {
-        name:'camera',
-        image:tech
-    },
-    {
-        name:'fashion',
-        image:fashoin
-    },
-    {
-        name:'sports',
-        image:sports
-    },
-    {
-        name:'vehicle',
-        image:vehicle
-    },
-    {
-        name:'maintenance tools',
-        image:tools
-    },
+// const categories=[
+//     {
+//         name:'home',
+//         image:homeapp
+//     },
+//     {
+//         name:'camera',
+//         image:tech
+//     },
+//     {
+//         name:'fashion',
+//         image:fashoin
+//     },
+//     {
+//         name:'sports',
+//         image:sports
+//     },
+//     {
+//         name:'vehicle',
+//         image:vehicle
+//     },
+//     {
+//         name:'maintenance tools',
+//         image:tools
+//     },
 
-]
+// ]
 
 const Categories = () => {
+    const [categories,setCategories]=useState([]);
+
+    useEffect(()=>{
+        fetch('https://mysterious-basin-77883.herokuapp.com/category')
+        .then(res=>res.json())
+        .then(data=>setCategories(data))
+
+    },[])
+
+
+
     return (
         <Box >
         <Container style={{backgroundColor:'cornsilk'}}>

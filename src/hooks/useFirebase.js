@@ -21,7 +21,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
-    console.log(user);
+    // console.log(user);
 
     const signInUsingGoogle=(location,navigate,handleClose)=>{
       setLoading(true);
