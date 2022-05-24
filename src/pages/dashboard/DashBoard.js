@@ -16,6 +16,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Footer from '../../components/shared/footer/Footer';
 import { Home,AdminPanelSettings,BookOnline,DashboardCustomize, AddShoppingCart} from '@mui/icons-material';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import TimerIcon from '@mui/icons-material/Timer';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link, Route,Routes, useNavigate } from 'react-router-dom';
@@ -28,6 +30,7 @@ import AddProduct from './admin/addproduct/AddProduct';
 import ManageProduct from './admin/manageproduct/ManageProduct';
 import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 import ProtectedRoute from './protectedroute/ProtectedRoute';
+import ManageCategory from './admin/managecategory/ManageCategory';
 
 const drawerWidth = 240;
 
@@ -66,13 +69,18 @@ const adminNavs=[
   {
    name:'Manage Flashsell',
    page_link:'manageflashsell',
-   icon:<AddShoppingCart/>
+   icon:<TimerIcon/>
   },
   {
    name:'Manage Order',
    page_link:'manageorder',
    icon:<ShoppingCartTwoToneIcon/>
   },
+  {
+    name:'Manage Category',
+    page_link:'managecategory',
+    icon:<WidgetsIcon/>
+   },
   
   {
    name:'Add Admin',
@@ -225,6 +233,8 @@ function DashBoard(props) {
         
         <Route exact path='/' element={<DashHome/>}/>
         <Route path='myorder' element={<MyOrder/>}/>
+        
+        <Route path='managecategory' element={<ProtectedRoute><ManageCategory/></ProtectedRoute>}/>
         
         <Route path='addproduct' element={<ProtectedRoute><AddProduct/></ProtectedRoute>}/>
         <Route path='manageproduct' element={<ProtectedRoute><ManageProduct/></ProtectedRoute>}/>

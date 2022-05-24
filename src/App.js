@@ -58,7 +58,7 @@ function App() {
 
         <Route path='/payment' element={<PrivateRoute><Payment/></PrivateRoute>}>
 
-        <Route path=':id' element={<PrivateRoute><Payment/></PrivateRoute>}/>
+            <Route path=':id' element={<PrivateRoute><Payment/></PrivateRoute>}/>
 
         </Route>
         
