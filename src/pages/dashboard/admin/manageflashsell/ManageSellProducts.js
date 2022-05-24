@@ -24,8 +24,8 @@ const columns = [
       minWidth: 100,
       format: (value) => value.toLocaleString('en-US'),
     },
-    { label: 'Shipping Cost', minWidth: 120,},
-    { label: 'Stock', minWidth: 120,  },
+    { label: 'Shipping Cost', minWidth: 130,},
+    { label: 'Stock', minWidth: 100,  },
     { label: 'Action', minWidth: 200, },
   ];
   
