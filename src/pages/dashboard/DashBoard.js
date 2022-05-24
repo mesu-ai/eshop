@@ -29,10 +29,10 @@ import useAuth from '../../hooks/useAuth';
 import ManageOrder from './admin/manageorder/ManageOrder';
 import AddProduct from './admin/addproduct/AddProduct';
 import ManageProduct from './admin/manageproduct/ManageProduct';
-import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 import ProtectedRoute from './protectedroute/ProtectedRoute';
 import ManageCategory from './admin/managecategory/ManageCategory';
 import ManageBanner from './admin/bannermanage/BannerManage';
+import ManageFlashSell from './admin/manageflashsell/ManageFlashSell';
 
 const drawerWidth = 240;
 

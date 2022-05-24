@@ -6,15 +6,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Typography from '@mui/material/Typography';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { Button, Grid, Paper, Stack } from '@mui/material';
-import flashsellImg from '../../../../images/flashsell/flashsell.jpg';
+import { Button, Grid, Paper } from '@mui/material';
 import axios from 'axios';
 
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: 'rgb(245 245 245)',
+    backgroundColor: 'aliceblue',
     ...theme.typography.body2,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     
@@ -81,27 +80,29 @@ const ManageSellTime = () => {
     }
 
     return (
-        <Box style={{minHeight:'100vh',maxHeight:'auto'}} sx={{}}>
+        <Box>
             
-            <Grid container spacing={2} sx={{mt:5}}>
-              <Grid item xs={12} md={5}>
-                  <img src={flashsellImg} alt="" width={300} height={308} />     
+            <LocalizationProvider dateAdapter={AdapterDateFns} >     
+            <Item sx={{mt:2}}>
+             
+             <Grid container spacing={2} >
+              <Grid item xs={12} sm={5}>
+                  
+                    <DateTimePicker
+                                
+                        label="Sell Start"
+                        value={startDate}
+                        onChange={handleStartDate}
+                        renderInput={(params) => <TextField {...params} sx={{maxWidth:400,minWidth:'auto'}} />}
+                    />
+                 
+
               </Grid>
                 
                 
-              <Grid item xs={12} md={7} >
-                    <Item sx={{pl:5}}>
-                      <Typography sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="h5"  component='div'>Flash Sell Setting</Typography>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>     
-                        <Stack spacing={3} sx={{mt:4}}>
-
-                            <DateTimePicker
-                                
-                                label="Sell Start"
-                                value={startDate}
-                                onChange={handleStartDate}
-                                renderInput={(params) => <TextField {...params} sx={{maxWidth:400,minWidth:'auto'}} />}
-                            />
+              <Grid item xs={12} sm={5} >
+                    
+                            
                             <DateTimePicker
                                 label="Sell End"
                                 value={endDate}
@@ -109,25 +110,25 @@ const ManageSellTime = () => {
                                 renderInput={(params) => <TextField {...params} sx={{maxWidth:400,minWidth:'auto'}} />}
                             />
 
-                            {error && 
-
-                             <Typography color='error' sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="body"  component='div'>End Time must be Bigger.</Typography>
-                            }
-
-                            <Button onClick={handleSetTime} sx={{maxWidth:400,minWidth:'auto',fontWeight:'bold'}} variant="contained" color='info'>Set Time</Button>
-
-                        </Stack>
-                    </LocalizationProvider>
-
                         
-                    </Item>
+                    
               </Grid>
+              
+              <Box sx={{my:'auto',ml:1}}>
+                    <Button onClick={handleSetTime} sx={{maxWidth:400,minWidth:'auto',fontWeight:'bold'}} variant="contained" color='info'>Set Time</Button>
+              </Box>
+
             </Grid>
+            {error && 
+
+                 <Typography color='error' sx={{textAlign:'start',fontWeight:'bold'}} gutterBottom variant="body"  component='div'>End Time must be Bigger.</Typography>
+            }
+            </Item>
+            </LocalizationProvider>     
             
             
             
-            
-        </Box>
+           </Box>
     );
 };
 
