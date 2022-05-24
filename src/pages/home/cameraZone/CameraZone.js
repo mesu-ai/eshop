@@ -53,9 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const  CameraZone = () => {
     const [cameras]=useCamera();
     
-    
-
-
+  
     
     return (
         
