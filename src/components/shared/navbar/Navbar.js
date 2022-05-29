@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
@@ -23,6 +24,7 @@ import useAuth from '../../../hooks/useAuth';
 import { getStoredDb } from '../../../utilities/LocalStorage';
 import useProducts from '../../../hooks/useProducts';
 import AuthModal from '../../authentication/AuthModal';
+import logo from '../../../images/logo/logo.png';
 
 const theme = createTheme({
   components: {
@@ -228,14 +230,22 @@ const Navbar = () => {
       <Container >
       {/* maxWidth="xl" */}
         <Toolbar disableGutters>
+        
+          <Link to='/' style={{textDecoration:'none'}}>
+          <Box sx={{alignItems:'center',mr: 2, display: { xs: 'none', md: 'flex' },}}>
+          <img src={logo} alt="" width={50} height={50}  />
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{  color:'orangered' }}
           >
-            LOGO
+            E-Shop
+            
           </Typography>
+          </Box>
+          </Link>
+          
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -304,14 +314,23 @@ const Navbar = () => {
               
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            LOGO
-          </Typography>
+          
+            <Link to='/' style={{textDecoration:'none'}}>
+              <Box sx={{flexGrow: 1,alignItems:'center',mr: 5, display: { xs: 'flex', md: 'none' },}}>
+                <img src={logo} alt="" width={50} height={50}  />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{  color:'orangered' }}
+                >
+                  YG Shop
+                  
+                </Typography>
+              </Box>
+            </Link>
+
+      
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
            
@@ -329,6 +348,10 @@ const Navbar = () => {
             ))}
             
           </Box>
+
+          {/* <Box sx={{my:'auto'}}>
+           <a href="https://api.whatsapp.com/message/6YDZ2PT7BQV5O1?autoload=1&app_absent=0" target="_blank" rel="noopener noreferrer"><WhatsAppIcon  sx={{fontSize:30, borderRadius:2, mr:2, color:'white',bgcolor:'success.light',p:.5}}/></a>
+           </Box> */}
             
           <Search sx={{display:{xs:'none',md:'flex'},mr:2}}>
 

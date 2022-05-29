@@ -27,7 +27,7 @@ const QuickLink = () => {
             <Link to="/">Home</Link>
             <Link to="/">Explore</Link>
             <Link to="/">About</Link>
-            <Link to="/">Contract</Link>
+            <Link to="/">Contract Us</Link>
 
             
             <Box sx={{my:4}}>

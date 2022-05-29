@@ -66,7 +66,9 @@ const HomeViewPort = () => {
                 {categoriList.map((listItem,index)=><CatagoryList listItem={listItem} index={index} key={Math.random()}></CatagoryList>)}
                 
             </Paper>
-            </Grid>
+            </Grid> 
+            
+            
             <Grid item xs={12} md={9} lg={10}>
                 <Homebanner></Homebanner>
                 <QuickLink></QuickLink>

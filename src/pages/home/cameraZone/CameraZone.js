@@ -61,12 +61,14 @@ const  CameraZone = () => {
         <Container style={{backgroundColor:'whitesmoke'}}>
         <Typography style={{textAlign:'start'}} sx={{ color: 'info.main',pt:4 }} variant="h4" gutterBottom component="div">
             Camera Zone
+           
             </Typography>
 
             <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
             <Box sx={{display:'flex',flexFlow:{xs:'column',sm:'row'}}}>
             <Typography style={{textAlign:'start'}} sx={{ color: 'warning.main'}} variant="h6" gutterBottom component="div">
                 Latest Camera
+               
             </Typography>
 
             <Box sx={{ml:{xs:0,md:3 }}}>
