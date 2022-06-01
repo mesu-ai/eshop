@@ -324,7 +324,7 @@ const Navbar = () => {
                   component="div"
                   sx={{  color:'orangered' }}
                 >
-                  YG Shop
+                  e-Shop
                   
                 </Typography>
               </Box>

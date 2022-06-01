@@ -29,8 +29,8 @@ const CatagoryList = ({listItem,index}) => {
     return (
         <>
             
-            <List>
-                <ListItem className="list-item" disablePadding>
+            <List sx={{my:0,py:0}}>
+                <ListItem className="list-item" disablePadding sx={{my:0, py:0}}>
                 <ListItemButton onClick={handleCategoryList} >
 
                     <ListItemIcon  >

@@ -50,10 +50,11 @@ const categoriList=[
 const HomeViewPort = () => {
     return (
         <Box sx={{ flexGrow: 1 }} style={{height:'100vh',backgroundColor:'#f5f5f5'}}>
+        
         <Grid container spacing={1}>
         
-            <Grid item  sx={{display:{xs:'none',sm:'none',md:'flex',lg:'flex'}}} md={3} lg={2}>
-            <Paper>
+            <Grid item  sx={{display:{xs:'none',sm:'none',md:'flex',lg:'flex'}}} md={2.5} lg={2}>
+            <Paper sx={{pr:2}}>
 
                 <Toolbar style={{paddingLeft:'16px'}}  sx={{fontWeight:'bold',fontSize:'20px',color:'green'}}>
                 <ListIcon sx={{mr:2,fontSize:'25px'}}/>
@@ -62,14 +63,13 @@ const HomeViewPort = () => {
 
                 <Divider />
 
-
                 {categoriList.map((listItem,index)=><CatagoryList listItem={listItem} index={index} key={Math.random()}></CatagoryList>)}
                 
             </Paper>
             </Grid> 
             
             
-            <Grid item xs={12} md={9} lg={10}>
+            <Grid item xs={12} md={9.5} lg={10}>
                 <Homebanner></Homebanner>
                 <QuickLink></QuickLink>
             

@@ -75,7 +75,7 @@ const Homebanner = () => {
 
 
             {banners.map(slide=><div key={Math.random()}>
-                <img style={{width:'100%',height:'344px',padding:'0'}} src={slide?.banner_slide} alt="" />
+                <img style={{width:'100%',height:'344px',padding:'0'}} src={slide?.banner_slide} alt="side_banner" />
             </div>)}
           
         </Slider>
