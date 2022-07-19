@@ -6,7 +6,7 @@ import ProductCard from '../productCard/ProductCard';
 const SimilarProduct = ({category}) => {
     const [products]= useCategory(category);
 
-    console.log(products);
+   
 
     return (
         <Box>

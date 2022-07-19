@@ -66,7 +66,7 @@ const ProductDetails = () => {
        .then(data=>setProduct(data))
 
    },[url]);
-   console.log(product);
+   
   
 
     

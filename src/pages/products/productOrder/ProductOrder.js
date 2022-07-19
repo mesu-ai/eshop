@@ -141,7 +141,7 @@ const ProductOrder = () => {
 
     }
 
-    console.log('cart',cart);
+    // console.log('cart',cart);
 
     useEffect(()=>{
 

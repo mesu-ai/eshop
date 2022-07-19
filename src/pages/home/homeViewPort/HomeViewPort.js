@@ -49,7 +49,7 @@ const categoriList=[
 
 const HomeViewPort = () => {
     return (
-        <Box sx={{ flexGrow: 1 }} style={{height:'100vh',backgroundColor:'#f5f5f5'}}>
+        <Box sx={{ flexGrow: 1 }} style={{minHeight:'100vh',backgroundColor:'#f5f5f5'}}>
         
         <Grid container spacing={1}>
         

@@ -1,29 +1,32 @@
-import React from 'react';
-import HotDeals from './hotDeals/HotDeals';
-import FlashSales from './flashSales/FlashSales';
-import Categories from './categories/Categories';
-import CameraZone from './cameraZone/CameraZone';
-import HomeViewPort from './homeViewPort/HomeViewPort';
-import AllProducts from './allproducts/AllProducts';
-import Footer from '../../components/shared/footer/Footer';
+import React, { Suspense } from "react";
+import HotDeals from "./hotDeals/HotDeals";
+import HomeViewPort from "./homeViewPort/HomeViewPort";
+import Footer from "../../components/shared/footer/Footer";
 
+const FlashSales = React.lazy(()=> import("./flashSales/FlashSales"));
+const Categories = React.lazy(() => import("./categories/Categories"));
+const CameraZone = React.lazy(() => import("./cameraZone/CameraZone"));
+const AllProducts = React.lazy(() => import("./allproducts/AllProducts"));
 
 const Home = () => {
+  return (
+    <>
+      <HomeViewPort />
 
+      <Suspense fallback={<div>Loading...</div>}>
+        <FlashSales />
+      </Suspense>
 
-    return (
-        <>
-        <HomeViewPort></HomeViewPort>
-        <FlashSales></FlashSales>
-        <HotDeals></HotDeals>
-        <Categories></Categories>
-        <CameraZone></CameraZone>
-        <AllProducts></AllProducts>
+      <HotDeals />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Categories />
+        <CameraZone />
+        <AllProducts />
+      </Suspense>
 
-        <Footer></Footer>
-        </>
-
-    );
+      <Footer />
+    </>
+  );
 };
 
 export default Home;
