@@ -207,6 +207,7 @@ const useFirebase = () => {
       const url='https://eshop-server-green.vercel.app/users';
       
       fetch(url,{
+        mode:'no-cors',
         method:methodname,
         headers:{
           'content-type':'application/json',
@@ -233,7 +234,7 @@ const useFirebase = () => {
   useEffect(()=>{
     setLoading(true);
 
-    fetch(`https://eshop-server-green.vercel.app/users/${user.email}`)
+    fetch(`https://eshop-server-green.vercel.app/users/${user.email}`,{mode:'no-cors'})
     .then(res=>res.json())
     .then(data=>{
       // console.log(data);
