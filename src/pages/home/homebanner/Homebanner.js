@@ -21,7 +21,7 @@ const Homebanner = () => {
 
   // const [banners,setBanners]=useState([]);
   // useEffect(()=>{
-  //   fetch('https://mysterious-basin-77883.herokuapp.com/banner')
+  //   fetch('https://eshop-server-green.vercel.app/banner')
   //   .then(res=>res.json())
   //   .then(data=>setBanners(data))
 

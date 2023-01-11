@@ -28,10 +28,10 @@ const BuyProduct = () => {
    let url;
    
    if(sellType==='regular'){
-    url=`https://mysterious-basin-77883.herokuapp.com/products/${id}`;
+    url=`https://eshop-server-green.vercel.app/products/${id}`;
 
    }else if(sellType==='flashsell'){
-    url=`https://mysterious-basin-77883.herokuapp.com/flashsell/${id}`;
+    url=`https://eshop-server-green.vercel.app/flashsell/${id}`;
 
    }
 

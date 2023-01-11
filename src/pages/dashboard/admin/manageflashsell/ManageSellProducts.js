@@ -45,14 +45,14 @@ const ManageSellProducts = () => {
   const body='Product will be delete from database';
 
   useEffect(()=>{
-    fetch('https://mysterious-basin-77883.herokuapp.com/flashsell')
+    fetch('https://eshop-server-green.vercel.app/flashsell')
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])
 //   console.log(products);
 
   const handleDelete=(id)=>{
-    const url=`https://mysterious-basin-77883.herokuapp.com/flashsell/${id}`;
+    const url=`https://eshop-server-green.vercel.app/flashsell/${id}`;
     
     fetch(url,{
       method:'DELETE',

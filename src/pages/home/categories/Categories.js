@@ -41,7 +41,7 @@ const Categories = () => {
     const [categories,setCategories]=useState([]);
 
     useEffect(()=>{
-        fetch('https://mysterious-basin-77883.herokuapp.com/category')
+        fetch('https://eshop-server-green.vercel.app/category')
         .then(res=>res.json())
         .then(data=>setCategories(data))
 

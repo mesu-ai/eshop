@@ -5,7 +5,7 @@ const useCamera = () => {
     const [cameras,setCameras]=useState([]);
     
     useEffect(()=>{
-        fetch('https://mysterious-basin-77883.herokuapp.com/products?category=camera')
+        fetch('https://eshop-server-green.vercel.app/products?category=camera')
         .then(res=>res.json())
         .then(data=>setCameras(data.slice(-9)))
 

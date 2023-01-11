@@ -56,7 +56,7 @@ const AddCategory = () => {
     const category={...data,image:image}
 
     
-    fetch('https://mysterious-basin-77883.herokuapp.com/category', {
+    fetch('https://eshop-server-green.vercel.app/category', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

@@ -34,14 +34,14 @@ const ManageCategory = () => {
   const body='Category will be remove from database';
 
   useEffect(()=>{
-    fetch('https://mysterious-basin-77883.herokuapp.com/category')
+    fetch('https://eshop-server-green.vercel.app/category')
     .then(res=>res.json())
     .then(data=>setCategories(data));
   },[])
 //   console.log(category);
 
   const handleDelete=(id)=>{
-    const url=`https://mysterious-basin-77883.herokuapp.com/category/${id}`;
+    const url=`https://eshop-server-green.vercel.app/category/${id}`;
     
     fetch(url,{
       method:'DELETE',

@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     setEmail(adminEmail);
     const user={email:adminEmail};
         
-        fetch('https://mysterious-basin-77883.herokuapp.com/users/admin',{
+        fetch('https://eshop-server-green.vercel.app/users/admin',{
             method:'PUT',
             headers:{
                 'content-type':'application/json'

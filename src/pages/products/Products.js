@@ -71,9 +71,9 @@ const Products = () => {
     let url;
 
     (findItem?
-    url=`https://mysterious-basin-77883.herokuapp.com/products?category=${findItem}`:
+    url=`https://eshop-server-green.vercel.app/products?category=${findItem}`:
    
-    url='https://mysterious-basin-77883.herokuapp.com/products');
+    url='https://eshop-server-green.vercel.app/products');
 
 
     useEffect(()=>{

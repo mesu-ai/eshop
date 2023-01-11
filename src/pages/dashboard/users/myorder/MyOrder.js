@@ -40,7 +40,7 @@ const MyOrder = () => {
   const {user}=useAuth();
 
   useEffect(()=>{
-    fetch(`https://mysterious-basin-77883.herokuapp.com/orders?email=${user.email}`)
+    fetch(`https://eshop-server-green.vercel.app/orders?email=${user.email}`)
     .then(res=>res.json())
     .then(data=>setOrders(data));
   },[user.email])
@@ -48,7 +48,7 @@ const MyOrder = () => {
   
 
   const handleDelete=(id)=>{
-    const url=`https://mysterious-basin-77883.herokuapp.com/orders/${id}`;
+    const url=`https://eshop-server-green.vercel.app/orders/${id}`;
     
     fetch(url,{
       method:'DELETE',

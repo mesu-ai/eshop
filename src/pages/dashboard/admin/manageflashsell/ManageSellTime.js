@@ -48,7 +48,7 @@ const ManageSellTime = () => {
     const sellTime = { startTime: startDate, endTime: endDate };
 
     await axios
-      .delete("https://mysterious-basin-77883.herokuapp.com/flashsellTime")
+      .delete("https://eshop-server-green.vercel.app/flashsellTime")
       .then((res) => {
         // console.log(res);
       })
@@ -57,7 +57,7 @@ const ManageSellTime = () => {
       });
 
     await axios
-      .post("https://mysterious-basin-77883.herokuapp.com/flashsellTime", sellTime)
+      .post("https://eshop-server-green.vercel.app/flashsellTime", sellTime)
       .then((res) => {
         if(res.status=== 200){
             setSuccess(true);

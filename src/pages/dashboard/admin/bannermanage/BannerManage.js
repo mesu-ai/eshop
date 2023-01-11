@@ -33,14 +33,14 @@ const ManageBanner = () => {
   const body='Banner will be remove from database';
 
   useEffect(()=>{
-    fetch('https://mysterious-basin-77883.herokuapp.com/banner')
+    fetch('https://eshop-server-green.vercel.app/banner')
     .then(res=>res.json())
     .then(data=>setBanners(data));
   },[])
 //   console.log(category);
 
   const handleDelete=(id)=>{
-    const url=`https://mysterious-basin-77883.herokuapp.com/banner/${id}`;
+    const url=`https://eshop-server-green.vercel.app/banner/${id}`;
     
     fetch(url,{
       method:'DELETE',

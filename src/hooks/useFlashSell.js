@@ -8,7 +8,7 @@ const useFlashSell = () => {
 
 
     useEffect(()=>{
-        fetch('https://mysterious-basin-77883.herokuapp.com/flashsell')
+        fetch('https://eshop-server-green.vercel.app/flashsell')
         .then(res=>res.json())
         .then(data=>{
             startTransition(()=>{

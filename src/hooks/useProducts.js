@@ -6,7 +6,7 @@ const useProducts = () => {
     const [displayProducts,setDisplayProducts]=useState([]);
 
     useEffect(()=>{
-        fetch('https://mysterious-basin-77883.herokuapp.com/products')
+        fetch('https://eshop-server-green.vercel.app/products')
         .then(res=>res.json())
         .then(data=>{
             setProducts(data);

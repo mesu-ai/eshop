@@ -103,7 +103,7 @@ const AddProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('https://mysterious-basin-77883.herokuapp.com/products', {
+    fetch('https://eshop-server-green.vercel.app/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

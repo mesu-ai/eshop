@@ -103,7 +103,7 @@ const AddSellProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('https://mysterious-basin-77883.herokuapp.com/flashsell', {
+    fetch('https://eshop-server-green.vercel.app/flashsell', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

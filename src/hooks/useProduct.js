@@ -9,7 +9,7 @@ const useProduct = (page) => {
     const size=9;
 
     useEffect(()=>{
-        fetch(`https://mysterious-basin-77883.herokuapp.com/products?page=${page}&&size=${size}`)
+        fetch(`https://eshop-server-green.vercel.app/products?page=${page}&&size=${size}`)
         .then(res=>res.json())
         .then(data=>{
             
