@@ -28,7 +28,7 @@ const useCart = () => {
           ];
           
           // map every url to the promise of the fetch
-          let requests = urls.map(url => fetch(url));
+          let requests = urls.map(url => fetch(url,{mode:'no-cors'}));
           
           // Promise.all waits until all jobs are resolved
           Promise.all(requests)
