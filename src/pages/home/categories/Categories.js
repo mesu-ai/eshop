@@ -41,7 +41,7 @@ const Categories = () => {
     const [categories,setCategories]=useState([]);
 
     useEffect(()=>{
-        fetch('https://eshop-server-green.vercel.app/category')
+        fetch('https://eserver-app.vercel.app/category')
         .then(res=>res.json())
         .then(data=>setCategories(data))
 

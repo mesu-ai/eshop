@@ -8,7 +8,7 @@ const useFlashSell = () => {
 
 
     useEffect(()=>{
-        fetch('https://eshop-server-green.vercel.app/flashsell',{mode:'no-cors'})
+        fetch('https://eserver-app.vercel.app/flashsell',{mode:'no-cors'})
         .then(res=>res.json())
         .then(data=>{
             startTransition(()=>{

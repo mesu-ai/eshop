@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     setEmail(adminEmail);
     const user={email:adminEmail};
         
-        fetch('https://eshop-server-green.vercel.app/users/admin',{
+        fetch('https://eserver-app.vercel.app/users/admin',{
             method:'PUT',
             headers:{
                 'content-type':'application/json'

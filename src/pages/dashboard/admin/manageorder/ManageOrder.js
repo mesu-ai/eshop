@@ -40,14 +40,14 @@ const ManageOrder = () => {
   const body='Order will be remove from database';
 
   useEffect(()=>{
-    fetch('https://eshop-server-green.vercel.app/orders')
+    fetch('https://eserver-app.vercel.app/orders')
     .then(res=>res.json())
     .then(data=>setOrders(data));
   },[])
   console.log(orders);
 
   const handleDelete=(id)=>{
-    const url=`https://eshop-server-green.vercel.app/orders/${id}`;
+    const url=`https://eserver-app.vercel.app/orders/${id}`;
     
     fetch(url,{
       method:'DELETE',

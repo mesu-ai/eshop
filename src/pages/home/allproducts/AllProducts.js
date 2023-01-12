@@ -15,7 +15,7 @@ const AllProducts = () => {
     const size=9;
 
     useEffect(()=>{
-      fetch(`https://eshop-server-green.vercel.app/products?page=${page}&&size=${size}`)
+      fetch(`https://eserver-app.vercel.app/products?page=${page}&&size=${size}`)
         .then(res=>res.json())
         .then(data=>{
             

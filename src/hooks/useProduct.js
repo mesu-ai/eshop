@@ -9,7 +9,7 @@ const useProduct = (page) => {
     const size=9;
 
     useEffect(()=>{
-        fetch(`https://eshop-server-green.vercel.app/products?page=${page}&&size=${size}`,{mode:'no-cors'})
+        fetch(`https://eserver-app.vercel.app/products?page=${page}&&size=${size}`,{mode:'no-cors'})
         .then(res=>res.json())
         .then(data=>{
             

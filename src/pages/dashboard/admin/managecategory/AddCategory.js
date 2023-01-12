@@ -56,7 +56,7 @@ const AddCategory = () => {
     const category={...data,image:image}
 
     
-    fetch('https://eshop-server-green.vercel.app/category', {
+    fetch('https://eserver-app.vercel.app/category', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

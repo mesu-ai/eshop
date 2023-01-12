@@ -103,7 +103,7 @@ const AddSellProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('https://eshop-server-green.vercel.app/flashsell', {
+    fetch('https://eserver-app.vercel.app/flashsell', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

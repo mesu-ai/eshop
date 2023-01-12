@@ -28,10 +28,10 @@ const BuyProduct = () => {
    let url;
    
    if(sellType==='regular'){
-    url=`https://eshop-server-green.vercel.app/products/${id}`;
+    url=`https://eserver-app.vercel.app/products/${id}`;
 
    }else if(sellType==='flashsell'){
-    url=`https://eshop-server-green.vercel.app/flashsell/${id}`;
+    url=`https://eserver-app.vercel.app/flashsell/${id}`;
 
    }
 

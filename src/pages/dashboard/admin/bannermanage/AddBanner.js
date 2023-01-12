@@ -56,7 +56,7 @@ const AddBanner = () => {
     const banner={...data,banner_slide:image}
 
     
-    fetch('https://eshop-server-green.vercel.app/banner', {
+    fetch('https://eserver-app.vercel.app/banner', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

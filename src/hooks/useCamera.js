@@ -5,7 +5,7 @@ const useCamera = () => {
     const [cameras,setCameras]=useState([]);
     
     useEffect(()=>{
-        fetch('https://eshop-server-green.vercel.app/products?category=camera',{mode:'no-cors'})
+        fetch('https://eserver-app.vercel.app/products?category=camera',{mode:'no-cors'})
         .then(res=>res.json())
         .then(data=>setCameras(data.slice(-9)))
 

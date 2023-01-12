@@ -21,7 +21,7 @@ const Homebanner = () => {
 
   // const [banners,setBanners]=useState([]);
   // useEffect(()=>{
-  //   fetch('https://eshop-server-green.vercel.app/banner')
+  //   fetch('https://eserver-app.vercel.app/banner')
   //   .then(res=>res.json())
   //   .then(data=>setBanners(data))
 

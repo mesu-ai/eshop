@@ -103,7 +103,7 @@ const AddProduct = () => {
     const product={...data,image:image}
 
     
-    fetch('https://eshop-server-green.vercel.app/products', {
+    fetch('https://eserver-app.vercel.app/products', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

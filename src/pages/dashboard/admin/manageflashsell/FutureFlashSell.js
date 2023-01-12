@@ -212,7 +212,7 @@ const FutureFlashSell=()=> {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   React.useEffect(()=>{
-    fetch('https://eshop-server-green.vercel.app/products')
+    fetch('https://eserver-app.vercel.app/products')
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])

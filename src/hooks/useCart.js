@@ -23,8 +23,8 @@ const useCart = () => {
         // const elementCart=[];
             
         let urls = [
-            'https://eshop-server-green.vercel.app/products',
-            'https://eshop-server-green.vercel.app/flashsell'
+            'https://eserver-app.vercel.app/products',
+            'https://eserver-app.vercel.app/flashsell'
           ];
           
           // map every url to the promise of the fetch

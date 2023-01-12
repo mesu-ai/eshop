@@ -48,7 +48,7 @@ const ManageSellTime = () => {
     const sellTime = { startTime: startDate, endTime: endDate };
 
     await axios
-      .delete("https://eshop-server-green.vercel.app/flashsellTime")
+      .delete("https://eserver-app.vercel.app/flashsellTime")
       .then((res) => {
         // console.log(res);
       })
@@ -57,7 +57,7 @@ const ManageSellTime = () => {
       });
 
     await axios
-      .post("https://eshop-server-green.vercel.app/flashsellTime", sellTime)
+      .post("https://eserver-app.vercel.app/flashsellTime", sellTime)
       .then((res) => {
         if(res.status=== 200){
             setSuccess(true);

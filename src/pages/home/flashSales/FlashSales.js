@@ -121,7 +121,7 @@ const FlashSales = () => {
   });
 
   useEffect(() => {
-    fetch("https://eshop-server-green.vercel.app/flashsellTime")
+    fetch("https://eserver-app.vercel.app/flashsellTime")
       .then((res) => res.json())
       .then((data) => {
         startTransition(() => {

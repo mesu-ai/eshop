@@ -204,7 +204,7 @@ const useFirebase = () => {
 
     const saveUser=(email,name,methodname)=>{
       const user={email:email,displayName:name};
-      const url='https://eshop-server-green.vercel.app/users';
+      const url='https://eserver-app.vercel.app/users';
       
       fetch(url,{
         mode:'no-cors',
@@ -234,7 +234,7 @@ const useFirebase = () => {
   useEffect(()=>{
     setLoading(true);
 
-    fetch(`https://eshop-server-green.vercel.app/users/${user.email}`,{mode:'no-cors'})
+    fetch(`https://eserver-app.vercel.app/users/${user.email}`,{mode:'no-cors'})
     .then(res=>res.json())
     .then(data=>{
       // console.log(data);

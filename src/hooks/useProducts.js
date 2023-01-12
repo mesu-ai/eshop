@@ -6,10 +6,10 @@ const useProducts = () => {
     const [displayProducts,setDisplayProducts]=useState([]);
 
     useEffect(()=>{
-        fetch('https://eshop-server-green.vercel.app/products',{
+        fetch('https://eserver-app.vercel.app/products',{
             mode:'no-cors',
             headers: {
-                "Access-Control-Allow-Origin":'https://eshop-server-green.vercel.app'
+                "Access-Control-Allow-Origin":'https://eserver-app.vercel.app'
           }
         })
         .then(res=>res.json())

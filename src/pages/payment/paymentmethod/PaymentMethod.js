@@ -48,7 +48,7 @@ const PaymentMethod = (props) => {
         navigate('/confirmorder');
         const orderdata={...props.orderInfo,paymentMethod:'bKash',bkashNum:biller.mobile, trxID:biller.TrxID};
         // console.log(data);
-        const url='https://eshop-server-green.vercel.app/orders';
+        const url='https://eserver-app.vercel.app/orders';
 
         fetch(url,{
             method:'POST',

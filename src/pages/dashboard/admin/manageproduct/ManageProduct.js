@@ -40,14 +40,14 @@ const ManageProduct = () => {
   const body='Product will be delete from database';
 
   useEffect(()=>{
-    fetch('https://eshop-server-green.vercel.app/products')
+    fetch('https://eserver-app.vercel.app/products')
     .then(res=>res.json())
     .then(data=>setProducts(data));
   },[])
 //   console.log(products);
 
   const handleDelete=(id)=>{
-    const url=`https://eshop-server-green.vercel.app/products/${id}`;
+    const url=`https://eserver-app.vercel.app/products/${id}`;
     
     fetch(url,{
       method:'DELETE',
